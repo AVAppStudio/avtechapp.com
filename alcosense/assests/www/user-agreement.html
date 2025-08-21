@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acuerdo de Usuario</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .popup {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #acceptCheckbox {
+            margin-right: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #continueButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #cancelButton {
+            background-color: #f44336;
+            color: white;
+        }
+        #continueButton:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="agreementOverlay">
+        <div class="popup">
+            <h2>Acuerdo de Usuario</h2>
+            <p>
+                Bienvenido a HappyHours. Antes de continuar, lea atentamente el siguiente acuerdo:
+            </p>
+            <p>
+                1. AJ TechSolutions no se hace responsable del uso indebido de esta aplicación o de cualquier consecuencia derivada de su uso.
+            </p>
+            <p>
+                2. Esta aplicación no debe utilizarse como un método fiable para determinar su capacidad para conducir o realizar actividades que requieran plena atención y coordinación.
+            </p>
+            <p>
+                3. Los cálculos y estimaciones proporcionados por esta aplicación son aproximados y no deben considerarse como mediciones precisas de los niveles de alcohol en sangre.
+            </p>
+            <p>
+                4. El usuario asume toda la responsabilidad por cualquier decisión tomada basándose en la información proporcionada por esta aplicación.
+            </p>
+            <p>
+                5. AJ TechSolutions no será responsable de ningún incidente, accidente, lesión, daño o consecuencia legal resultante del uso de esta aplicación.
+            </p>
+            <p>
+                6. Se recomienda encarecidamente no conducir ni operar maquinaria después de consumir alcohol, independientemente de los resultados mostrados por esta aplicación.
+            </p>
+            <p>
+                7. La aplicación puede requerir acceso a su ubicación para brindarle ciertos servicios, como la sugerencia de servicios de taxi en su área. Su ubicación no se almacenará ni compartirá con terceros sin su consentimiento explícito.
+            </p>
+            <p>
+                8. La aplicación puede incluir contenido de terceros, como anuncios, que no son gestionados ni supervisados por AJ TechSolutions. No asumimos responsabilidad por la precisión o el contenido de dichos anuncios.
+            </p>
+            <p>
+                9. AJ TechSolutions se reserva el derecho de modificar este acuerdo en cualquier momento. Le notificaremos de los cambios importantes y le recomendamos revisar los términos periódicamente.
+            </p>
+            <div class="checkbox-container">
+                <input type="checkbox" id="acceptCheckbox">
+                <label for="acceptCheckbox">He leído y acepto los términos y condiciones</label>
+            </div>
+            <div class="button-container">
+                <button id="cancelButton">Cancelar</button>
+                <button id="continueButton" disabled>Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox = document.getElementById('acceptCheckbox');
+            const continueButton = document.getElementById('continueButton');
+            const cancelButton = document.getElementById('cancelButton');
+
+            checkbox.addEventListener('change', function() {
+                continueButton.disabled = !this.checked;
+            });
+
+            continueButton.addEventListener('click', function() {
+                localStorage.setItem('userAgreement', 'accepted');
+                window.location.href = '/index.html';
+            });
+
+            cancelButton.addEventListener('click', function() {
+                window.close();
+            });
+        });
+    </script>
+</body>
+</html>
