@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Fitness Tech e IA | AVTech Solutions</title>
+    <meta name="description" content="Descubre las últimas tendencias en fitness tech, inteligencia artificial aplicada al deporte y tips de entrenamiento con tecnología.">
+    <meta name="keywords" content="fitness tech, IA deporte, entrenamiento tecnología, apps fitness, blog fitness">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog de Fitness Tech - AVTech Solutions">
+    <meta property="og:description" content="Las últimas tendencias en fitness tech e inteligencia artificial aplicada al deporte.">
+    <meta property="og:url" content="https://avtechapp.com/blog">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../img/avtech-logo.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --primary-orange: #FFA500;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --border-color: rgba(255, 215, 0, 0.2);
+            --accent-blue: #4285f4;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 14px;
+            color: var(--primary-gold);
+            margin-bottom: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 80px 0;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .blog-read-more {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-gold);
+        }
+
+        .category-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+            color: var(--dark-bg);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="../" class="logo">
+                    <img src="../img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
+                    <div class="logo-text">AVTech Solutions</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../#projects">Proyectos</a></li>
+                    <li><a href="../#about">Nosotros</a></li>
+                    <li><a href="../#contact">Contacto</a></li>
+                    <li><a href="../ai-routine">AI Routine</a></li>
+                    <li><a href="/blog" class="active">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge fade-in">Fitness Tech & IA</div>
+            <h1 class="fade-in">Blog de Innovación Fitness</h1>
+            <p class="fade-in">
+                Descubre las últimas tendencias en fitness tech, inteligencia artificial aplicada al deporte 
+                y cómo la tecnología está revolucionando la manera en que entrenamos.
+            </p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <div class="blog-header">
+                <h2 class="section-title">Últimos Artículos</h2>
+                <p class="section-subtitle">
+                    Mantente al día con las últimas innovaciones y tendencias en el mundo del fitness tecnológico.
+                </p>
+            </div>
+            
+            <div class="blog-grid">
+                <!-- Article 1 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🤖</div>
+                    <div class="blog-content">
+                        <span class="blog-category">IA & Fitness</span>
+                        <h3 class="blog-title">Cómo la IA está Revolucionando el Entrenamiento Personal</h3>
+                        <p class="blog-excerpt">
+                            Descubre cómo los entrenadores virtuales con inteligencia artificial están cambiando 
+                            la manera en que las personas se ejercitan, ofreciendo planes personalizados y 
+                            motivación constante.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>15 Ago 2025</span>
+                        </div>
+                        <a href="#" class="blog-read-more">
+                            Leer más →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">📱</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Apps Fitness</span>
+                        <h3 class="blog-title">Las Mejores Apps de Fitness en 2025: Guía Completa</h3>
+                        <p class="blog-excerpt">
+                            Comparativa exhaustiva de las aplicaciones de fitness más populares del año. 
+                            Analizamos funciones, precios y cuál se adapta mejor a tu estilo de vida.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>10 Ago 2025</span>
+                        </div>
+                        <a href="#" class="blog-read-more">
+                            Leer más →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">💪</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Entrenamiento</span>
+                        <h3 class="blog-title">Rutinas Personalizadas vs Planes Genéricos: ¿Cuál Elegir?</h3>
+                        <p class="blog-excerpt">
+                            Analizamos las ventajas y desventajas de seguir rutinas personalizadas frente a 
+                            planes de entrenamiento genéricos. Te ayudamos a tomar la mejor decisión.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>5 Ago 2025</span>
+                        </div>
+                        <a href="#" class="blog-read-more">
+                            Leer más →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🔬</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Tecnología</span>
+                        <h3 class="blog-title">El Futuro del Fitness: Realidad Virtual y Aumentada</h3>
+                        <p class="blog-excerpt">
+                            Exploramos cómo la realidad virtual y aumentada están creando nuevas experiencias 
+                            de entrenamiento inmersivas y motivadoras para usuarios de todos los niveles.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>1 Ago 2025</span>
+                        </div>
+                        <a href="#" class="blog-read-more">
+                            Leer más →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">📊</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Datos</span>
+                        <h3 class="blog-title">Métricas que Importan: Qué Datos Trackear en tu Entrenamiento</h3>
+                        <p class="blog-excerpt">
+                            No todos los datos son útiles. Te explicamos qué métricas realmente importan 
+                            para tu progreso y cómo interpretarlas correctamente para optimizar resultados.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>28 Jul 2025</span>
+                        </div>
+                        <a href="#" class="blog-read-more">
+                            Leer más →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🚀</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Innovación</span>
+                        <h3 class="blog-title">Behind the Scenes: Cómo Desarrollamos AI Routine</h3>
+                        <p class="blog-excerpt">
+                            Un vistazo exclusivo al proceso de desarrollo de AI Routine. Desde la idea inicial 
+                            hasta la implementación de IA conversacional en el fitness.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>25 Jul 2025</span>
+                        </div>
+                        <a href="#" class="blog-read-more">
+                            Leer más →
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Explora por Categorías</h2>
+            <p class="section-subtitle">
+                Encuentra contenido específico sobre los temas que más te interesan.
+            </p>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <span class="category-icon">🤖</span>
+                    <h3 class="category-title">IA & Fitness</h3>
+                    <p class="category-count">12 artículos</p>
+                </div>
+                
+                <div class="category-card">
+                    <span class="category-icon">📱</span>
+                    <h3 class="category-title">Apps & Tech</h3>
+                    <p class="category-count">8 artículos</p>
+                </div>
+                
+                <div class="category-card">
+                    <span class="category-icon">💪</span>
+                    <h3 class="category-title">Entrenamiento</h3>
+                    <p class="category-count">15 artículos</p>
+                </div>
+                
+                <div class="category-card">
+                    <span class="category-icon">📊</span>
+                    <h3 class="category-title">Datos & Analytics</h3>
+                    <p class="category-count">6 artículos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="section-title">Mantente Actualizado</h2>
+                <p class="section-subtitle">
+                    Recibe las últimas noticias sobre fitness tech, IA y nuestros productos directamente en tu email.
+                </p>
+                
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input 
+                        type="email" 
+                        class="newsletter-input" 
+                        placeholder="tu@email.com" 
+                        required
+                    >
+                    <button type="submit" class="btn btn-primary">
+                        📧 Suscribirse
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 40px 0; border-top: 1px solid var(--border-color); background: var(--card-bg);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <div style="color: var(--text-secondary);">
+                    © 2025 AVTech Solutions. Innovación en fitness tech.
+                </div>
+                <div>
+                    <a href="../" style="color: var(--text-secondary); text-decoration: none; margin-right: 20px;">Inicio</a>
+                    <a href="../ai-routine" style="color: var(--text-secondary); text-decoration: none; margin-right: 20px;">AI Routine</a>
+                    <a href="../#contact" style="color: var(--text-secondary); text-decoration: none;">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Create mailto link
+            const subject = 'Suscripción Newsletter AVTech Solutions';
+            const body = `Hola,\n\nQuiero suscribirme al newsletter de AVTech Solutions.\n\nEmail: ${email}\n\nGracias!`;
+            
+            window.location.href = `mailto:ajtechsolutionsapp@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Show confirmation
+            alert('¡Gracias! Te hemos redirigido para completar tu suscripción por email.');
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Category filtering (placeholder)
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const categoryTitle = card.querySelector('.category-title').textContent;
+                alert(`Función de filtrado por "${categoryTitle}" próximamente disponible!`);
+            });
+        });
+    </script>
+</body>
+</html>
