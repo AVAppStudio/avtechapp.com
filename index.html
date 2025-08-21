@@ -137,6 +137,70 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+        /* HAMBURGER MENU STYLES */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-gold);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* MOBILE RESPONSIVE UPDATES */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    /* HAMBURGER ANIMATION */
+    .nav-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
 
         /* Hero Section */
         .hero {
@@ -688,17 +752,28 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <nav class="nav">
-                <a href="#" class="logo">
-                    <img src="img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
-                    <div class="logo-text">AVTech Solutions</div>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#projects">Proyectos</a></li>
-                    <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-            </nav>
+           <nav class="nav">
+    <a href="#" class="logo">
+        <img src="img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
+        <div class="logo-text">AVTech Solutions</div>
+    </a>
+    
+    <!-- HAMBURGUESA 3 RAYITAS -->
+    <div class="nav-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    
+    <!-- MENÚ EXPANDIDO -->
+    <ul class="nav-links" id="nav-menu">
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#about">Nosotros</a></li>
+        <li><a href="#contact">Contacto</a></li>
+        <li><a href="/ai-routine">AI Routine</a></li>
+        <li><a href="/blog">Blog</a></li>
+    </ul>
+</nav>
         </div>
     </header>
 
@@ -1062,6 +1137,26 @@
                 closeCountdown();
             }
         });
+        // HAMBURGER MENU FUNCTIONALITY
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // CLOSE MENU ON LINK CLICK
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+});
     </script>
 </body>
 </html>
