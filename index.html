@@ -95,15 +95,8 @@
         .logo-icon {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 18px;
-            color: var(--dark-bg);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            object-fit: contain;
         }
 
         .logo-text {
@@ -341,10 +334,107 @@
             align-items: center;
             gap: 5px;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .project-link:hover {
             color: var(--primary-gold);
+        }
+
+        /* Video Preview */
+        .video-preview {
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-preview iframe {
+            border-radius: 12px;
+        }
+
+        /* Countdown Modal */
+        .countdown-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .countdown-content {
+            background: var(--dark-bg);
+            border: 2px solid var(--primary-gold);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .countdown-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .countdown-close:hover {
+            color: var(--primary-gold);
+        }
+
+        .countdown-title {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .countdown-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .countdown-unit {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         /* About Section */
@@ -519,6 +609,10 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .countdown-timer {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* Animations */
@@ -547,7 +641,7 @@
         <div class="container">
             <nav class="nav">
                 <a href="#" class="logo">
-                    <div class="logo-icon">AV</div>
+                    <img src="img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
                     <div class="logo-text">AVTech Solutions</div>
                 </a>
                 <ul class="nav-links">
@@ -600,12 +694,22 @@
                             <span class="tech-tag">Claude IA</span>
                             <span class="tech-tag">WhatsApp API</span>
                         </div>
+                        
+                        <!-- Video Preview AI Routine -->
+                        <div class="video-preview">
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/H0MC0X8YrF8" 
+                                title="AI Routine Preview" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
                         <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.avtechsolutionsapp.airoutine" class="project-link" target="_blank">
+                            <a href="#" class="project-link countdown-link" data-app="airoutine">
                                 📱 Google Play
                             </a>
-                            <a href="https://avtechapp.com" class="project-link">
-                                🌐 Web
+                            <a href="#" class="project-link countdown-link" data-app="airoutine">
+                                🎮 Demo
                             </a>
                         </div>
                     </div>
@@ -627,12 +731,22 @@
                             <span class="tech-tag">ML Kit</span>
                             <span class="tech-tag">Health APIs</span>
                         </div>
+                        
+                        <!-- Video Preview AlcoSense -->
+                        <div class="video-preview">
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/H0MC0X8YrF8" 
+                                title="AlcoSense Preview" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
                         <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.ajtechsolutionsapp.alcosense" class="project-link" target="_blank">
+                            <a href="https://play.google.com/store/apps/details?id=com.happyhoursapp.android&pli=1" class="project-link" target="_blank">
                                 📱 Google Play
                             </a>
-                            <a href="https://ajtechsolutionsapp.github.io/alcosense.io/" class="project-link" target="_blank">
-                                🌐 Web
+                            <a href="alcosense/" class="project-link" target="_blank">
+                                🎮 Demo
                             </a>
                         </div>
                     </div>
@@ -717,13 +831,54 @@
                     © 2025 AVTech Solutions. Innovando el futuro, una app a la vez.
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/ajtechsolutionsapp" title="GitHub">📱</a>
+                    <a href="https://github.com/avtechsolutionsapp" title="GitHub">📱</a>
                     <a href="mailto:ajtechsolutionsapp@gmail.com" title="Email">📧</a>
                     <a href="#" title="LinkedIn">💼</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Countdown Modal -->
+    <div class="countdown-modal" id="countdownModal">
+        <div class="countdown-content">
+            <button class="countdown-close" onclick="closeCountdown()">&times;</button>
+            <h2 class="countdown-title">🚀 AI Routine</h2>
+            <p class="countdown-subtitle">Lanzamiento en Google Play</p>
+            
+            <div class="countdown-timer">
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+            
+            <!-- Video Preview in Modal -->
+            <div class="video-preview">
+                <iframe width="100%" height="250" src="https://www.youtube.com/embed/H0MC0X8YrF8" 
+                    title="AI Routine Preview" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            
+            <p style="color: var(--text-secondary); margin-top: 20px; font-size: 0.9rem;">
+                💪 El primer entrenador personal con IA conversacional
+            </p>
+        </div>
+    </div>
 
     <script>
         // Smooth scrolling
@@ -760,6 +915,60 @@
             const body = `Nombre: ${name}%0D%0AEmail: ${email}%0D%0AProyecto: ${project}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
             
             window.location.href = `mailto:ajtechsolutionsapp@gmail.com?subject=${subject}&body=${body}`;
+        });
+
+        // Countdown functionality
+        function showCountdown() {
+            document.getElementById('countdownModal').style.display = 'flex';
+            startCountdown();
+        }
+
+        function closeCountdown() {
+            document.getElementById('countdownModal').style.display = 'none';
+        }
+
+        function startCountdown() {
+            // Target date: September 15, 2025
+            const targetDate = new Date('September 15, 2025 00:00:00').getTime();
+            
+            const countdown = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    document.querySelector('.countdown-timer').innerHTML = '<h3 style="color: var(--primary-gold);">🎉 ¡YA DISPONIBLE!</h3>';
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+
+        // Add event listeners for countdown links
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownLinks = document.querySelectorAll('.countdown-link');
+            countdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showCountdown();
+                });
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('countdownModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCountdown();
+            }
         });
     </script>
 </body>
