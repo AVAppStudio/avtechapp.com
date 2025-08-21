@@ -137,70 +137,71 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+
         /* HAMBURGER MENU STYLES */
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    padding: 5px;
-}
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
 
-.bar {
-    width: 25px;
-    height: 3px;
-    background: var(--primary-gold);
-    margin: 3px 0;
-    transition: 0.3s;
-    border-radius: 2px;
-}
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
 
-/* MOBILE RESPONSIVE UPDATES */
-@media (max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 80px;
-        flex-direction: column;
-        background: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(20px);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
-        border-top: 1px solid var(--border-color);
-        z-index: 999;
-    }
+        /* MOBILE RESPONSIVE UPDATES */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                border-top: 1px solid var(--border-color);
+                z-index: 999;
+            }
 
-    .nav-links.active {
-        left: 0;
-    }
+            .nav-links.active {
+                left: 0;
+            }
 
-    .nav-links li {
-        margin: 1.5rem 0;
-    }
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
 
-    .nav-links a {
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
+            .nav-links a {
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
 
-    .nav-toggle {
-        display: flex;
-    }
+            .nav-toggle {
+                display: flex;
+            }
 
-    /* HAMBURGER ANIMATION */
-    .nav-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
+            /* HAMBURGER ANIMATION */
+            .nav-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
 
-    .nav-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
+            .nav-toggle.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
 
-    .nav-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-}
+            .nav-toggle.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
 
         /* Hero Section */
         .hero {
@@ -702,10 +703,6 @@
                 align-items: center;
             }
 
-            .nav-links {
-                display: none;
-            }
-
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -752,28 +749,28 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-           <nav class="nav">
-    <a href="#" class="logo">
-        <img src="img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
-        <div class="logo-text">AVTech Solutions</div>
-    </a>
-    
-    <!-- HAMBURGUESA 3 RAYITAS -->
-    <div class="nav-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
-    
-    <!-- MENÚ EXPANDIDO -->
-    <ul class="nav-links" id="nav-menu">
-        <li><a href="#projects">Proyectos</a></li>
-        <li><a href="#about">Nosotros</a></li>
-        <li><a href="#contact">Contacto</a></li>
-        <li><a href="/ai-routine">AI Routine</a></li>
-        <li><a href="/blog">Blog</a></li>
-    </ul>
-</nav>
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <img src="img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
+                    <div class="logo-text">AVTech Solutions</div>
+                </a>
+                
+                <!-- HAMBURGUESA 3 RAYITAS -->
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                
+                <!-- MENÚ EXPANDIDO -->
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="ai-routine/">AI Routine</a></li>
+                    <li><a href="blog/">Blog</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -843,8 +840,8 @@
                         </div>
                         
                         <div class="project-links">
-                            <a href="#" class="project-link countdown-link" data-app="airoutine">
-                                📱 Google Play
+                            <a href="ai-routine/" class="project-link">
+                                📱 Ver Más Info
                             </a>
                             <a href="#" class="project-link countdown-link" data-app="airoutine">
                                 🎮 Demo
@@ -971,6 +968,7 @@
             <div class="footer-content">
                 <div class="footer-text">
                     © 2025 AVTech Solutions. Innovando el futuro, una app a la vez
+                </div>
             </div>
         </div>
     </footer>
@@ -980,7 +978,7 @@
         <div class="countdown-content">
             <button class="countdown-close" onclick="closeCountdown()">&times;</button>
             <h2 class="countdown-title">🚀 AI Routine</h2>
-            <p class="countdown-subtitle">Lanzamiento en Google Play</p>
+            <p class="countdown-subtitle">Lanzamiento en Google Play - 15 Septiembre 2025</p>
             
             <div class="countdown-timer">
                 <div class="countdown-unit">
@@ -1009,6 +1007,12 @@
             <p style="color: var(--text-secondary); margin-top: 20px; font-size: 0.9rem;">
                 💪 El primer entrenador personal con IA conversacional
             </p>
+
+            <div style="margin-top: 30px;">
+                <a href="ai-routine/" class="btn btn-primary" onclick="closeCountdown()">
+                    📱 Ver Más Info
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1017,9 +1021,12 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
@@ -1078,10 +1085,16 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                // Update main countdown
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+                
+                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
             }, 1000);
         }
 
@@ -1129,6 +1142,25 @@
                     showCountdown();
                 });
             });
+
+            // HAMBURGER MENU FUNCTIONALITY
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (mobileMenu && navMenu) {
+                mobileMenu.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // CLOSE MENU ON LINK CLICK
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
         });
 
         // Close modal when clicking outside
@@ -1137,26 +1169,6 @@
                 closeCountdown();
             }
         });
-        // HAMBURGER MENU FUNCTIONALITY
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (mobileMenu && navMenu) {
-        mobileMenu.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // CLOSE MENU ON LINK CLICK
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-});
     </script>
 </body>
 </html>
