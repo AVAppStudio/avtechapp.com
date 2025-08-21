@@ -353,6 +353,51 @@
             border-radius: 12px;
         }
 
+        /* Countdown Preview */
+        .countdown-preview {
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-gold);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .countdown-preview-title {
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .countdown-timer-small {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .countdown-unit-small {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px 5px;
+            text-align: center;
+        }
+
+        .countdown-number-small {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .countdown-label-small {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
         /* Countdown Modal */
         .countdown-modal {
             display: none;
@@ -467,7 +512,7 @@
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
         }
 
@@ -613,6 +658,10 @@
             .countdown-timer {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .countdown-timer-small {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* Animations */
@@ -695,13 +744,27 @@
                             <span class="tech-tag">WhatsApp API</span>
                         </div>
                         
-                        <!-- Video Preview AI Routine -->
-                        <div class="video-preview">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/H0MC0X8YrF8" 
-                                title="AI Routine Preview" frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                        <!-- Countdown Preview AI Routine -->
+                        <div class="countdown-preview">
+                            <div class="countdown-preview-title">🚀 Lanzamiento en Google Play</div>
+                            <div class="countdown-timer-small">
+                                <div class="countdown-unit-small">
+                                    <span class="countdown-number-small" id="days-preview">00</span>
+                                    <span class="countdown-label-small">Días</span>
+                                </div>
+                                <div class="countdown-unit-small">
+                                    <span class="countdown-number-small" id="hours-preview">00</span>
+                                    <span class="countdown-label-small">Horas</span>
+                                </div>
+                                <div class="countdown-unit-small">
+                                    <span class="countdown-number-small" id="minutes-preview">00</span>
+                                    <span class="countdown-label-small">Min</span>
+                                </div>
+                                <div class="countdown-unit-small">
+                                    <span class="countdown-number-small" id="seconds-preview">00</span>
+                                    <span class="countdown-label-small">Seg</span>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="project-links">
@@ -786,6 +849,10 @@
                         <div class="stat-number">100%</div>
                         <div class="stat-label">Nativo Android</div>
                     </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Ideas para futuras App</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -865,13 +932,9 @@
                 </div>
             </div>
             
-            <!-- Video Preview in Modal -->
+            <!-- Logo Preview in Modal -->
             <div class="video-preview">
-                <iframe width="100%" height="250" src="https://www.youtube.com/embed/H0MC0X8YrF8" 
-                    title="AI Routine Preview" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <img src="img/logoweb.png" alt="AI Routine Logo" style="width: 100%; max-width: 300px; border-radius: 12px;">
             </div>
             
             <p style="color: var(--text-secondary); margin-top: 20px; font-size: 0.9rem;">
@@ -953,8 +1016,43 @@
             }, 1000);
         }
 
+        // Countdown preview functionality
+        function startPreviewCountdown() {
+            const targetDate = new Date('September 15, 2025 00:00:00').getTime();
+            
+            const previewCountdown = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    clearInterval(previewCountdown);
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Update preview countdown
+                const daysEl = document.getElementById('days-preview');
+                const hoursEl = document.getElementById('hours-preview');
+                const minutesEl = document.getElementById('minutes-preview');
+                const secondsEl = document.getElementById('seconds-preview');
+                
+                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+
         // Add event listeners for countdown links
         document.addEventListener('DOMContentLoaded', function() {
+            // Start preview countdown when page loads
+            startPreviewCountdown();
+            
+            // Countdown links functionality
             const countdownLinks = document.querySelectorAll('.countdown-link');
             countdownLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
