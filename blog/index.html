@@ -132,7 +132,11 @@
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px;
+    margin-right: 15px;
+    z-index: 1001;
+    background: none;
+    border: none;
 }
 
 .bar {
@@ -147,19 +151,20 @@
 /* MOBILE RESPONSIVE UPDATES */
 @media (max-width: 768px) {
     .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 80px;
-        flex-direction: column;
-        background: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(20px);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
-        border-top: 1px solid var(--border-color);
-        z-index: 999;
-    }
+    position: fixed;
+    left: -100%;
+    top: 80px;
+    flex-direction: column;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    z-index: 1000;
+    height: calc(100vh - 80px);
+}
 
     .nav-links.active {
         left: 0;
@@ -815,13 +820,19 @@
             });
          });
             
-        // HAMBURGER MENU FUNCTIONALITY
+        // HAMBURGER MENU FUNCTIONALITY - FIXED
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded'); // Debug
+    
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
+    
+    console.log('Mobile menu:', mobileMenu); // Debug
+    console.log('Nav menu:', navMenu); // Debug
 
     if (mobileMenu && navMenu) {
         mobileMenu.addEventListener('click', function() {
+            console.log('Hamburger clicked'); // Debug
             mobileMenu.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -833,7 +844,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 navMenu.classList.remove('active');
             });
         });
+    } else {
+        console.error('Menu elements not found!'); // Debug
     }
+});
     </script>
 </body>
 </html>
