@@ -637,33 +637,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Happy Hours -->
-                <div class="project-card">
-                    <div class="project-image">
-                        🍻
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Happy Hours</h3>
-                        <p class="project-description">
-                            Aplicación web para encontrar los mejores happy hours y ofertas de bebidas en tu ciudad. Descubre nuevos lugares y ahorra dinero.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Progressive Web App</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Geolocation</span>
-                            <span class="tech-tag">Real-time</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://avtechapp.com/happyhours/" class="project-link">
-                                🌐 Abrir App
-                            </a>
-                            <a href="#contact" class="project-link">
-                                📧 Colaborar
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
