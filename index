@@ -285,8 +285,8 @@
         }
 
         .project-image img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 120px;
+            max-height: 120px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
@@ -586,7 +586,7 @@
                 <!-- AI Routine -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="img/AiRoutineLogo.png" alt="AI Routine Logo" style="width: 120px; height: 120px; object-fit: contain;">
+                        <img src="img/AiRoutineLogo.png" alt="AI Routine Logo">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AI Routine</h3>
@@ -614,7 +614,7 @@
                 <!-- AlcoSense -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="img/AlcoSenseLogo.png" alt="AlcoSense Logo" style="width: 120px; height: 120px; object-fit: contain;">
+                        <img src="img/AlcoSenseLogo.png" alt="AlcoSense Logo">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AlcoSense</h3>
@@ -631,30 +631,33 @@
                             <a href="https://play.google.com/store/apps/details?id=com.ajtechsolutionsapp.alcosense" class="project-link" target="_blank">
                                 📱 Google Play
                             </a>
-                            <a href="https://avtechapp.com/alcosense" class="project-link">
-                                🌐 Demo
+                            <a href="https://ajtechsolutionsapp.github.io/alcosense.io/" class="project-link" target="_blank">
+                                🌐 Web
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Próximos Proyectos -->
+                <!-- Happy Hours -->
                 <div class="project-card">
                     <div class="project-image">
-                        🚧
+                        🍻
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Próximos Proyectos</h3>
+                        <h3 class="project-title">Happy Hours</h3>
                         <p class="project-description">
-                            Estamos trabajando en nuevas aplicaciones revolucionarias. IA para productividad, salud mental, y automatización de tareas diarias.
+                            Aplicación web para encontrar los mejores happy hours y ofertas de bebidas en tu ciudad. Descubre nuevos lugares y ahorra dinero.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">IA Avanzada</span>
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Cloud AI</span>
-                            <span class="tech-tag">IoT</span>
+                            <span class="tech-tag">Progressive Web App</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Geolocation</span>
+                            <span class="tech-tag">Real-time</span>
                         </div>
                         <div class="project-links">
+                            <a href="https://avtechapp.com/happyhours/" class="project-link">
+                                🌐 Abrir App
+                            </a>
                             <a href="#contact" class="project-link">
                                 📧 Colaborar
                             </a>
@@ -685,7 +688,7 @@
                         <div class="stat-label">Usuarios Activos</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">2</div>
+                        <div class="stat-number">3</div>
                         <div class="stat-label">Apps Publicadas</div>
                     </div>
                     <div class="stat-card">
@@ -708,7 +711,7 @@
             <p class="section-subtitle">Hablemos sobre cómo podemos hacer realidad tu próxima aplicación móvil.</p>
             
             <div class="contact-form">
-                <form action="#" method="POST">
+                <form action="mailto:ajtechsolutionsapp@gmail.com" method="POST" enctype="text/plain">
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
@@ -742,7 +745,7 @@
                 </div>
                 <div class="social-links">
                     <a href="https://github.com/ajtechsolutionsapp" title="GitHub">📱</a>
-                    <a href="mailto:contact@avtechapp.com" title="Email">📧</a>
+                    <a href="mailto:ajtechsolutionsapp@gmail.com" title="Email">📧</a>
                     <a href="#" title="LinkedIn">💼</a>
                 </div>
             </div>
@@ -773,7 +776,17 @@
         // Contact form handling
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto 🚀');
+            
+            // Crear mailto con los datos del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const project = document.getElementById('project').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = `Contacto desde AVTechApp.com - ${project || 'Consulta'}`;
+            const body = `Nombre: ${name}%0D%0AEmail: ${email}%0D%0AProyecto: ${project}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
+            
+            window.location.href = `mailto:ajtechsolutionsapp@gmail.com?subject=${subject}&body=${body}`;
         });
     </script>
 </body>
