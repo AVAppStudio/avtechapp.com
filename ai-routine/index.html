@@ -1028,9 +1028,28 @@
         });
 
         // Start countdown when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            startCountdown();
+document.addEventListener('DOMContentLoaded', function() {
+    startCountdown();
+    
+    // HAMBURGER MENU FUNCTIONALITY
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
+
+        // CLOSE MENU ON LINK CLICK
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+});
     </script>
 </body>
 </html>
