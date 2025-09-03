@@ -18,6 +18,100 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics 4 - AVTech Website -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-PSF7B9D3Z4', {
+        page_title: 'AV AppStudio',
+        page_location: window.location.href,
+        site_name: 'avtechapp.com',
+        send_page_view: true,
+        custom_map: {
+          'custom_dimension_1': 'app_section'
+        }
+      });
+
+      // Eventos personalizados AVTech
+      gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        app_section: 'main_website'
+      });
+
+      // Track clicks importantes cuando la página cargue
+      document.addEventListener('DOMContentLoaded', function() {
+        // AI Routine clicks
+        document.querySelectorAll('a[href*="ai-routine"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'click', {
+              event_category: 'navigation',
+              event_label: 'ai_routine_page',
+              value: 1
+            });
+          });
+        });
+
+        // AlcoSense clicks  
+        document.querySelectorAll('a[href*="alcosense"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'click', {
+              event_category: 'navigation', 
+              event_label: 'alcosense_page',
+              value: 1
+            });
+          });
+        });
+
+        // Contact clicks
+        document.querySelectorAll('a[href*="#contact"], a[href*="contact"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'click', {
+              event_category: 'engagement',
+              event_label: 'contact_section',
+              value: 1
+            });
+          });
+        });
+
+        // Google Play clicks (conversión importante!)
+        document.querySelectorAll('a[href*="play.google.com"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'click', {
+              event_category: 'conversion',
+              event_label: 'google_play_store',
+              value: 10 // Valor alto porque es conversión
+            });
+          });
+        });
+
+        // Blog clicks
+        document.querySelectorAll('a[href*="blog"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'click', {
+              event_category: 'engagement',
+              event_label: 'blog_section',
+              value: 1
+            });
+          });
+        });
+
+        // Countdown modal clicks (interés en AI Routine)
+        document.querySelectorAll('.countdown-link, [onclick*="showCountdown"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'engagement', {
+              event_category: 'interaction',
+              event_label: 'ai_routine_countdown',
+              value: 5 // Valor medio por interés
+            });
+          });
+        });
+      });
+    </script>
     
     <style>
         * {
@@ -1122,5 +1216,217 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
     </script>
+
+    <!-- Contador adicional CountAPI - AVTech Analytics -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // AVTech Dual Analytics System
+        const AVTECH_CONFIG = {
+            enabled: true,
+            debug: false, // Cambiar a true para ver logs
+            siteName: 'avtechapp.com'
+        };
+        
+        // Detectar nueva visita (24h)
+        function isNewVisitor() {
+            const lastVisit = localStorage.getItem('avtech_last_visit');
+            const now = Date.now();
+            const oneDay = 24 * 60 * 60 * 1000;
+            
+            if (!lastVisit || (now - parseInt(lastVisit)) > oneDay) {
+                localStorage.setItem('avtech_last_visit', now.toString());
+                return true;
+            }
+            return false;
+        }
+        
+        // Obtener información de la página
+        function getPageInfo() {
+            return {
+                page: window.location.pathname,
+                title: document.title,
+                referrer: document.referrer || 'direct',
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                screen: `${screen.width}x${screen.height}`
+            };
+        }
+        
+        // Tracking principal
+        async function trackPageView() {
+            if (!AVTECH_CONFIG.enabled) return;
+            
+            try {
+                const pageInfo = getPageInfo();
+                const isUnique = isNewVisitor();
+                
+                // Contador total
+                const totalResponse = await fetch('https://api.countapi.xyz/hit/avtechapp.com/total-visits');
+                const totalData = await totalResponse.json();
+                
+                // Contador por página
+                const pageKey = pageInfo.page.replace(/\//g, '_').replace(/[^a-zA-Z0-9_]/g, '') || 'home';
+                await fetch(`https://api.countapi.xyz/hit/avtechapp.com/page-${pageKey}`);
+                
+                // Visitantes únicos
+                if (isUnique) {
+                    await fetch('https://api.countapi.xyz/hit/avtechapp.com/unique-visitors');
+                }
+                
+                // Tracking especial por sección
+                if (pageInfo.page.includes('ai-routine')) {
+                    await fetch('https://api.countapi.xyz/hit/avtechapp.com/ai-routine-interest');
+                }
+                if (pageInfo.page.includes('alcosense')) {
+                    await fetch('https://api.countapi.xyz/hit/avtechapp.com/alcosense-interest');
+                }
+                if (pageInfo.page.includes('blog')) {
+                    await fetch('https://api.countapi.xyz/hit/avtechapp.com/blog-interest');
+                }
+                
+                // Debug info
+                if (AVTECH_CONFIG.debug) {
+                    console.log('🚀 AVTech Analytics Tracked:', {
+                        totalVisits: totalData.value,
+                        isNewVisitor: isUnique,
+                        page: pageInfo.page,
+                        referrer: pageInfo.referrer
+                    });
+                }
+                
+                // Enviar también a GA4 si está disponible
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'avtech_pageview', {
+                        event_category: 'analytics',
+                        event_label: pageInfo.page,
+                        custom_parameter_1: isUnique ? 'new_visitor' : 'returning_visitor',
+                        value: totalData.value
+                    });
+                }
+                
+                // Evento personalizado
+                window.dispatchEvent(new CustomEvent('avtechAnalyticsTracked', {
+                    detail: {
+                        totalVisits: totalData.value,
+                        isUnique: isUnique,
+                        pageInfo: pageInfo
+                    }
+                }));
+                
+            } catch (error) {
+                if (AVTECH_CONFIG.debug) {
+                    console.error('AVTech Analytics Error:', error);
+                }
+            }
+        }
+        
+        // Función para obtener estadísticas completas
+        window.getAVTechStats = async function() {
+            try {
+                console.log('📊 Obteniendo estadísticas AVTech...');
+                
+                const endpoints = [
+                    'total-visits',
+                    'unique-visitors',
+                    'page-home', 
+                    'page-ai-routine',
+                    'page-alcosense_web',
+                    'page-blog',
+                    'ai-routine-interest',
+                    'alcosense-interest',
+                    'blog-interest'
+                ];
+                
+                const responses = await Promise.all(
+                    endpoints.map(endpoint => 
+                        fetch(`https://api.countapi.xyz/get/avtechapp.com/${endpoint}`)
+                            .then(r => r.json())
+                            .catch(() => ({value: 0}))
+                    )
+                );
+                
+                const stats = {
+                    totalVisitas: responses[0].value || 0,
+                    visitantesUnicos: responses[1].value || 0,
+                    paginaInicio: responses[2].value || 0,
+                    aiRoutine: responses[3].value || 0,
+                    alcosense: responses[4].value || 0,
+                    blog: responses[5].value || 0,
+                    interesAiRoutine: responses[6].value || 0,
+                    interesAlcosense: responses[7].value || 0,
+                    interesBlog: responses[8].value || 0
+                };
+                
+                console.log('🎯 Estadísticas AVTech:');
+                console.table(stats);
+                
+                // Cálculos adicionales
+                const tasaConversion = stats.visitantesUnicos > 0 ? 
+                    ((stats.visitantesUnicos / stats.totalVisitas) * 100).toFixed(1) : 0;
+                    
+                const promedioDaily = Math.round(stats.totalVisitas / 30);
+                
+                console.log(`📈 Tasa conversión: ${tasaConversion}%`);
+                console.log(`📅 Promedio diario: ${promedioDaily} visitas`);
+                console.log(`🚀 Progreso hacia 10K: ${((stats.totalVisitas / 10000) * 100).toFixed(1)}%`);
+                
+                return stats;
+            } catch (error) {
+                console.error('❌ Error obteniendo estadísticas:', error);
+                return null;
+            }
+        };
+        
+        // Inicializar tracking
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', trackPageView);
+        } else {
+            trackPageView();
+        }
+        
+        // Track clicks especiales
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a, button');
+            if (!target) return;
+            
+            const href = target.getAttribute('href') || '';
+            const onclick = target.getAttribute('onclick') || '';
+            
+            // Track clicks importantes
+            if (href.includes('play.google.com')) {
+                fetch('https://api.countapi.xyz/hit/avtechapp.com/play-store-clicks');
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'conversion_click', {
+                        event_category: 'conversion',
+                        event_label: 'google_play_download'
+                    });
+                }
+            }
+            
+            if (href.includes('ai-routine') || onclick.includes('ai-routine')) {
+                fetch('https://api.countapi.xyz/hit/avtechapp.com/ai-routine-clicks');
+            }
+            
+            if (href.includes('alcosense') || onclick.includes('alcosense')) {
+                fetch('https://api.countapi.xyz/hit/avtechapp.com/alcosense-clicks');
+            }
+            
+            if (href.includes('#contact') || href.includes('contact')) {
+                fetch('https://api.countapi.xyz/hit/avtechapp.com/contact-clicks');
+            }
+        });
+        
+    })();
+
+    // Función para debug (activar modo debug)
+    window.enableAVTechDebug = function() {
+        localStorage.setItem('avtech_debug', 'true');
+        console.log('🔧 AVTech Debug Mode activado - recarga la página');
+    };
+</script>
+        
 </body>
 </html>
