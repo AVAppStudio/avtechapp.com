@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVTech Analytics Dashboard - Privado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+        }
+
+        .header h1 {
+            color: var(--primary-gold);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .page-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .page-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-gold);
+        }
+
+        .page-name {
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin-bottom: 5px;
+        }
+
+        .page-visits {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 AVTech Analytics Dashboard</h1>
+            <p>Dashboard privado de estadísticas de avtechapp.com</p>
+            <button class="refresh-btn" onclick="refreshStats()">
+                <span id="refresh-text">🔄 Actualizar Datos</span>
+            </button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="total-visits">-</div>
+                <div class="stat-label">Total Visitas</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" id="unique-visitors">-</div>
+                <div class="stat-label">Visitantes Únicos</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" id="conversion-rate">-</div>
+                <div class="stat-label">Tasa Conversión</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number" id="avg-daily">-</div>
+                <div class="stat-label">Promedio Diario</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px;">📱 Visitas por Página</h3>
+            <div class="page-breakdown" id="page-breakdown">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px;">📈 Objetivos AVTech</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div class="page-item">
+                    <div class="page-name">Meta Mensual</div>
+                    <div class="page-visits">10,000 visitas</div>
+                </div>
+                <div class="page-item">
+                    <div class="page-name">AI Routine Downloads</div>
+                    <div class="page-visits" id="ai-routine-goal">Pronto...</div>
+                </div>
+                <div class="page-item">
+                    <div class="page-name">AlcoSense Engagement</div>
+                    <div class="page-visits" id="alcosense-engagement">Creciendo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🚀 AVTech Solutions - Camino a ser millonarios con nuestras apps</p>
+            <p>Última actualización: <span id="last-update">-</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Función para obtener estadísticas
+        async function getAVTechStats() {
+            try {
+                const pages = [
+                    { name: 'Total Visitas', key: 'visits' },
+                    { name: 'Visitantes Únicos', key: 'unique_visitors' },
+                    { name: 'Inicio', key: 'home' },
+                    { name: 'AI Routine', key: 'ai-routine' },
+                   { name: 'AlcoSense', key: 'alcosense' },
+                    { name: 'Blog', key: 'blog' }
+                ];
+                
+                const responses = await Promise.all(
+                    pages.map(page => 
+                        fetch(`https://api.countapi.xyz/get/avtechapp.com/${page.key}`)
+                            .catch(() => ({ json: () => ({ value: 0 }) }))
+                    )
+                );
+                
+                const data = await Promise.all(
+                    responses.map(r => r.json().catch(() => ({ value: 0 })))
+                );
+                
+                const stats = {};
+                pages.forEach((page, index) => {
+                    stats[page.key] = data[index].value || 0;
+                });
+                
+                return stats;
+            } catch (error) {
+                console.error('Error obteniendo estadísticas:', error);
+                return null;
+            }
+        }
+        
+        // Función para actualizar el dashboard
+        async function refreshStats() {
+            const refreshBtn = document.getElementById('refresh-text');
+            refreshBtn.innerHTML = '<span class="loading"></span> Cargando...';
+            
+            try {
+                const stats = await getAVTechStats();
+                
+                if (stats) {
+                    // Actualizar números principales
+                    document.getElementById('total-visits').textContent = 
+                        stats.visits.toLocaleString();
+                    document.getElementById('unique-visitors').textContent = 
+                        stats.unique_visitors.toLocaleString();
+                    
+                    // Calcular tasa de conversión aproximada
+                    const conversionRate = stats.unique_visitors > 0 ? 
+                        ((stats.unique_visitors / stats.visits) * 100).toFixed(1) : 0;
+                    document.getElementById('conversion-rate').textContent = 
+                        conversionRate + '%';
+                    
+                    // Promedio diario aproximado (últimos 30 días)
+                    const avgDaily = Math.round(stats.visits / 30);
+                    document.getElementById('avg-daily').textContent = avgDaily;
+                    
+                    // Breakdown por páginas
+                    const pageBreakdown = document.getElementById('page-breakdown');
+                    pageBreakdown.innerHTML = '';
+                    
+                    const pages = [
+                        { name: '🏠 Página Principal', visits: stats.home },
+                        { name: '🤖 AI Routine', visits: stats['ai-routine'] },
+                        { name: '🍺 AlcoSense', visits: stats.alcosense_web },
+                        { name: '📝 Blog', visits: stats.blog }
+                    ];
+                    
+                    pages.forEach(page => {
+                        const pageItem = document.createElement('div');
+                        pageItem.className = 'page-item';
+                        pageItem.innerHTML = `
+                            <div class="page-name">${page.name}</div>
+                            <div class="page-visits">${page.visits.toLocaleString()} visitas</div>
+                        `;
+                        pageBreakdown.appendChild(pageItem);
+                    });
+                }
+                
+                document.getElementById('last-update').textContent = 
+                    new Date().toLocaleString('es-ES');
+                    
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                refreshBtn.innerHTML = '🔄 Actualizar Datos';
+            }
+        }
+        
+        // Cargar datos al inicio
+        document.addEventListener('DOMContentLoaded', refreshStats);
+        
+        // Auto-refresh cada 5 minutos
+        setInterval(refreshStats, 5 * 60 * 1000);
+        
+        // Función para mostrar notificaciones de milestone
+        function checkMilestones(stats) {
+            const milestones = [1000, 5000, 10000, 25000, 50000, 100000];
+            const currentVisits = stats.visits;
+            
+            milestones.forEach(milestone => {
+                if (currentVisits >= milestone && !localStorage.getItem(`milestone_${milestone}`)) {
+                    localStorage.setItem(`milestone_${milestone}`, 'true');
+                    showMilestoneNotification(milestone);
+                }
+            });
+        }
+        
+        function showMilestoneNotification(milestone) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #FFD700, #FFA500);
+                    color: #000;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    z-index: 1000;
+                    animation: slideIn 0.5s ease;
+                ">
+                    🎉 ¡Milestone alcanzado: ${milestone.toLocaleString()} visitas!
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+    </script>
+    
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>
