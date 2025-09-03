@@ -151,6 +151,15 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+
+        .error-msg {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #ff6b6b;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +171,8 @@
                 <span id="refresh-text">🔄 Actualizar Datos</span>
             </button>
         </div>
+
+        <div id="error-container"></div>
 
         <div class="stats-grid">
             <div class="stat-card">
@@ -217,45 +228,64 @@
     </div>
 
     <script>
-        // Función para obtener estadísticas
+        // Función para obtener estadísticas CORREGIDA
         async function getAVTechStats() {
             try {
-                const pages = [
-                    { name: 'Total Visitas', key: 'visits' },
-                    { name: 'Visitantes Únicos', key: 'unique_visitors' },
-                    { name: 'Inicio', key: 'home' },
-                    { name: 'AI Routine', key: 'ai-routine' },
-                   { name: 'AlcoSense', key: 'alcosense' },
-                    { name: 'Blog', key: 'blog' }
+                const endpoints = [
+                    'total-visits',
+                    'unique-visitors',
+                    'page-home',
+                    'page-ai-routine', 
+                    'page-alcosense',
+                    'page-blog'
                 ];
                 
+                // CORRECCIÓN: Usar then() en lugar de catch() que devuelve json()
                 const responses = await Promise.all(
-                    pages.map(page => 
-                        fetch(`https://api.countapi.xyz/get/avtechapp.com/${page.key}`)
-                            .catch(() => ({ json: () => ({ value: 0 }) }))
+                    endpoints.map(endpoint => 
+                        fetch(`https://api.countapi.xyz/get/avtechapp.com/${endpoint}`)
+                            .then(r => r.json())
+                            .catch(() => ({ value: 0 }))
                     )
                 );
                 
-                const data = await Promise.all(
-                    responses.map(r => r.json().catch(() => ({ value: 0 })))
-                );
-                
-                const stats = {};
-                pages.forEach((page, index) => {
-                    stats[page.key] = data[index].value || 0;
-                });
+                const stats = {
+                    visits: responses[0].value || 0,
+                    unique_visitors: responses[1].value || 0,
+                    home: responses[2].value || 0,
+                    'ai-routine': responses[3].value || 0,
+                    alcosense: responses[4].value || 0,
+                    blog: responses[5].value || 0
+                };
                 
                 return stats;
             } catch (error) {
                 console.error('Error obteniendo estadísticas:', error);
+                showError('Error conectando con el servidor de estadísticas');
                 return null;
             }
         }
         
-        // Función para actualizar el dashboard
+        // Función para mostrar errores
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `
+                <div class="error-msg">
+                    ⚠️ ${message}
+                </div>
+            `;
+        }
+        
+        // Función para limpiar errores
+        function clearErrors() {
+            document.getElementById('error-container').innerHTML = '';
+        }
+        
+        // Función para actualizar el dashboard CORREGIDA
         async function refreshStats() {
             const refreshBtn = document.getElementById('refresh-text');
             refreshBtn.innerHTML = '<span class="loading"></span> Cargando...';
+            clearErrors();
             
             try {
                 const stats = await getAVTechStats();
@@ -268,7 +298,7 @@
                         stats.unique_visitors.toLocaleString();
                     
                     // Calcular tasa de conversión aproximada
-                    const conversionRate = stats.unique_visitors > 0 ? 
+                    const conversionRate = stats.visits > 0 ? 
                         ((stats.unique_visitors / stats.visits) * 100).toFixed(1) : 0;
                     document.getElementById('conversion-rate').textContent = 
                         conversionRate + '%';
@@ -277,14 +307,14 @@
                     const avgDaily = Math.round(stats.visits / 30);
                     document.getElementById('avg-daily').textContent = avgDaily;
                     
-                    // Breakdown por páginas
+                    // Breakdown por páginas CORREGIDO
                     const pageBreakdown = document.getElementById('page-breakdown');
                     pageBreakdown.innerHTML = '';
                     
                     const pages = [
                         { name: '🏠 Página Principal', visits: stats.home },
                         { name: '🤖 AI Routine', visits: stats['ai-routine'] },
-                        { name: '🍺 AlcoSense', visits: stats.alcosense_web },
+                        { name: '🍺 AlcoSense', visits: stats.alcosense }, // CORREGIDO: sin _web
                         { name: '📝 Blog', visits: stats.blog }
                     ];
                     
@@ -293,17 +323,27 @@
                         pageItem.className = 'page-item';
                         pageItem.innerHTML = `
                             <div class="page-name">${page.name}</div>
-                            <div class="page-visits">${page.visits.toLocaleString()} visitas</div>
+                            <div class="page-visits">${(page.visits || 0).toLocaleString()} visitas</div>
                         `;
                         pageBreakdown.appendChild(pageItem);
                     });
+                    
+                    // Mostrar progreso hacia objetivos
+                    if (stats.visits > 0) {
+                        const progress = ((stats.visits / 10000) * 100).toFixed(1);
+                        document.querySelector('.page-item .page-visits').textContent = 
+                            `${progress}% completado`;
+                    }
+                } else {
+                    showError('No se pudieron obtener las estadísticas');
                 }
                 
                 document.getElementById('last-update').textContent = 
                     new Date().toLocaleString('es-ES');
                     
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error en refreshStats:', error);
+                showError('Error actualizando el dashboard');
             } finally {
                 refreshBtn.innerHTML = '🔄 Actualizar Datos';
             }
@@ -317,7 +357,9 @@
         
         // Función para mostrar notificaciones de milestone
         function checkMilestones(stats) {
-            const milestones = [1000, 5000, 10000, 25000, 50000, 100000];
+            if (!stats || !stats.visits) return;
+            
+            const milestones = [10, 50, 100, 500, 1000, 5000, 10000, 25000, 50000];
             const currentVisits = stats.visits;
             
             milestones.forEach(milestone => {
@@ -349,9 +391,19 @@
             document.body.appendChild(notification);
             
             setTimeout(() => {
-                notification.remove();
+                if (notification.parentNode) {
+                    notification.remove();
+                }
             }, 5000);
         }
+        
+        // Función debug para testing
+        window.testStats = async function() {
+            console.log('Testing AVTech Stats...');
+            const stats = await getAVTechStats();
+            console.table(stats);
+            checkMilestones(stats);
+        };
     </script>
     
     <style>
