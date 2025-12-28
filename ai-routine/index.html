@@ -456,6 +456,121 @@
             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
         }
 
+        /* VERSION BADGES - LITE vs FULL */
+.version-badge {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lite-badge {
+    background: linear-gradient(135deg, var(--primary-orange), #ff6b35);
+    color: white;
+    border: 2px solid var(--primary-orange);
+    animation: pulseLite 2s ease-in-out infinite;
+}
+
+.full-badge {
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+    color: var(--dark-bg);
+    border: 2px solid var(--primary-gold);
+    animation: pulseFull 2s ease-in-out infinite;
+}
+
+@keyframes pulseLite {
+    0%, 100% { 
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        transform: translateX(-50%) scale(1);
+    }
+    50% { 
+        box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+@keyframes pulseFull {
+    0%, 100% { 
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        transform: translateX(-50%) scale(1);
+    }
+    50% { 
+        box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+/* LITE VERSION STYLING */
+.lite-version {
+    border-color: var(--primary-orange) !important;
+    position: relative;
+}
+
+.lite-version:hover {
+    border-color: #ff6b35 !important;
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3) !important;
+}
+
+.lite-launch-date {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 165, 0, 0.2));
+    border: 1px solid var(--primary-orange);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: var(--primary-orange);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* FULL VERSION STYLING */
+.full-version {
+    border-color: var(--primary-gold) !important;
+    position: relative;
+}
+
+.full-version:hover {
+    border-color: var(--primary-orange) !important;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3) !important;
+}
+
+.full-status {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));
+    border: 1px solid var(--primary-gold);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: var(--primary-gold);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* POPULAR BADGE ADJUSTMENT */
+.pricing-card.featured .popular-badge {
+    top: -15px;
+}
+
+.pricing-card.featured .version-badge {
+    top: 55px;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+    .version-badge {
+        font-size: 11px;
+        padding: 6px 15px;
+        top: 45px;
+    }
+    
+    .pricing-card.featured .version-badge {
+        top: 50px;
+    }
         .pricing-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-gold);
@@ -827,71 +942,95 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Planes versión Full, en 2026</h2>
-            <p class="section-subtitle">
-                Desde gratis hasta premium. Encuentra el plan perfecto para tu journey fitness.
-            </p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card" onclick="showCountdownModal()">
-                    <div class="pricing-tier">FREE</div>
-                    <div class="pricing-price">€0</div>
-                    <div class="pricing-period">Gratis para siempre</div>
-                    <ul class="pricing-features">
-                        <li>3 consultas IA por mes</li>
-                        <li>Rutinas básicas</li>
-                        <li>1 notificación semanal</li>
-                        <li>Anuncios ocasionales</li>
-                    </ul>
-                    <div class="btn btn-secondary" style="width: 100%;">Empezar Gratis</div>
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2 class="section-title">Elige tu Plan</h2>
+        <p class="section-subtitle">
+            Desde gratis hasta premium. Encuentra el plan perfecto para tu journey fitness.
+        </p>
+        
+        <!-- TOGGLE LITE vs FULL -->
+        <div style="text-align: center; margin: 40px 0;">
+            <div style="display: inline-flex; gap: 20px; background: var(--card-bg); padding: 10px; border-radius: 50px; border: 2px solid var(--border-color);">
+                <div style="background: linear-gradient(135deg, var(--primary-orange), #ff6b35); color: white; padding: 10px 30px; border-radius: 50px; font-weight: 700; font-size: 1rem;">
+                    ⚡ LITE - Próximamente 2026
                 </div>
-
-                <div class="pricing-card" onclick="showCountdownModal()">
-                    <div class="pricing-tier">FREE+</div>
-                    <div class="pricing-price">€2.49</div>
-                    <div class="pricing-period">por mes</div>
-                    <ul class="pricing-features">
-                        <li>Todo de FREE +</li>
-                        <li>Sin anuncios</li>
-                        <li>Experiencia limpia</li>
-                        <li>Soporte básico</li>
-                    </ul>
-                    <div class="btn btn-secondary" style="width: 100%;">Sin Anuncios</div>
-                </div>
-                
-                <div class="pricing-card featured" onclick="showCountdownModal()">
-                    <div class="popular-badge">MÁS POPULAR</div>
-                    <div class="pricing-tier">PRO</div>
-                    <div class="pricing-price">€4.99</div>
-                    <div class="pricing-period">por mes</div>
-                    <ul class="pricing-features">
-                        <li>Chat IA ilimitado</li>
-                        <li>Rutinas personalizadas</li>
-                        <li>Sin anuncios</li>
-                        <li>Análisis de progreso</li>
-                        <li>Notificaciones inteligentes</li>
-                    </ul>
-                    <div class="btn btn-primary" style="width: 100%;">Empezar Prueba</div>
-                </div>
-                
-                <div class="pricing-card" onclick="showCountdownModal()">
-                    <div class="pricing-tier">ELITE</div>
-                    <div class="pricing-price">€9.99</div>
-                    <div class="pricing-period">por mes</div>
-                    <ul class="pricing-features">
-                        <li>Todo de PRO +</li>
-                        <li>IA predictiva avanzada</li>
-                        <li>Análisis corporal</li>
-                        <li>Soporte prioritario</li>
-                        <li>Features beta access</li>
-                    </ul>
-                    <div class="btn btn-secondary" style="width: 100%;">Ir Premium</div>
+                <div style="background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); padding: 10px 30px; border-radius: 50px; font-weight: 700; font-size: 1rem;">
+                    💎 FULL - En Desarrollo
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div class="pricing-grid">
+            <!-- FREE - LITE -->
+            <div class="pricing-card lite-version" onclick="showCountdownModal()">
+                <div class="version-badge lite-badge">⚡ VERSIÓN LITE</div>
+                <div class="pricing-tier">FREE</div>
+                <div class="pricing-price">€0</div>
+                <div class="pricing-period">Gratis para siempre</div>
+                <div class="lite-launch-date">📅 Lanzamiento 2026</div>
+                <ul class="pricing-features">
+                    <li>3 consultas IA por mes</li>
+                    <li>Rutinas básicas</li>
+                    <li>1 notificación semanal</li>
+                    <li>Anuncios ocasionales</li>
+                </ul>
+                <div class="btn btn-secondary" style="width: 100%;">Próximamente</div>
+            </div>
+
+            <!-- FREE+ - LITE -->
+            <div class="pricing-card lite-version" onclick="showCountdownModal()">
+                <div class="version-badge lite-badge">⚡ VERSIÓN LITE</div>
+                <div class="pricing-tier">FREE+</div>
+                <div class="pricing-price">€2.49</div>
+                <div class="pricing-period">por mes</div>
+                <div class="lite-launch-date">📅 Lanzamiento 2026</div>
+                <ul class="pricing-features">
+                    <li>Todo de FREE +</li>
+                    <li>Sin anuncios</li>
+                    <li>Experiencia limpia</li>
+                    <li>Soporte básico</li>
+                </ul>
+                <div class="btn btn-secondary" style="width: 100%;">Próximamente</div>
+            </div>
+            
+            <!-- PRO - FULL -->
+            <div class="pricing-card featured full-version" onclick="showCountdownModal()">
+                <div class="popular-badge">MÁS POPULAR</div>
+                <div class="version-badge full-badge">💎 VERSIÓN FULL</div>
+                <div class="pricing-tier">PRO</div>
+                <div class="pricing-price">€4.99</div>
+                <div class="pricing-period">por mes</div>
+                <div class="full-status">🚀 En Desarrollo</div>
+                <ul class="pricing-features">
+                    <li>Chat IA ilimitado</li>
+                    <li>Rutinas personalizadas</li>
+                    <li>Sin anuncios</li>
+                    <li>Análisis de progreso</li>
+                    <li>Notificaciones inteligentes</li>
+                </ul>
+                <div class="btn btn-primary" style="width: 100%;">Notificarme</div>
+            </div>
+            
+            <!-- ELITE - FULL -->
+            <div class="pricing-card full-version" onclick="showCountdownModal()">
+                <div class="version-badge full-badge">💎 VERSIÓN FULL</div>
+                <div class="pricing-tier">ELITE</div>
+                <div class="pricing-price">€9.99</div>
+                <div class="pricing-period">por mes</div>
+                <div class="full-status">🚀 En Desarrollo</div>
+                <ul class="pricing-features">
+                    <li>Todo de PRO +</li>
+                    <li>IA predictiva avanzada</li>
+                    <li>Análisis corporal</li>
+                    <li>Soporte prioritario</li>
+                    <li>Features beta access</li>
+                </ul>
+                <div class="btn btn-secondary" style="width: 100%;">Notificarme</div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Countdown Section - MODIFICADO SIN CUENTA ATRÁS -->
 <section class="countdown-section" id="download">
