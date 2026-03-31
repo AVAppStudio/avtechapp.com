@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Fitness Tech e IA | AV AppStudio</title>
     <meta name="description" content="Descubre las últimas tendencias en fitness tech, inteligencia artificial aplicada al deporte y tips de entrenamiento con tecnología.">
-    <meta name="keywords" content="fitness tech, IA deporte, entrenamiento tecnología, apps fitness, blog fitness, AI Routine">
+    <meta name="keywords" content="fitness tech, IA deporte, entrenamiento tecnología, apps fitness, blog fitness">
     <meta property="og:title" content="Blog de Fitness Tech - AV AppStudio">
     <meta property="og:description" content="Las últimas tendencias en fitness tech e inteligencia artificial aplicada al deporte.">
     <meta property="og:url" content="https://avtechapp.com/blog">
@@ -27,7 +27,8 @@
             --text-muted: #888888; --border-color: rgba(255,215,0,0.2);
         }
         body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,165,0,0.08) 0%, transparent 50%); z-index: -1; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,165,0,0.1) 0%, transparent 50%); z-index: -1; animation: float 20s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .header { position: fixed; top: 0; width: 100%; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1000; transition: all 0.3s; }
         .nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
@@ -39,55 +40,73 @@
         .nav-links a:hover, .nav-links a.active { color: var(--primary-gold); }
         .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001; background: none; border: none; }
         .bar { width: 25px; height: 3px; background: var(--primary-gold); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
-        .btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn { padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
         .btn-primary { background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.4); }
 
         /* HERO */
-        .hero { padding: 130px 0 60px; text-align: center; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 20px; font-size: 13px; color: var(--primary-gold); margin-bottom: 24px; font-weight: 600; }
-        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 32px; }
+        .hero { padding: 120px 0 80px; text-align: center; }
+        .hero-badge { display: inline-block; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 20px; font-size: 14px; color: var(--primary-gold); margin-bottom: 30px; font-weight: 600; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+        .hero p { font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* BLOG GRID */
-        .blog { padding: 60px 0 80px; }
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 12px; text-align: center; }
-        .section-subtitle { font-size: 1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 48px; text-align: center; }
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
-        .blog-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s; text-decoration: none; display: block; }
-        .blog-card:hover { transform: translateY(-8px); border-color: var(--primary-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .blog-image { height: 180px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); display: flex; align-items: center; justify-content: center; font-size: 3rem; border-bottom: 1px solid var(--border-color); position: relative; }
-        .blog-category { position: absolute; bottom: 12px; left: 16px; background: rgba(255,215,0,0.15); color: var(--primary-gold); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,215,0,0.3); }
-        .blog-new { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
-        .blog-content { padding: 24px; }
-        .blog-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); line-height: 1.4; }
-        .blog-excerpt { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem; line-height: 1.6; }
-        .blog-meta { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 12px; margin-bottom: 16px; }
-        .blog-read-more { color: var(--primary-gold); font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 4px; }
+        /* BLOG */
+        .blog { padding: 80px 0; }
+        .blog-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 60px; }
+        .blog-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s; }
+        .blog-card:hover { transform: translateY(-10px); border-color: var(--primary-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .blog-image { height: 200px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); display: flex; align-items: center; justify-content: center; font-size: 3rem; border-bottom: 1px solid var(--border-color); }
+        .blog-content { padding: 30px; }
+        .blog-category { display: inline-block; background: rgba(255,215,0,0.1); color: var(--primary-gold); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; }
+        .blog-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; color: var(--text-primary); line-height: 1.3; }
+        .blog-excerpt { color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6; }
+        .blog-meta { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+        .blog-read-more { color: var(--primary-gold); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; transition: color 0.3s; cursor: pointer; }
+        .blog-read-more:hover { color: var(--primary-orange); }
 
-        /* AIROUTINE BLOG CTA */
-        .airoutine-blog-cta { background: #FFD70011; border: 1px solid #FFD70033; border-radius: 20px; padding: 40px; text-align: center; margin: 48px 0 0; }
-        .airoutine-blog-cta h3 { font-size: 1.4rem; font-weight: 700; color: var(--primary-gold); margin-bottom: 10px; }
-        .airoutine-blog-cta p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        /* CATEGORIES */
+        .categories { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .category-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .category-card:hover { transform: translateY(-5px); border-color: var(--primary-gold); }
+        .category-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .category-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--primary-gold); }
+        .category-count { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* NEWSLETTER */
+        .newsletter { padding: 80px 0; text-align: center; }
+        .newsletter-content { max-width: 600px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px; }
+        .newsletter-form { display: flex; gap: 15px; margin-top: 30px; }
+        .newsletter-input { flex: 1; padding: 15px; border: 2px solid var(--border-color); border-radius: 12px; background: rgba(255,255,255,0.05); color: var(--text-primary); font-size: 16px; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+        .newsletter-input:focus { outline: none; border-color: var(--primary-gold); box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        .newsletter-input::placeholder { color: var(--text-muted); }
 
         /* FOOTER */
-        footer { padding: 36px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-links { display: flex; gap: 20px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--primary-gold); }
+        footer { padding: 40px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
             .nav-links { position: fixed; left: -100%; top: 80px; flex-direction: column; background: rgba(10,10,10,0.98); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border-color); z-index: 999; }
             .nav-links.active { left: 0; }
-            .nav-links li { margin: 1.2rem 0; }
+            .nav-links li { margin: 1.5rem 0; }
             .nav-toggle { display: flex; }
             .nav-toggle.active .bar:nth-child(2) { opacity: 0; }
             .nav-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .nav-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            .blog-grid { grid-template-columns: 1fr; }
         }
+
+        .fade-in { opacity: 0; transform: translateY(30px); animation: fadeIn 0.8s ease forwards; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
@@ -116,98 +135,160 @@
 
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">✍️ Fitness Tech & IA — 2026</div>
-            <h1>Blog de Innovación Fitness</h1>
-            <p>Tendencias en fitness tech, inteligencia artificial aplicada al deporte y cómo la tecnología está revolucionando la manera en que entrenamos.</p>
+            <div class="hero-badge fade-in">Fitness Tech & IA — 2026</div>
+            <h1 class="fade-in">Blog de Innovación Fitness</h1>
+            <p class="fade-in">Descubre las últimas tendencias en fitness tech, inteligencia artificial aplicada al deporte y cómo la tecnología está revolucionando la manera en que entrenamos.</p>
         </div>
     </section>
 
     <section class="blog">
         <div class="container">
-            <h2 class="section-title">Últimos Artículos</h2>
-            <p class="section-subtitle">Contenido actualizado cada 2 días. Generado con IA y curado por el equipo de AV AppStudio.</p>
+            <div class="blog-header">
+                <h2 class="section-title">Últimos Artículos</h2>
+                <p class="section-subtitle">Mantente al día con las últimas innovaciones en el mundo del fitness tecnológico.</p>
+            </div>
 
             <div class="blog-grid">
 
-                <a href="https://airoutine.fit/blog/sueno-y-musculo" target="_blank" class="blog-card">
-                    <div class="blog-image">
-                        💤
-                        <span class="blog-category">RECUPERACIÓN</span>
-                        <span class="blog-new">NUEVO</span>
-                    </div>
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🤖</div>
                     <div class="blog-content">
-                        <div class="blog-title">Cómo el sueño afecta el crecimiento muscular</div>
-                        <p class="blog-excerpt">El descanso es tan importante como el entrenamiento. Descubre qué pasa en tu cuerpo mientras duermes y por qué el sueño es el mejor suplemento.</p>
+                        <span class="blog-category">IA & Fitness</span>
+                        <h3 class="blog-title">Cómo la IA está Revolucionando el Entrenamiento Personal en 2026</h3>
+                        <p class="blog-excerpt">Los entrenadores virtuales con inteligencia artificial ya no son ciencia ficción. Hoy generan rutinas personalizadas en segundos, conocen tu progreso y te motivan las 24 horas.</p>
                         <div class="blog-meta">
-                            <span>AV AppStudio</span>
-                            <span>29 Mar 2026</span>
+                            <span>Por AVTech Team</span>
+                            <span>28 Mar 2026</span>
                         </div>
-                        <span class="blog-read-more">Leer en AI Routine →</span>
+                        <span class="blog-read-more">Leer más →</span>
                     </div>
-                </a>
+                </article>
 
-                <a href="https://airoutine.fit/blog/hipertrofia-vs-fuerza" target="_blank" class="blog-card">
-                    <div class="blog-image">
-                        💪
-                        <span class="blog-category">ENTRENAMIENTO</span>
-                    </div>
+                <article class="blog-card fade-in">
+                    <div class="blog-image">📱</div>
                     <div class="blog-content">
-                        <div class="blog-title">Hipertrofia vs fuerza: diferencias y cómo entrenar cada una</div>
-                        <p class="blog-excerpt">¿Quieres ser más grande o más fuerte? No siempre van de la mano. Aprende las diferencias clave y cómo estructurar tu entrenamiento según tu objetivo.</p>
+                        <span class="blog-category">Apps Fitness</span>
+                        <h3 class="blog-title">PWA vs App Nativa: Por qué Elegimos la Web para AI Routine</h3>
+                        <p class="blog-excerpt">Sin pasar por el App Store, sin comisiones del 30%, sin esperar validaciones. Te contamos por qué las Progressive Web Apps están ganando terreno en el mundo fitness.</p>
                         <div class="blog-meta">
-                            <span>AV AppStudio</span>
-                            <span>27 Mar 2026</span>
+                            <span>Por AVTech Team</span>
+                            <span>22 Mar 2026</span>
                         </div>
-                        <span class="blog-read-more">Leer en AI Routine →</span>
+                        <span class="blog-read-more">Leer más →</span>
                     </div>
-                </a>
+                </article>
 
-                <a href="https://airoutine.fit/blog/cafeina-deporte" target="_blank" class="blog-card">
-                    <div class="blog-image">
-                        ☕
-                        <span class="blog-category">NUTRICIÓN</span>
-                    </div>
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🏋️</div>
                     <div class="blog-content">
-                        <div class="blog-title">Cafeína y deporte: el pre-entreno natural más efectivo</div>
-                        <p class="blog-excerpt">La cafeína es el suplemento más estudiado y consumido del mundo. Descubre cómo usarla correctamente para maximizar tu rendimiento deportivo.</p>
+                        <span class="blog-category">Entrenamiento</span>
+                        <h3 class="blog-title">Rutinas Personalizadas vs Planes Genéricos: La IA como Árbitro</h3>
+                        <p class="blog-excerpt">Analizamos las ventajas de dejar que la inteligencia artificial diseñe tu plan de entrenamiento frente a seguir una rutina estándar descargada de internet.</p>
                         <div class="blog-meta">
-                            <span>AV AppStudio</span>
-                            <span>25 Mar 2026</span>
+                            <span>Por AVTech Team</span>
+                            <span>18 Mar 2026</span>
                         </div>
-                        <span class="blog-read-more">Leer en AI Routine →</span>
+                        <span class="blog-read-more">Leer más →</span>
                     </div>
-                </a>
+                </article>
 
-                <a href="https://airoutine.fit/blog" target="_blank" class="blog-card" style="border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:200px;">
-                    <div class="blog-content" style="text-align:center;padding:36px;">
-                        <div style="font-size:2.5rem;margin-bottom:12px;">🤖</div>
-                        <div class="blog-title" style="color:var(--primary-gold);">Nuevo post cada 2 días</div>
-                        <p class="blog-excerpt">DumblAI genera artículos de fitness automáticamente. Ver todos los posts en airoutine.fit/blog</p>
-                        <span class="blog-read-more">Ver blog completo →</span>
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🔬</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Tecnología</span>
+                        <h3 class="blog-title">Firebase + React: El Stack Perfecto para Apps Fitness SaaS</h3>
+                        <p class="blog-excerpt">Cómo construimos AI Routine con React, Vite, Firebase y Stripe. Decisiones técnicas, errores cometidos y lecciones aprendidas desarrollando un SaaS fitness desde cero.</p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>14 Mar 2026</span>
+                        </div>
+                        <span class="blog-read-more">Leer más →</span>
                     </div>
-                </a>
+                </article>
+
+                <article class="blog-card fade-in">
+                    <div class="blog-image">📊</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Datos</span>
+                        <h3 class="blog-title">Qué Métricas Realmente Importan en tu Entrenamiento</h3>
+                        <p class="blog-excerpt">No todos los datos son útiles. Volumen total, racha, récords personales y distribución muscular — te explicamos qué trackear y por qué el resto es ruido.</p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>10 Mar 2026</span>
+                        </div>
+                        <span class="blog-read-more">Leer más →</span>
+                    </div>
+                </article>
+
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🚀</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Innovación</span>
+                        <h3 class="blog-title">De Google Play Rechazado a SaaS con Stripe: Nuestra Historia</h3>
+                        <p class="blog-excerpt">Nos rechazaron dos veces en Google Play. En vez de rendirme, pivotamos a PWA. Hoy tenemos Stripe en live mode, tiers de pago y usuarios reales. Esto es lo que aprendimos.</p>
+                        <div class="blog-meta">
+                            <span>Por AVTech Team</span>
+                            <span>5 Mar 2026</span>
+                        </div>
+                        <span class="blog-read-more">Leer más →</span>
+                    </div>
+                </article>
 
             </div>
+        </div>
+    </section>
 
-            <div class="airoutine-blog-cta">
-                <img src="https://airoutine.fit/dumblAIchat1.png" alt="DumblAI" style="width:52px;height:52px;object-fit:contain;margin-bottom:12px;" />
-                <h3>Blog completo en airoutine.fit/blog</h3>
-                <p>Nuevo artículo de fitness cada 2 días generado por DumblAI. Nutrición, entrenamiento, recuperación y más — todo basado en ciencia.</p>
-                <a href="https://airoutine.fit/blog" target="_blank" class="btn btn-primary">Ver todos los artículos</a>
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Explora por Categorías</h2>
+            <p class="section-subtitle">Encuentra contenido específico sobre los temas que más te interesan.</p>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <span class="category-icon">🤖</span>
+                    <h3 class="category-title">IA & Fitness</h3>
+                    <p class="category-count">6 artículos</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">📱</span>
+                    <h3 class="category-title">Apps & Tech</h3>
+                    <p class="category-count">4 artículos</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">🏋️</span>
+                    <h3 class="category-title">Entrenamiento</h3>
+                    <p class="category-count">5 artículos</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">📊</span>
+                    <h3 class="category-title">Datos & Analytics</h3>
+                    <p class="category-count">3 artículos</p>
+                </div>
             </div>
+        </div>
+    </section>
 
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="section-title">Mantente Actualizado</h2>
+                <p class="section-subtitle">Recibe las últimas noticias sobre fitness tech, IA y nuestros productos directamente en tu email.</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="tu@email.com" required />
+                    <button type="submit" class="btn btn-primary">📧 Suscribirse</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div style="color:var(--text-muted);font-size:13px;">© 2026 AV AppStudio · Innovación en fitness tech</div>
-                <div class="footer-links">
-                    <a href="../">Inicio</a>
-                    <a href="../ai-routine/">AI Routine</a>
-                    <a href="https://airoutine.fit/blog" target="_blank">Blog AI Routine</a>
-                    <a href="../#contact">Contacto</a>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+                <div style="color:var(--text-secondary);font-size:13px;">© 2026 AV AppStudio · Innovación en fitness tech.</div>
+                <div style="display:flex;gap:20px;">
+                    <a href="../" style="color:var(--text-secondary);text-decoration:none;font-size:13px;">Inicio</a>
+                    <a href="../ai-routine/" style="color:var(--text-secondary);text-decoration:none;font-size:13px;">AI Routine</a>
+                    <a href="https://airoutine.fit" target="_blank" style="color:var(--primary-gold);text-decoration:none;font-size:13px;">airoutine.fit</a>
+                    <a href="../#contact" style="color:var(--text-secondary);text-decoration:none;font-size:13px;">Contacto</a>
                 </div>
             </div>
         </div>
@@ -230,10 +311,20 @@
                 });
             }
         });
+
         window.addEventListener('scroll', () => {
             document.querySelector('.header').style.background =
                 window.scrollY > 100 ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.95)';
         });
+
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            const subject = 'Suscripción Newsletter AV AppStudio';
+            const body = `Hola,\n\nQuiero suscribirme al newsletter de AV AppStudio.\n\nEmail: ${email}\n\nGracias!`;
+            window.location.href = `mailto:avappstudio.global@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            alert('¡Gracias! Te hemos redirigido para completar tu suscripción.');
+        }
     </script>
 </body>
 </html>
