@@ -5,858 +5,235 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Fitness Tech e IA | AV AppStudio</title>
     <meta name="description" content="Descubre las últimas tendencias en fitness tech, inteligencia artificial aplicada al deporte y tips de entrenamiento con tecnología.">
-    <meta name="keywords" content="fitness tech, IA deporte, entrenamiento tecnología, apps fitness, blog fitness">
-    
-    <!-- Open Graph -->
+    <meta name="keywords" content="fitness tech, IA deporte, entrenamiento tecnología, apps fitness, blog fitness, AI Routine">
     <meta property="og:title" content="Blog de Fitness Tech - AV AppStudio">
     <meta property="og:description" content="Las últimas tendencias en fitness tech e inteligencia artificial aplicada al deporte.">
     <meta property="og:url" content="https://avtechapp.com/blog">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../img/avtech-logo.png">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Google Analytics 4 - AVTech Website -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PSF7B9D3Z4');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PSF7B9D3Z4');
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-gold: #FFD700;
-            --primary-orange: #FFA500;
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --text-muted: #888888;
-            --border-color: rgba(255, 215, 0, 0.2);
-            --accent-blue: #4285f4;
+            --primary-gold: #FFD700; --primary-orange: #FFA500;
+            --dark-bg: #0a0a0a; --card-bg: rgba(255,255,255,0.05);
+            --text-primary: #ffffff; --text-secondary: #cccccc;
+            --text-muted: #888888; --border-color: rgba(255,215,0,0.2);
         }
+        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,165,0,0.08) 0%, transparent 50%); z-index: -1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header { position: fixed; top: 0; width: 100%; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1000; transition: all 0.3s; }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 45px; height: 45px; border-radius: 12px; object-fit: contain; }
+        .logo-text { font-size: 22px; font-weight: 700; color: var(--primary-gold); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-gold); }
+        .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001; background: none; border: none; }
+        .bar { width: 25px; height: 3px; background: var(--primary-gold); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
+        .btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.4); }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* HERO */
+        .hero { padding: 130px 0 60px; text-align: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 20px; font-size: 13px; color: var(--primary-gold); margin-bottom: 24px; font-weight: 600; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+        .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 32px; }
 
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%);
-            z-index: -1;
-            animation: float 20s ease-in-out infinite;
-        }
+        /* BLOG GRID */
+        .blog { padding: 60px 0 80px; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 12px; text-align: center; }
+        .section-subtitle { font-size: 1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 48px; text-align: center; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+        .blog-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s; text-decoration: none; display: block; }
+        .blog-card:hover { transform: translateY(-8px); border-color: var(--primary-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .blog-image { height: 180px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); display: flex; align-items: center; justify-content: center; font-size: 3rem; border-bottom: 1px solid var(--border-color); position: relative; }
+        .blog-category { position: absolute; bottom: 12px; left: 16px; background: rgba(255,215,0,0.15); color: var(--primary-gold); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,215,0,0.3); }
+        .blog-new { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+        .blog-content { padding: 24px; }
+        .blog-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); line-height: 1.4; }
+        .blog-excerpt { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem; line-height: 1.6; }
+        .blog-meta { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 12px; margin-bottom: 16px; }
+        .blog-read-more { color: var(--primary-gold); font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 4px; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
-        }
+        /* AIROUTINE BLOG CTA */
+        .airoutine-blog-cta { background: #FFD70011; border: 1px solid #FFD70033; border-radius: 20px; padding: 40px; text-align: center; margin: 48px 0 0; }
+        .airoutine-blog-cta h3 { font-size: 1.4rem; font-weight: 700; color: var(--primary-gold); margin-bottom: 10px; }
+        .airoutine-blog-cta p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* FOOTER */
+        footer { padding: 36px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--primary-gold); }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary-gold);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-gold);
-        }
-
-        /* HAMBURGER MENU STYLES */
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    padding: 10px;
-    margin-right: 15px;
-    z-index: 1001;
-    background: none;
-    border: none;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background: var(--primary-gold);
-    margin: 3px 0;
-    transition: 0.3s;
-    border-radius: 2px;
-}
-
-/* MOBILE RESPONSIVE UPDATES */
-@media (max-width: 768px) {
-    .nav-links {
-    position: fixed;
-    left: -100%;
-    top: 80px;
-    flex-direction: column;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(20px);
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border-color);
-    z-index: 1000;
-    height: calc(100vh - 80px);
-}
-
-    .nav-links.active {
-        left: 0;
-    }
-
-    .nav-links li {
-        margin: 1.5rem 0;
-    }
-
-    .nav-links a {
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    .nav-toggle {
-        display: flex;
-    }
-
-    /* HAMBURGER ANIMATION */
-    .nav-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .nav-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .nav-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-}
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-size: 14px;
-            color: var(--primary-gold);
-            margin-bottom: 30px;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Blog Section */
-        .blog {
-            padding: 80px 0;
-        }
-
-        .blog-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .blog-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .blog-image {
-            height: 200px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .blog-content {
-            padding: 30px;
-        }
-
-        .blog-category {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--primary-gold);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .blog-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        .blog-excerpt {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .blog-read-more {
-            color: var(--primary-gold);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s ease;
-        }
-
-        .blog-read-more:hover {
-            color: var(--primary-orange);
-        }
-
-        /* Categories */
-        .categories {
-            padding: 80px 0;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .category-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-gold);
-        }
-
-        .category-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .category-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--primary-gold);
-        }
-
-        .category-count {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .newsletter-content {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-        }
-
-        .newsletter-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
-            color: var(--dark-bg);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .blog-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-    }
-}
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s ease forwards;
+            .nav-links { position: fixed; left: -100%; top: 80px; flex-direction: column; background: rgba(10,10,10,0.98); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border-color); z-index: 999; }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 1.2rem 0; }
+            .nav-toggle { display: flex; }
+            .nav-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .nav-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .nav-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .blog-grid { grid-template-columns: 1fr; }
         }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in:nth-child(1) { animation-delay: 0.1s; }
-        .fade-in:nth-child(2) { animation-delay: 0.2s; }
-        .fade-in:nth-child(3) { animation-delay: 0.3s; }
-        .fade-in:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header class="header">
         <div class="container">
-           <nav class="nav">
-    <a href="../" class="logo">
-        <img src="../img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
-        <div class="logo-text">AV AppStudio</div>
-    </a>
-    
-    <!-- HAMBURGUESA 3 RAYITAS -->
-    <div class="nav-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
-    
-    <!-- MENÚ EXPANDIDO -->
-    <ul class="nav-links" id="nav-menu">
-        <li><a href="../#projects">Proyectos</a></li>
-        <li><a href="../ai-routine/">AI Routine</a></li>
-        <li><a href="../alcosense/">AlcoSense</a></li>
-        <li><a href="../blog/" class="active">Blog</a></li>
-        <li><a href="../#about">Nosotros</a></li>
-        <li><a href="../#contact">Contacto</a></li>
-    </ul>
-</nav>
+            <nav class="nav">
+                <a href="../" class="logo">
+                    <img src="../img/avtech-logo.png" alt="AV AppStudio" class="logo-icon">
+                    <div class="logo-text">AV AppStudio</div>
+                </a>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </div>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="../#projects">Proyectos</a></li>
+                    <li><a href="../ai-routine/">AI Routine</a></li>
+                    <li><a href="../alcosense/">AlcoSense</a></li>
+                    <li><a href="../blog/" class="active">Blog</a></li>
+                    <li><a href="../#about">Nosotros</a></li>
+                    <li><a href="../#contact">Contacto</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge fade-in">Fitness Tech & IA</div>
-            <h1 class="fade-in">Blog de Innovación Fitness</h1>
-            <p class="fade-in">
-                Descubre las últimas tendencias en fitness tech, inteligencia artificial aplicada al deporte 
-                y cómo la tecnología está revolucionando la manera en que entrenamos.
-            </p>
+            <div class="hero-badge">✍️ Fitness Tech & IA — 2026</div>
+            <h1>Blog de Innovación Fitness</h1>
+            <p>Tendencias en fitness tech, inteligencia artificial aplicada al deporte y cómo la tecnología está revolucionando la manera en que entrenamos.</p>
         </div>
     </section>
 
-    <!-- Blog Section -->
     <section class="blog">
         <div class="container">
-            <div class="blog-header">
-                <h2 class="section-title">Últimos Artículos</h2>
-                <p class="section-subtitle">
-                    Mantente al día con las últimas innovaciones y tendencias en el mundo del fitness tecnológico.
-                </p>
-            </div>
-            
+            <h2 class="section-title">Últimos Artículos</h2>
+            <p class="section-subtitle">Contenido actualizado cada 2 días. Generado con IA y curado por el equipo de AV AppStudio.</p>
+
             <div class="blog-grid">
-                <!-- Article 1 -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image">IA</div>
-                    <div class="blog-content">
-                        <span class="blog-category">IA & Fitness</span>
-                        <h3 class="blog-title">Cómo la IA está Revolucionando el Entrenamiento Personal</h3>
-                        <p class="blog-excerpt">
-                            Descubre cómo los entrenadores virtuales con inteligencia artificial están cambiando 
-                            la manera en que las personas se ejercitan, ofreciendo planes personalizados y 
-                            motivación constante.
-                        </p>
-                        <div class="blog-meta">
-                            <span>Por AVTech Team</span>
-                            <span>15 Ago 2025</span>
-                        </div>
-                        <a href="#" class="blog-read-more">
-                            Leer más →
-                        </a>
-                    </div>
-                </article>
 
-                <!-- Article 2 -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image">📱</div>
-                    <div class="blog-content">
-                        <span class="blog-category">Apps Fitness</span>
-                        <h3 class="blog-title">Las Mejores Apps de Fitness en 2025: Guía Completa</h3>
-                        <p class="blog-excerpt">
-                            Comparativa exhaustiva de las aplicaciones de fitness más populares del año. 
-                            Analizamos funciones, precios y cuál se adapta mejor a tu estilo de vida.
-                        </p>
-                        <div class="blog-meta">
-                            <span>Por AVTech Team</span>
-                            <span>10 Ago 2025</span>
-                        </div>
-                        <a href="#" class="blog-read-more">
-                            Leer más →
-                        </a>
+                <a href="https://airoutine.fit/blog/sueno-y-musculo" target="_blank" class="blog-card">
+                    <div class="blog-image">
+                        💤
+                        <span class="blog-category">RECUPERACIÓN</span>
+                        <span class="blog-new">NUEVO</span>
                     </div>
-                </article>
+                    <div class="blog-content">
+                        <div class="blog-title">Cómo el sueño afecta el crecimiento muscular</div>
+                        <p class="blog-excerpt">El descanso es tan importante como el entrenamiento. Descubre qué pasa en tu cuerpo mientras duermes y por qué el sueño es el mejor suplemento.</p>
+                        <div class="blog-meta">
+                            <span>AV AppStudio</span>
+                            <span>29 Mar 2026</span>
+                        </div>
+                        <span class="blog-read-more">Leer en AI Routine →</span>
+                    </div>
+                </a>
 
-                <!-- Article 3 -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image">🏋🏽</div>
-                    <div class="blog-content">
-                        <span class="blog-category">Entrenamiento</span>
-                        <h3 class="blog-title">Rutinas Personalizadas vs Planes Genéricos: ¿Cuál Elegir?</h3>
-                        <p class="blog-excerpt">
-                            Analizamos las ventajas y desventajas de seguir rutinas personalizadas frente a 
-                            planes de entrenamiento genéricos. Te ayudamos a tomar la mejor decisión.
-                        </p>
-                        <div class="blog-meta">
-                            <span>Por AVTech Team</span>
-                            <span>5 Ago 2025</span>
-                        </div>
-                        <a href="#" class="blog-read-more">
-                            Leer más →
-                        </a>
+                <a href="https://airoutine.fit/blog/hipertrofia-vs-fuerza" target="_blank" class="blog-card">
+                    <div class="blog-image">
+                        💪
+                        <span class="blog-category">ENTRENAMIENTO</span>
                     </div>
-                </article>
+                    <div class="blog-content">
+                        <div class="blog-title">Hipertrofia vs fuerza: diferencias y cómo entrenar cada una</div>
+                        <p class="blog-excerpt">¿Quieres ser más grande o más fuerte? No siempre van de la mano. Aprende las diferencias clave y cómo estructurar tu entrenamiento según tu objetivo.</p>
+                        <div class="blog-meta">
+                            <span>AV AppStudio</span>
+                            <span>27 Mar 2026</span>
+                        </div>
+                        <span class="blog-read-more">Leer en AI Routine →</span>
+                    </div>
+                </a>
 
-                <!-- Article 4 -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image">🔬</div>
-                    <div class="blog-content">
-                        <span class="blog-category">Tecnología</span>
-                        <h3 class="blog-title">El Futuro del Fitness: Realidad Virtual y Aumentada</h3>
-                        <p class="blog-excerpt">
-                            Exploramos cómo la realidad virtual y aumentada están creando nuevas experiencias 
-                            de entrenamiento inmersivas y motivadoras para usuarios de todos los niveles.
-                        </p>
-                        <div class="blog-meta">
-                            <span>Por AVTech Team</span>
-                            <span>1 Ago 2025</span>
-                        </div>
-                        <a href="#" class="blog-read-more">
-                            Leer más →
-                        </a>
+                <a href="https://airoutine.fit/blog/cafeina-deporte" target="_blank" class="blog-card">
+                    <div class="blog-image">
+                        ☕
+                        <span class="blog-category">NUTRICIÓN</span>
                     </div>
-                </article>
+                    <div class="blog-content">
+                        <div class="blog-title">Cafeína y deporte: el pre-entreno natural más efectivo</div>
+                        <p class="blog-excerpt">La cafeína es el suplemento más estudiado y consumido del mundo. Descubre cómo usarla correctamente para maximizar tu rendimiento deportivo.</p>
+                        <div class="blog-meta">
+                            <span>AV AppStudio</span>
+                            <span>25 Mar 2026</span>
+                        </div>
+                        <span class="blog-read-more">Leer en AI Routine →</span>
+                    </div>
+                </a>
 
-                <!-- Article 5 -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image">📊</div>
-                    <div class="blog-content">
-                        <span class="blog-category">Datos</span>
-                        <h3 class="blog-title">Métricas que Importan: Qué Datos Trackear en tu Entrenamiento</h3>
-                        <p class="blog-excerpt">
-                            No todos los datos son útiles. Te explicamos qué métricas realmente importan 
-                            para tu progreso y cómo interpretarlas correctamente para optimizar resultados.
-                        </p>
-                        <div class="blog-meta">
-                            <span>Por AVTech Team</span>
-                            <span>28 Jul 2025</span>
-                        </div>
-                        <a href="#" class="blog-read-more">
-                            Leer más →
-                        </a>
+                <a href="https://airoutine.fit/blog" target="_blank" class="blog-card" style="border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:200px;">
+                    <div class="blog-content" style="text-align:center;padding:36px;">
+                        <div style="font-size:2.5rem;margin-bottom:12px;">🤖</div>
+                        <div class="blog-title" style="color:var(--primary-gold);">Nuevo post cada 2 días</div>
+                        <p class="blog-excerpt">DumblAI genera artículos de fitness automáticamente. Ver todos los posts en airoutine.fit/blog</p>
+                        <span class="blog-read-more">Ver blog completo →</span>
                     </div>
-                </article>
+                </a>
 
-                <!-- Article 6 -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image">🚀</div>
-                    <div class="blog-content">
-                        <span class="blog-category">Innovación</span>
-                        <h3 class="blog-title">Behind the Scenes: Cómo Desarrollamos AI Routine</h3>
-                        <p class="blog-excerpt">
-                            Un vistazo exclusivo al proceso de desarrollo de AI Routine. Desde la idea inicial 
-                            hasta la implementación de IA conversacional en el fitness.
-                        </p>
-                        <div class="blog-meta">
-                            <span>Por AVTech Team</span>
-                            <span>25 Jul 2025</span>
-                        </div>
-                        <a href="#" class="blog-read-more">
-                            Leer más →
-                        </a>
-                    </div>
-                </article>
             </div>
+
+            <div class="airoutine-blog-cta">
+                <img src="https://airoutine.fit/dumblAIchat1.png" alt="DumblAI" style="width:52px;height:52px;object-fit:contain;margin-bottom:12px;" />
+                <h3>Blog completo en airoutine.fit/blog</h3>
+                <p>Nuevo artículo de fitness cada 2 días generado por DumblAI. Nutrición, entrenamiento, recuperación y más — todo basado en ciencia.</p>
+                <a href="https://airoutine.fit/blog" target="_blank" class="btn btn-primary">Ver todos los artículos</a>
+            </div>
+
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
+    <footer>
         <div class="container">
-            <h2 class="section-title">Explora por Categorías</h2>
-            <p class="section-subtitle">
-                Encuentra contenido específico sobre los temas que más te interesan.
-            </p>
-            
-            <div class="categories-grid">
-                <div class="category-card">
-                    <span class="category-icon">IA</span>
-                    <h3 class="category-title">IA & Fitness</h3>
-                    <p class="category-count">12 artículos</p>
-                </div>
-                
-                <div class="category-card">
-                    <span class="category-icon">📱</span>
-                    <h3 class="category-title">Apps & Tech</h3>
-                    <p class="category-count">8 artículos</p>
-                </div>
-                
-                <div class="category-card">
-                    <span class="category-icon">🏋🏽</span>
-                    <h3 class="category-title">Entrenamiento</h3>
-                    <p class="category-count">15 artículos</p>
-                </div>
-                
-                <div class="category-card">
-                    <span class="category-icon">📊</span>
-                    <h3 class="category-title">Datos & Analytics</h3>
-                    <p class="category-count">6 artículos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2 class="section-title">Mantente Actualizado</h2>
-                <p class="section-subtitle">
-                    Recibe las últimas noticias sobre fitness tech, IA y nuestros productos directamente en tu email.
-                </p>
-                
-                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-                    <input 
-                        type="email" 
-                        class="newsletter-input" 
-                        placeholder="tu@email.com" 
-                        required
-                    >
-                    <button type="submit" class="btn btn-primary">
-                        📧 Suscribirse
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer style="padding: 40px 0; border-top: 1px solid var(--border-color); background: var(--card-bg);">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-                <div style="color: var(--text-secondary);">
-                    © 2025 AV AppStudio. Innovación en fitness tech.
-                </div>
-                <div>
-                    <a href="../" style="color: var(--text-secondary); text-decoration: none; margin-right: 20px;">Inicio</a>
-                    <a href="../ai-routine" style="color: var(--text-secondary); text-decoration: none; margin-right: 20px;">AI Routine</a>
-                    <a href="../#contact" style="color: var(--text-secondary); text-decoration: none;">Contacto</a>
+            <div class="footer-content">
+                <div style="color:var(--text-muted);font-size:13px;">© 2026 AV AppStudio · Innovación en fitness tech</div>
+                <div class="footer-links">
+                    <a href="../">Inicio</a>
+                    <a href="../ai-routine/">AI Routine</a>
+                    <a href="https://airoutine.fit/blog" target="_blank">Blog AI Routine</a>
+                    <a href="../#contact">Contacto</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+            if (mobileMenu && navMenu) {
+                mobileMenu.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        navMenu.classList.remove('active');
                     });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.98)';
-            } else {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                });
             }
         });
-
-        // Newsletter subscription
-        function subscribeNewsletter(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input[type="email"]').value;
-            
-            // Create mailto link
-            const subject = 'Suscripción Newsletter AV AppStudio';
-            const body = `Hola,\n\nQuiero suscribirme al newsletter de AV AppStudio.\n\nEmail: ${email}\n\nGracias!`;
-            
-            window.location.href = `mailto:ajtechsolutionsapp@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Show confirmation
-            alert('¡Gracias! Te hemos redirigido para completar tu suscripción por email.');
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+        window.addEventListener('scroll', () => {
+            document.querySelector('.header').style.background =
+                window.scrollY > 100 ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.95)';
         });
-
-        // Category filtering (placeholder)
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const categoryTitle = card.querySelector('.category-title').textContent;
-                alert(`Función de filtrado por "${categoryTitle}" próximamente disponible!`);
-            });
-         });
-            
-        // HAMBURGER MENU FUNCTIONALITY - FIXED
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded'); // Debug
-    
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    
-    console.log('Mobile menu:', mobileMenu); // Debug
-    console.log('Nav menu:', navMenu); // Debug
-
-    if (mobileMenu && navMenu) {
-        mobileMenu.addEventListener('click', function() {
-            console.log('Hamburger clicked'); // Debug
-            mobileMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // CLOSE MENU ON LINK CLICK
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    } else {
-        console.error('Menu elements not found!'); // Debug
-    }
-});
     </script>
 </body>
 </html>
