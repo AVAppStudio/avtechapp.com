@@ -47,8 +47,6 @@
         .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
         .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
         .section-subtitle { text-align: center; font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-        /* HERO */
         .hero { padding: 140px 0 80px; }
         .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .hero-text h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
@@ -64,8 +62,6 @@
         .floating-card.card-2 { bottom: 20%; left: -10px; animation-delay: 2s; }
         .floating-card.card-3 { top: 55%; right: -20px; animation-delay: 4s; }
         @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
-        /* FEATURES */
         .features { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
         .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 20px; padding: 36px; text-align: center; transition: all 0.3s; }
@@ -73,8 +69,6 @@
         .feature-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
         .feature-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: var(--primary-gold); }
         .feature-description { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
-
-        /* SCREENSHOTS */
         .screenshots { padding: 80px 0; }
         .screens-scroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin-top: 48px; }
         .screen-item { flex-shrink: 0; scroll-snap-align: start; text-align: center; }
@@ -82,37 +76,34 @@
         .screen-item.highlight img { border-color: rgba(255,215,0,0.4); box-shadow: 0 8px 40px rgba(255,215,0,0.2); }
         .screen-label { margin-top: 12px; font-size: 11px; color: #888; letter-spacing: 1px; }
         .screen-label.gold { color: var(--primary-gold); }
-
-        /* COMPARATIVA */
         .comparativa { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         .compare-table { width: 100%; border-collapse: collapse; min-width: 500px; }
         .compare-table th { padding: 16px; font-size: 13px; border-bottom: 1px solid rgba(255,215,0,0.2); font-weight: 600; }
         .compare-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .compare-table .ai-col { background: rgba(255,215,0,0.05); border-left: 1px solid rgba(255,215,0,0.2); border-right: 1px solid rgba(255,215,0,0.2); text-align: center; font-size: 18px; }
         .compare-table .other-col { text-align: center; font-size: 18px; }
-
-        /* PRICING */
         .pricing { padding: 80px 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 48px; }
         .pricing-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 20px; padding: 36px 28px; text-align: center; position: relative; transition: all 0.3s; }
         .pricing-card.featured { border-color: var(--primary-gold); box-shadow: 0 20px 40px rgba(255,215,0,0.15); }
         .pricing-card:hover { transform: translateY(-8px); border-color: var(--primary-gold); }
-        .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+        .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
         .pricing-tier { font-size: 1.1rem; font-weight: 600; color: var(--primary-gold); margin-bottom: 8px; }
         .pricing-price { font-size: 3rem; font-weight: 800; margin-bottom: 4px; }
         .pricing-period { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.9rem; }
         .pricing-features { list-style: none; margin-bottom: 28px; text-align: left; }
         .pricing-features li { padding: 7px 0; color: var(--text-secondary); padding-left: 22px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .pricing-features li::before { content: '✓'; position: absolute; left: 0; color: var(--primary-gold); font-weight: bold; }
-
-        /* CTA */
         .cta-section { padding: 80px 0; text-align: center; }
         .cta-section h2 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-        /* FOOTER */
+        .install-badges { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+        .install-badge { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 12px 20px; text-decoration: none; color: var(--text-primary); transition: all 0.3s; }
+        .install-badge:hover { border-color: var(--primary-gold); background: rgba(255,215,0,0.05); }
+        .install-badge img { width: 28px; height: 28px; object-fit: contain; }
+        .install-badge-text { text-align: left; }
+        .install-badge-text .small { font-size: 10px; color: var(--text-muted); }
+        .install-badge-text .big { font-size: 14px; font-weight: 700; }
         footer { padding: 40px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
-
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
             .hero-text h1 { font-size: 2.2rem; }
@@ -127,12 +118,12 @@
             .nav-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
             .hero-visual { display: none; }
             .pricing-grid { grid-template-columns: 1fr; }
+            .install-badges { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -155,41 +146,55 @@
         </div>
     </header>
 
-    <!-- HERO -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Tu Entrenador Personal con IA está aquí</h1>
-                <p>Rutinas personalizadas en 30 segundos. DumblAI conoce tu perfil, tu progreso y te guía en cada entrenamiento. Gratis.</p>
-                <div class="hero-buttons">
-                    <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary">Empezar gratis</a>
-                    <a href="https://airoutine.fit" target="_blank" class="btn btn-secondary">Ver la app</a>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Tu Entrenador Personal con IA está aquí</h1>
+                    <p>Rutinas personalizadas en 30 segundos. DumblAI conoce tu perfil, tu progreso y te guía en cada entrenamiento. Gratis.</p>
+                    <div class="hero-buttons">
+                        <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary">🚀 Empezar gratis</a>
+                        <a href="https://airoutine.fit" target="_blank" class="btn btn-secondary">Ver la app</a>
+                    </div>
+                    <div class="install-badges">
+                        <a href="https://airoutine.fit" target="_blank" class="install-badge">
+                            <img src="https://airoutine.fit/logoPWA.png" alt="PWA" onerror="this.src='https://airoutine.fit/logo.png'" />
+                            <div class="install-badge-text">
+                                <div class="small">INSTALAR EN</div>
+                                <div class="big">📱 iOS & Android</div>
+                            </div>
+                        </a>
+                        <a href="https://airoutine.fit" target="_blank" class="install-badge">
+                            <img src="https://airoutine.fit/fast.png" alt="Rápido" onerror="this.innerHTML='⚡'" />
+                            <div class="install-badge-text">
+                                <div class="small">RUTINA EN</div>
+                                <div class="big">⚡ 30 segundos</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hero-stats" style="margin-top:28px;">
+                        <div class="stat"><span class="stat-number">30s</span><span class="stat-label">Rutina lista</span></div>
+                        <div class="stat"><span class="stat-number">24/7</span><span class="stat-label">DumblAI activo</span></div>
+                        <div class="stat"><span class="stat-number">0€</span><span class="stat-label">Para empezar</span></div>
+                    </div>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat"><span class="stat-number">30s</span><span class="stat-label">Rutina lista</span></div>
-                    <div class="stat"><span class="stat-number">24/7</span><span class="stat-label">DumblAI activo</span></div>
-                    <div class="stat"><span class="stat-number">0€</span><span class="stat-label">Para empezar</span></div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <img src="../img/AiRoutineLogo.png" alt="AI Routine App" class="app-mockup">
-                <div class="floating-card card-1">
-                    <span style="color:var(--primary-gold);font-weight:700;">🏋️ Rutina Lista</span><br>Pecho y Tríceps
-                </div>
-                <div class="floating-card card-2">
-                    <img src="https://airoutine.fit/dumblAIchat1.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:6px;" alt="DumblAI" />
-                    <span style="color:var(--primary-gold);font-weight:700;">DumblAI</span><br>"¡Vamos por ese PR!"
-                </div>
-                <div class="floating-card card-3">
-                    <span style="color:var(--primary-gold);font-weight:700;">📊 Progreso</span><br>+5kg este mes
+                <div class="hero-visual">
+                    <img src="https://airoutine.fit/logo-perfil.png" alt="AI Routine App" class="app-mockup">
+                    <div class="floating-card card-1">
+                        <span style="color:var(--primary-gold);font-weight:700;">🏋️ Rutina Lista</span><br>Pecho y Tríceps
+                    </div>
+                    <div class="floating-card card-2">
+                        <img src="https://airoutine.fit/dumblAIchat1.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:6px;" alt="DumblAI" />
+                        <span style="color:var(--primary-gold);font-weight:700;">DumblAI</span><br>"¡Vamos por ese PR!"
+                    </div>
+                    <div class="floating-card card-3">
+                        <span style="color:var(--primary-gold);font-weight:700;">👑 Plan ELITE</span><br>Todo desbloqueado
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- FEATURES -->
     <section class="features" id="features">
         <div class="container">
             <h2 class="section-title">¿Por qué AI Routine?</h2>
@@ -201,7 +206,7 @@
                     <p class="feature-description">Conoce tu rutina, tus pesos levantados y tu historial. Pregúntale sobre técnica, nutrición o motivación en cualquier momento.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
+                    <img src="https://airoutine.fit/fast.png" alt="Rápido" style="width:48px;height:48px;object-fit:contain;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto;" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="feature-icon" style="display:none;">⚡</span>
                     <h3 class="feature-title">Rutina en 30 segundos</h3>
                     <p class="feature-description">Responde 4 preguntas y la IA genera tu rutina perfecta. Sin esperas, sin complicaciones, lista para entrenar.</p>
                 </div>
@@ -218,10 +223,10 @@
                 <div class="feature-card">
                     <span class="feature-icon">🏆</span>
                     <h3 class="feature-title">Rutinas de famosos</h3>
-                    <p class="feature-description">Entrena como Cristiano Ronaldo, Arnold Schwarzenegger y más. Desde 3€, sin cuestionario.</p>
+                    <p class="feature-description">Entrena como Cristiano Ronaldo, Dwayne Johnson, un Vikingo, un Militar, Canelo y más. Desde 2,99€.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">📱</span>
+                    <img src="https://airoutine.fit/logoPWA.png" alt="PWA" style="width:48px;height:48px;object-fit:contain;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto;" onerror="this.style.display='none'">
                     <h3 class="feature-title">PWA — Sin App Store</h3>
                     <p class="feature-description">Instálala como app nativa en iOS y Android directamente desde el navegador. Sin descargas.</p>
                 </div>
@@ -229,7 +234,6 @@
         </div>
     </section>
 
-    <!-- SCREENSHOTS -->
     <section class="screenshots">
         <div class="container">
             <h2 class="section-title">LA APP EN ACCIÓN</h2>
@@ -255,11 +259,14 @@
                     <img src="https://airoutine.fit/screens/graficas.png" alt="Gráficas" onerror="this.style.display='none'" />
                     <div class="screen-label">GRÁFICAS</div>
                 </div>
+                <div class="screen-item">
+                    <img src="https://airoutine.fit/screens/ajustes.png" alt="Perfil" onerror="this.style.display='none'" />
+                    <div class="screen-label">PERFIL</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- COMPARATIVA -->
     <section class="comparativa">
         <div class="container">
             <h2 class="section-title">AI ROUTINE VS OTRAS APPS</h2>
@@ -281,6 +288,7 @@
                         <tr><td>Registro de peso por serie</td><td class="ai-col">✅</td><td class="other-col">⚠️</td></tr>
                         <tr><td>Sin App Store — instala directo</td><td class="ai-col">✅</td><td class="other-col">❌</td></tr>
                         <tr><td>Rutinas de atletas famosos</td><td class="ai-col">✅</td><td class="other-col">❌</td></tr>
+                        <tr><td>Plan ELITE para entrenadores</td><td class="ai-col">✅</td><td class="other-col">❌</td></tr>
                         <tr><td>Gratis para empezar</td><td class="ai-col" style="border-bottom:1px solid rgba(255,215,0,0.2);border-radius:0 0 12px 12px;">✅</td><td class="other-col">⚠️</td></tr>
                     </tbody>
                 </table>
@@ -289,7 +297,6 @@
         </div>
     </section>
 
-    <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">Elige tu Plan</h2>
@@ -320,16 +327,32 @@
                         <li>Estadísticas avanzadas</li>
                         <li>Gráficas de progreso</li>
                         <li>Récords personales</li>
+                        <li>Crear rutina manualmente</li>
                     </ul>
                     <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Empezar PRO</a>
                 </div>
+                <div class="pricing-card" style="border-color:rgba(255,215,0,0.4);">
+                    <div class="popular-badge" style="background:linear-gradient(135deg,#fff,#FFD700);">👑 ELITE</div>
+                    <div class="pricing-tier" style="margin-top:8px;">ELITE</div>
+                    <div class="pricing-price">9,99€</div>
+                    <div class="pricing-period">/mes</div>
+                    <ul class="pricing-features">
+                        <li>Todo lo de PRO</li>
+                        <li>Subir PDF o foto de rutina</li>
+                        <li>DumblAI ilimitado</li>
+                        <li>Dashboard entrenadores</li>
+                        <li>Gestión de clientes</li>
+                        <li>Sin límites</li>
+                    </ul>
+                    <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Empezar ELITE</a>
+                </div>
                 <div class="pricing-card">
-                    <div class="pricing-tier">FAMOSOS</div>
-                    <div class="pricing-price" style="font-size:2.5rem;">3€</div>
-                    <div class="pricing-period">pago único · 3 meses acceso</div>
+                    <div class="pricing-tier">RUTINAS FAMOSOS</div>
+                    <div class="pricing-price" style="font-size:2.5rem;">2,99€</div>
+                    <div class="pricing-period">pago único · acceso permanente</div>
                     <ul class="pricing-features">
                         <li>Rutina de atleta famoso</li>
-                        <li>Cristiano, Arnold y más</li>
+                        <li>Cristiano, Dwayne, Vikingo...</li>
                         <li>Sin cuestionario</li>
                         <li>Lista en 2 minutos</li>
                     </ul>
@@ -339,22 +362,37 @@
         </div>
     </section>
 
-    <!-- CTA FINAL -->
     <section class="cta-section">
         <div class="container">
             <h2>Ya está disponible.<br>Es gratis.</h2>
             <p style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;">Tu rutina personalizada en 30 segundos en airoutine.fit. Sin descargas, sin tarjeta.</p>
-            <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:18px 40px;">Crear mi rutina gratis</a>
+            <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:18px 40px;">🚀 Crear mi rutina gratis</a>
+            <div class="install-badges" style="margin-top:32px;">
+                <a href="https://airoutine.fit" target="_blank" class="install-badge">
+                    <img src="https://airoutine.fit/logoPWA.png" alt="iOS" onerror="this.style.display='none'" />
+                    <div class="install-badge-text">
+                        <div class="small">DISPONIBLE EN</div>
+                        <div class="big"> iOS Safari</div>
+                    </div>
+                </a>
+                <a href="https://airoutine.fit" target="_blank" class="install-badge">
+                    <img src="https://airoutine.fit/logoPWA.png" alt="Android" onerror="this.style.display='none'" />
+                    <div class="install-badge-text">
+                        <div class="small">DISPONIBLE EN</div>
+                        <div class="big"> Android Chrome</div>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
                 <div style="color:var(--text-secondary);">© 2026 AV AppStudio · <a href="https://airoutine.fit" style="color:var(--primary-gold);text-decoration:none;">airoutine.fit</a></div>
                 <div style="display:flex;gap:20px;">
                     <a href="../" style="color:var(--text-secondary);text-decoration:none;">Inicio</a>
+                    <a href="https://airoutine.fit/blog" target="_blank" style="color:var(--text-secondary);text-decoration:none;">Blog</a>
                     <a href="https://airoutine.fit" target="_blank" style="color:var(--primary-gold);text-decoration:none;">Abrir App</a>
                     <a href="../#contact" style="color:var(--text-secondary);text-decoration:none;">Contacto</a>
                 </div>
