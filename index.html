@@ -4,779 +4,136 @@
     <meta name="google-site-verification" content="w41Lxxuu0bRYuvhvc2KJpR69QwGWsyZEGRQDz9npL1Y" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AV AppStudio - Innovación en Aplicaciones Móviles</title>
-    <meta name="description" content="Desarrollamos aplicaciones móviles innovadoras con IA. AI Routine - El primer entrenador personal con inteligencia artificial. AlcoSense - Calculadora de alcoholemia inteligente.">
-    
-    <!-- Favicon AVTech -->
+    <title>AV AppStudio - Innovación en Aplicaciones Móviles con IA</title>
+    <meta name="description" content="Desarrollamos aplicaciones móviles innovadoras con IA. AI Routine - Tu entrenador personal con inteligencia artificial. AlcoSense - Calculadora de alcoholemia inteligente.">
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="manifest" href="img/site.webmanifest">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Google Analytics 4 - AVTech Website -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PSF7B9D3Z4');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PSF7B9D3Z4');
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-gold: #FFD700;
-            --primary-orange: #FFA500;
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --text-muted: #888888;
-            --border-color: rgba(255, 215, 0, 0.2);
-            --accent-blue: #4285f4;
+            --primary-gold: #FFD700; --primary-orange: #FFA500;
+            --dark-bg: #0a0a0a; --card-bg: rgba(255,255,255,0.05);
+            --text-primary: #ffffff; --text-secondary: #cccccc;
+            --text-muted: #888888; --border-color: rgba(255,215,0,0.2);
         }
+        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,165,0,0.08) 0%, transparent 50%); z-index: -1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header { position: fixed; top: 0; width: 100%; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1000; transition: all 0.3s; }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 45px; height: 45px; border-radius: 12px; object-fit: contain; }
+        .logo-text { font-size: 22px; font-weight: 700; color: var(--primary-gold); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-gold); }
+        .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001; }
+        .bar { width: 25px; height: 3px; background: var(--primary-gold); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
+        .btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.4); }
+        .btn-secondary { background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* HERO */
+        .hero { padding: 140px 0 80px; text-align: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 20px; font-size: 13px; color: var(--primary-gold); margin-bottom: 28px; font-weight: 600; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+        .hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; padding-top: 40px; border-top: 1px solid var(--border-color); max-width: 600px; margin: 0 auto; }
+        .hero-stat .num { font-size: 2rem; font-weight: 800; color: var(--primary-gold); display: block; }
+        .hero-stat .label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
 
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(66, 133, 244, 0.05) 0%, transparent 50%);
-            z-index: -1;
-            animation: float 20s ease-in-out infinite;
-        }
+        /* PROJECTS */
+        .projects { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; }
+        .section-subtitle { text-align: center; font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 56px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
+        .project-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s; }
+        .project-card:hover { transform: translateY(-8px); border-color: var(--primary-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .project-image { height: 200px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+        .project-image img { max-width: 110px; max-height: 110px; object-fit: contain; transition: transform 0.3s; }
+        .project-card:hover .project-image img { transform: scale(1.1); }
+        .project-badge { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; }
+        .project-content { padding: 28px; }
+        .project-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; color: var(--primary-gold); }
+        .project-description { color: var(--text-secondary); margin-bottom: 18px; font-size: 0.95rem; line-height: 1.6; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+        .tech-tag { background: rgba(255,215,0,0.1); color: var(--primary-gold); padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .project-links { display: flex; gap: 16px; }
+        .project-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 14px; display: flex; align-items: center; gap: 5px; transition: color 0.3s; }
+        .project-link:hover { color: var(--primary-gold); }
+        .pricing-mini { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .price-pill { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); border-radius: 20px; padding: 5px 12px; font-size: 12px; color: var(--primary-gold); font-weight: 600; }
+        .price-pill.featured { background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); border: none; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
-        }
+        /* ABOUT */
+        .about { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; }
+        .about-text p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1rem; }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .stat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary-gold); margin-bottom: 4px; }
+        .stat-label { color: var(--text-secondary); font-size: 13px; font-weight: 500; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* CONTACT */
+        .contact { padding: 80px 0; text-align: center; }
+        .contact-form { max-width: 580px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px; }
+        .form-group { margin-bottom: 22px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 7px; color: var(--primary-gold); font-size: 13px; letter-spacing: 0.5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 13px 16px; border: 1px solid var(--border-color); border-radius: 10px; background: rgba(255,255,255,0.04); color: var(--text-primary); font-size: 15px; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-gold); box-shadow: 0 0 16px rgba(255,215,0,0.15); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+        /* FOOTER */
+        .footer { padding: 36px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--primary-gold); }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary-gold);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* HAMBURGER MENU STYLES */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .bar {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-gold);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        /* MOBILE RESPONSIVE UPDATES */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 80px;
-                flex-direction: column;
-                background: rgba(10, 10, 10, 0.98);
-                backdrop-filter: blur(20px);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 2rem 0;
-                border-top: 1px solid var(--border-color);
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 1.5rem 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                font-weight: 600;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            /* HAMBURGER ANIMATION */
-            .nav-toggle.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .nav-toggle.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
+            .nav-links { position: fixed; left: -100%; top: 80px; flex-direction: column; background: rgba(10,10,10,0.98); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border-color); z-index: 999; }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 1.2rem 0; }
+            .nav-toggle { display: flex; }
+            .nav-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .nav-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .nav-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .hero-stats { gap: 24px; }
+            .about-content { grid-template-columns: 1fr; gap: 36px; }
+            .stats { grid-template-columns: 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-size: 14px;
-            color: var(--primary-gold);
-            margin-bottom: 30px;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
-            color: var(--dark-bg);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .project-image img {
-            max-width: 120px;
-            max-height: 120px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--primary-gold);
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .tech-tag {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--primary-gold);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .project-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .project-link:hover {
-            color: var(--primary-gold);
-        }
-
-        /* Video Preview */
-        .video-preview {
-            margin: 20px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .video-preview iframe {
-            border-radius: 12px;
-        }
-
-        /* Countdown Preview */
-        .countdown-preview {
-            margin: 20px 0;
-            padding: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--primary-gold);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .countdown-preview-title {
-            color: var(--primary-gold);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .countdown-timer-small {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .countdown-unit-small {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-            padding: 10px 5px;
-            text-align: center;
-        }
-
-        .countdown-number-small {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary-gold);
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .countdown-label-small {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        /* Countdown Modal */
-        .countdown-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .countdown-content {
-            background: var(--dark-bg);
-            border: 2px solid var(--primary-gold);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
-
-        .countdown-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .countdown-close:hover {
-            color: var(--primary-gold);
-        }
-
-        .countdown-title {
-            font-size: 2rem;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .countdown-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .countdown-timer {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .countdown-unit {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px 10px;
-            text-align: center;
-        }
-
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-gold);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .countdown-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-gold);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary-gold);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 40px 0;
-            border-top: 1px solid var(--border-color);
-            background: var(--card-bg);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .countdown-timer {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .countdown-timer-small {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero .fade-in:nth-child(1) { animation-delay: 0.1s; }
-        .hero .fade-in:nth-child(2) { animation-delay: 0.2s; }
-        .hero .fade-in:nth-child(3) { animation-delay: 0.3s; }
-        .hero .fade-in:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header class="header">
         <div class="container">
             <nav class="nav">
                 <a href="#" class="logo">
-                    <img src="img/avtech-logo.png" alt="AVTech Logo" class="logo-icon">
+                    <img src="img/avtech-logo.png" alt="AV AppStudio" class="logo-icon">
                     <div class="logo-text">AV AppStudio</div>
                 </a>
-                
-                <!-- HAMBURGUESA 3 RAYITAS -->
                 <div class="nav-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </div>
-                
-                <!-- MENÚ EXPANDIDO CON ALCOSENSE -->
                 <ul class="nav-links" id="nav-menu">
                     <li><a href="#projects">Proyectos</a></li>
                     <li><a href="ai-routine/">AI Routine</a></li>
@@ -789,384 +146,200 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge fade-in">Innovación en Aplicaciones Móviles</div>
-            <h1 class="fade-in">Creamos Apps para<br>Mejorarte la Vida</h1>
-            <p class="fade-in">Desarrollamos aplicaciones móviles innovadoras con inteligencia artificial. Desde fitness hasta salud responsable, transformamos ideas en realidades digitales.</p>
-            <div class="hero-buttons fade-in">
-                <a href="#projects" class="btn btn-primary">
-                    Ver Proyectos
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    Contactar
-                </a>
+            <div class="hero-badge">
+                🚀 Innovación en Apps Móviles con IA
+            </div>
+            <h1>Creamos Apps que<br>Mejoran tu Vida</h1>
+            <p>Aplicaciones móviles con inteligencia artificial real. Desde tu entrenador personal hasta decisiones responsables — tecnología que resuelve problemas reales.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                <a href="#contact" class="btn btn-secondary">Contactar</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">2</span>
+                    <span class="label">APPS ACTIVAS</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">IA</span>
+                    <span class="label">POWERED BY CLAUDE</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">0€</span>
+                    <span class="label">PARA EMPEZAR</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">24/7</span>
+                    <span class="label">DISPONIBLE</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- PROJECTS -->
     <section class="projects" id="projects">
         <div class="container">
             <h2 class="section-title">Nuestros Proyectos</h2>
-            <p class="section-subtitle">Aplicaciones que están revolucionando la manera en que las personas entrenan, viven saludablemente y toman decisiones responsables.</p>
-            
+            <p class="section-subtitle">Apps que están cambiando la manera en que las personas entrenan y viven más saludablemente.</p>
             <div class="projects-grid">
-                <!-- AI Routine -->
-<div class="project-card">
-    <div class="project-image">
-        <img src="img/AiRoutineLogo.png" alt="AI Routine Logo">
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">AI Routine</h3>
-        <p class="project-description">
-            El primer entrenador personal con IA conversacional. Rutinas personalizadas, seguimiento inteligente y motivación 24/7 directamente en tu móvil.
-        </p>
-        <div class="project-tech">
-            <span class="tech-tag">Android</span>
-            <span class="tech-tag">Kotlin</span>
-            <span class="tech-tag">Firebase</span>
-            <span class="tech-tag">Claude IA</span>
-            <span class="tech-tag">WhatsApp API</span>
-        </div>
-        
-        <!-- MODIFICADO: Sin cuenta atrás, con texto estático -->
-        <div class="countdown-preview">
-            <div class="countdown-preview-title">Versiones de AI Routine</div>
-            <div style="padding: 15px; text-align: left;">
-                <p style="color: var(--primary-gold); font-weight: 600; margin-bottom: 10px;">💎 FULL - En Desarrollo</p>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">
-                    • IA conversacional avanzada<br>
-                    • Planes personalizados completos<br>
-                    • Análisis de progreso con ML<br>
-                    • Integración WhatsApp
-                </p>
-                
-                <p style="color: var(--primary-orange); font-weight: 600; margin-bottom: 10px;">⚡ LITE - Próximamente 2026</p>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                    • Motivación 24/7<br>
-                    • OCR inteligente<br>
-                    • Seguimiento de rutina con cronómetro
-                </p>
-            </div>
-        </div>
-                        
+
+                <!-- AI ROUTINE -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="img/AiRoutineLogo.png" alt="AI Routine">
+                        <div class="project-badge">🔴 LIVE</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Routine</h3>
+                        <p class="project-description">Tu entrenador personal con IA disponible 24/7. DumblAI genera rutinas personalizadas en 30 segundos, conoce tu progreso y te guía en cada entrenamiento.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React + Vite</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Claude AI</span>
+                            <span class="tech-tag">Stripe</span>
+                            <span class="tech-tag">PWA</span>
+                        </div>
+                        <div class="pricing-mini">
+                            <span class="price-pill">FREE 0€</span>
+                            <span class="price-pill featured">PRO 3,99€/mes</span>
+                            <span class="price-pill">ELITE 9,99€/mes</span>
+                            <span class="price-pill">Famosos 2,99€</span>
+                        </div>
                         <div class="project-links">
-                            <a href="ai-routine/" class="project-link">
-                                📱 Ver Más Info
-                            </a>
-                            <a href="#" class="project-link countdown-link" data-app="airoutine">
-                                🎮 Demo
-                            </a>
+                            <a href="https://airoutine.fit/register" target="_blank" class="project-link">🚀 Empezar gratis</a>
+                            <a href="ai-routine/" class="project-link">📄 Ver más</a>
+                            <a href="https://airoutine.fit" target="_blank" class="project-link">🌐 App</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- AlcoSense -->
+                <!-- ALCOSENSE -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="img/AlcoSenseLogo.png" alt="AlcoSense Logo">
+                        <img src="img/AlcoSenseLogo.png" alt="AlcoSense">
+                        <div class="project-badge" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);">Google Play</div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AlcoSense</h3>
-                        <p class="project-description">
-                            Calculadora inteligente de alcoholemia con IA. Ayuda a tomar decisiones responsables sobre consumo de alcohol y conducción segura.
-                        </p>
+                        <p class="project-description">Calculadora inteligente de alcoholemia. Ayuda a tomar decisiones responsables sobre consumo de alcohol y conducción segura.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Android</span>
                             <span class="tech-tag">Kotlin</span>
                             <span class="tech-tag">ML Kit</span>
                             <span class="tech-tag">Health APIs</span>
                         </div>
-                        
-                        <!-- Video Preview AlcoSense -->
-                        <div class="video-preview">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/H0MC0X8YrF8" 
-                                title="AlcoSense Preview" frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                        <div style="margin-bottom:20px;border-radius:10px;overflow:hidden;border:1px solid var(--border-color);">
+                            <iframe width="100%" height="180" src="https://www.youtube.com/embed/H0MC0X8YrF8" title="AlcoSense" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                        
                         <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.happyhoursapp.android&pli=1" class="project-link" target="_blank">
-                                📱 Google Play
-                            </a>
-                            <a href="alcosense/" class="project-link" target="_blank">
-                                🍺 Demo Web
-                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.happyhoursapp.android&pli=1" target="_blank" class="project-link">📱 Google Play</a>
+                            <a href="alcosense/" class="project-link">🍺 Demo Web</a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>Innovación que Marca la Diferencia</h2>
-                    <p>
-                        En AV AppStudio, creemos que la tecnología debe hacer la vida más fácil, más saludable y más responsable. Nos especializamos en aplicaciones móviles con inteligencia artificial que resuelven problemas reales.
-                    </p>
-                    <p>
-                        Nuestro equipo combina experiencia en desarrollo nativo Android, diseño UX/UI y las últimas tecnologías de IA para crear experiencias únicas que nuestros usuarios aman.
-                    </p>
-                    <a href="#contact" class="btn btn-primary">Trabajar Juntos</a>
+                    <h2>Tecnología que Marca la Diferencia</h2>
+                    <p>En AV AppStudio creemos que la tecnología debe hacer la vida más fácil, más saludable y más responsable. Nos especializamos en apps móviles con IA real que resuelven problemas reales.</p>
+                    <p>Combinamos React, Firebase, Claude AI y Stripe para crear experiencias únicas — desde rutinas de entrenamiento personalizadas hasta decisiones responsables en tu día a día.</p>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+                        <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary">🚀 Probar AI Routine</a>
+                        <a href="#contact" class="btn btn-secondary">Contactar</a>
+                    </div>
                 </div>
                 <div class="stats">
                     <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Usuarios Activos</div>
-                    </div>
-                    <div class="stat-card">
                         <div class="stat-number">2</div>
-                        <div class="stat-label">Apps Publicadas</div>
+                        <div class="stat-label">Apps en producción</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">4.8★</div>
-                        <div class="stat-label">Rating Promedio</div>
+                        <div class="stat-number">IA</div>
+                        <div class="stat-label">Claude Sonnet</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Nativo Android</div>
+                        <div class="stat-number">PWA</div>
+                        <div class="stat-label">iOS + Android</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">8</div>
-                        <div class="stat-label">Ideas para futuras App</div>
+                        <div class="stat-number">0€</div>
+                        <div class="stat-label">Para empezar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Tiers de precio</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">DumblAI activo</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- CONTACT -->
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">¿Tienes una Idea?</h2>
-            <p class="section-subtitle">Hablemos sobre cómo podemos hacer realidad tu próxima aplicación móvil.</p>
-            
+            <p class="section-subtitle">Hablemos sobre cómo podemos hacer realidad tu próxima aplicación.</p>
             <div class="contact-form">
-                <form action="mailto:avappstudio.global@gmail.com" method="POST" enctype="text/plain">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="project">Tipo de Proyecto</label>
-                        <input type="text" id="project" name="project" placeholder="App móvil, consultoría, etc.">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu idea o proyecto..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        Enviar Mensaje
-                    </button>
-                </form>
+                <div class="form-group">
+                    <label>NOMBRE</label>
+                    <input type="text" id="name" placeholder="Tu nombre completo" />
+                </div>
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input type="email" id="email" placeholder="tu@email.com" />
+                </div>
+                <div class="form-group">
+                    <label>TIPO DE PROYECTO</label>
+                    <input type="text" id="project" placeholder="App móvil, consultoría, colaboración..." />
+                </div>
+                <div class="form-group">
+                    <label>MENSAJE</label>
+                    <textarea id="message" rows="5" placeholder="Cuéntanos sobre tu idea..."></textarea>
+                </div>
+                <button onclick="sendContact()" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar Mensaje</button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-text">
-                    © 2025 AV AppStudio. Innovando el futuro, una app a la vez
+                <div style="color:var(--text-muted);font-size:13px;">© 2026 AV AppStudio · Innovando el futuro, una app a la vez</div>
+                <div class="footer-links">
+                    <a href="ai-routine/">AI Routine</a>
+                    <a href="alcosense/">AlcoSense</a>
+                    <a href="blog/">Blog</a>
+                    <a href="https://airoutine.fit" target="_blank">airoutine.fit</a>
+                    <a href="#contact">Contacto</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Countdown Modal -->
-    <div class="countdown-modal" id="countdownModal">
-        <div class="countdown-content">
-            <button class="countdown-close" onclick="closeCountdown()">&times;</button>
-            <h2 class="countdown-title"> AI Routine</h2>
-            <p class="countdown-subtitle">Esperando validación de Google Play - 1 Octubre 2025</p>
-            
-            <div class="countdown-timer">
-                <div class="countdown-unit">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Días</span>
-                </div>
-                <div class="countdown-unit">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Horas</span>
-                </div>
-                <div class="countdown-unit">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Minutos</span>
-                </div>
-                <div class="countdown-unit">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Segundos</span>
-                </div>
-            </div>
-            
-            <!-- Logo Preview in Modal -->
-            <div class="video-preview">
-                <img src="img/logoweb.png" alt="AI Routine Logo" style="width: 100%; max-width: 300px; border-radius: 12px;">
-            </div>
-            
-            <p style="color: var(--text-secondary); margin-top: 20px; font-size: 0.9rem;">
-                💪 El primer entrenador personal con IA conversacional
-            </p>
-
-            <div style="margin-top: 30px;">
-                <a href="ai-routine/" class="btn btn-primary" onclick="closeCountdown()">
-                    📱 Ver Más Info
-                </a>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.98)';
-            } else {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
-            }
-        });
-
-        // Contact form handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Crear mailto con los datos del formulario
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const project = document.getElementById('project').value;
-            const message = document.getElementById('message').value;
-            
-            const subject = `Contacto desde AVTechApp.com - ${project || 'Consulta'}`;
-            const body = `Nombre: ${name}%0D%0AEmail: ${email}%0D%0AProyecto: ${project}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
-            
-            window.location.href = `mailto:avappstudio.global@gmail.com?subject=${subject}&body=${body}`;
-        });
-
-        // Countdown functionality
-        function showCountdown() {
-            document.getElementById('countdownModal').style.display = 'flex';
-            startCountdown();
-        }
-
-        function closeCountdown() {
-            document.getElementById('countdownModal').style.display = 'none';
-        }
-
-        function startCountdown() {
-            // Target date: September 15, 2025
-            const targetDate = new Date('November 15, 2025 00:00:00').getTime();
-            
-            const countdown = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-                
-                if (distance < 0) {
-                    clearInterval(countdown);
-                    document.querySelector('.countdown-timer').innerHTML = '<h3 style="color: var(--primary-gold);">🎉 ¡YA DISPONIBLE!</h3>';
-                    return;
-                }
-                
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                // Update main countdown
-                const daysEl = document.getElementById('days');
-                const hoursEl = document.getElementById('hours');
-                const minutesEl = document.getElementById('minutes');
-                const secondsEl = document.getElementById('seconds');
-                
-                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
-            }, 1000);
-        }
-
-        // Countdown preview functionality
-        function startPreviewCountdown() {
-            const targetDate = new Date('October 1, 2025 00:00:00').getTime();
-            
-            const previewCountdown = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-                
-                if (distance < 0) {
-                    clearInterval(previewCountdown);
-                    return;
-                }
-                
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                // Update preview countdown
-                const daysEl = document.getElementById('days-preview');
-                const hoursEl = document.getElementById('hours-preview');
-                const minutesEl = document.getElementById('minutes-preview');
-                const secondsEl = document.getElementById('seconds-preview');
-                
-                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
-            }, 1000);
-        }
-
-        // Add event listeners for countdown links
         document.addEventListener('DOMContentLoaded', function() {
-            // Start preview countdown when page loads
-            startPreviewCountdown();
-            
-            // Countdown links functionality
-            const countdownLinks = document.querySelectorAll('.countdown-link');
-            countdownLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    showCountdown();
-                });
-            });
-
-            // HAMBURGER MENU FUNCTIONALITY
             const mobileMenu = document.getElementById('mobile-menu');
             const navMenu = document.getElementById('nav-menu');
-
             if (mobileMenu && navMenu) {
                 mobileMenu.addEventListener('click', function() {
                     mobileMenu.classList.toggle('active');
                     navMenu.classList.toggle('active');
                 });
-
-                // CLOSE MENU ON LINK CLICK
                 document.querySelectorAll('.nav-links a').forEach(link => {
                     link.addEventListener('click', () => {
                         mobileMenu.classList.remove('active');
@@ -1176,11 +349,28 @@
             }
         });
 
-        // Close modal when clicking outside
-        document.getElementById('countdownModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeCountdown();
-            }
+        window.addEventListener('scroll', () => {
+            document.querySelector('.header').style.background =
+                window.scrollY > 100 ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.95)';
+        });
+
+        function sendContact() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const project = document.getElementById('project').value;
+            const message = document.getElementById('message').value;
+            if (!name || !email || !message) { alert('Por favor rellena nombre, email y mensaje'); return; }
+            const subject = `Contacto AVAppStudio - ${project || 'Consulta'}`;
+            const body = `Nombre: ${name}%0D%0AEmail: ${email}%0D%0AProyecto: ${project}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
+            window.location.href = `mailto:avappstudio.global@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
         });
     </script>
 </body>
