@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="manifest" href="img/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -21,115 +21,361 @@
     </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --primary-gold: #FFD700; --primary-orange: #FFA500;
-            --dark-bg: #0a0a0a; --card-bg: rgba(255,255,255,0.05);
-            --text-primary: #ffffff; --text-secondary: #cccccc;
-            --text-muted: #888888; --border-color: rgba(255,215,0,0.2);
+            --navy:       #0D1B3E;
+            --blue-deep:  #1A3A7A;
+            --blue-mid:   #1E5BBD;
+            --blue-light: #2E7FE8;
+            --blue-pale:  #D6E6FF;
+            --accent:     #0A8FE8;
+            --bg:         #FFFFFF;
+            --bg-off:     #F4F7FD;
+            --bg-card:    #EEF4FF;
+            --text-main:  #0D1B3E;
+            --text-body:  #3A4A6B;
+            --text-muted: #7A8BAA;
+            --border:     rgba(30, 91, 189, 0.15);
+            --shadow:     0 4px 24px rgba(13, 27, 62, 0.10);
+            --shadow-lg:  0 12px 48px rgba(13, 27, 62, 0.16);
         }
-        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,165,0,0.08) 0%, transparent 50%); z-index: -1; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header { position: fixed; top: 0; width: 100%; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1000; transition: all 0.3s; }
-        .nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ─── SUBTLE GRID BG ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(30,91,189,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30,91,189,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── HEADER ─── */
+        .header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled { box-shadow: var(--shadow); }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-icon { width: 45px; height: 45px; border-radius: 12px; object-fit: contain; }
-        .logo-text { font-size: 22px; font-weight: 700; color: var(--primary-gold); }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--primary-gold); }
-        .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001; }
-        .bar { width: 25px; height: 3px; background: var(--primary-gold); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
-        .btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.4); }
-        .btn-secondary { background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .logo-icon { width: 44px; height: 44px; border-radius: 10px; object-fit: contain; }
+        .logo-text { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+        .logo-text span { color: var(--blue-mid); }
 
-        /* HERO */
-        .hero { padding: 140px 0 80px; text-align: center; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 20px; font-size: 13px; color: var(--primary-gold); margin-bottom: 28px; font-weight: 600; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
-        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
-        .hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; padding-top: 40px; border-top: 1px solid var(--border-color); max-width: 600px; margin: 0 auto; }
-        .hero-stat .num { font-size: 2rem; font-weight: 800; color: var(--primary-gold); display: block; }
-        .hero-stat .label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-body); text-decoration: none; font-weight: 500; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--blue-mid); }
+        .nav-cta {
+            background: var(--blue-mid);
+            color: #fff !important;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: background 0.2s, transform 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--blue-deep) !important; transform: translateY(-1px); }
 
-        /* PROJECTS */
-        .projects { padding: 80px 0; }
-        .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { text-align: center; font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 56px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 8px; z-index: 1001; }
+        .bar { width: 24px; height: 2.5px; background: var(--navy); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            padding: 13px 28px; border-radius: 10px; text-decoration: none;
+            font-weight: 600; font-size: 15px; transition: all 0.25s;
+            display: inline-flex; align-items: center; gap: 8px;
+            cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
+        }
+        .btn-primary {
+            background: var(--blue-mid);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(30,91,189,0.30);
+        }
+        .btn-primary:hover { background: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(13,27,62,0.25); }
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--blue-mid);
+            border: 1.5px solid var(--border);
+        }
+        .btn-secondary:hover { background: var(--blue-pale); transform: translateY(-2px); }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 148px 0 96px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-blob {
+            position: absolute; top: -120px; right: -180px;
+            width: 680px; height: 680px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(46,127,232,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-blob2 {
+            position: absolute; bottom: -80px; left: -120px;
+            width: 480px; height: 480px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(30,91,189,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner { position: relative; z-index: 1; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 50px; padding: 7px 18px;
+            font-size: 12px; font-weight: 600; color: var(--blue-mid);
+            margin-bottom: 28px; letter-spacing: 0.5px;
+        }
+        .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+        .hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+            font-weight: 800; line-height: 1.08;
+            color: var(--navy); margin-bottom: 22px;
+            letter-spacing: -1.5px;
+        }
+        .hero h1 em { color: var(--blue-mid); font-style: normal; }
+        .hero p {
+            font-size: 1.1rem; color: var(--text-body);
+            margin-bottom: 38px; max-width: 540px; font-weight: 400;
+        }
+        .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+        .hero-stats {
+            display: flex; gap: 48px; flex-wrap: wrap;
+            padding-top: 40px; border-top: 1px solid var(--border);
+            max-width: 520px;
+        }
+        .hero-stat .num {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem; font-weight: 800; color: var(--blue-mid); display: block;
+        }
+        .hero-stat .label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+
+        /* ─── SECTION HEADERS ─── */
+        .section-eyebrow {
+            display: inline-block; font-size: 11px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--blue-mid); margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 700; color: var(--navy);
+            letter-spacing: -0.5px; margin-bottom: 14px;
+        }
+        .section-subtitle { font-size: 1rem; color: var(--text-body); max-width: 540px; }
+        .section-head { margin-bottom: 52px; }
+
+        /* ─── PROJECTS ─── */
+        .projects { padding: 96px 0; background: var(--bg-off); }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
-        .project-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s; }
-        .project-card:hover { transform: translateY(-8px); border-color: var(--primary-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .project-image { height: 200px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+
+        .project-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 18px; overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .project-card:hover { transform: translateY(-6px); border-color: var(--blue-mid); box-shadow: var(--shadow-lg); }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--bg-card), var(--blue-pale));
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
         .project-image img { max-width: 110px; max-height: 110px; object-fit: contain; transition: transform 0.3s; }
-        .project-card:hover .project-image img { transform: scale(1.1); }
-        .project-badge { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; }
+        .project-card:hover .project-image img { transform: scale(1.08); }
+
+        .project-badge {
+            position: absolute; top: 12px; right: 12px;
+            background: var(--blue-mid); color: #fff;
+            font-size: 11px; font-weight: 700; padding: 4px 12px;
+            border-radius: 20px; letter-spacing: 0.5px;
+        }
+        .project-badge.play { background: var(--bg-card); color: var(--blue-mid); border: 1px solid var(--border); }
+
         .project-content { padding: 28px; }
-        .project-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; color: var(--primary-gold); }
-        .project-description { color: var(--text-secondary); margin-bottom: 18px; font-size: 0.95rem; line-height: 1.6; }
+        .project-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 10px;
+        }
+        .project-description { color: var(--text-body); margin-bottom: 18px; font-size: 0.93rem; line-height: 1.65; }
+
         .project-tech { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
-        .tech-tag { background: rgba(255,215,0,0.1); color: var(--primary-gold); padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-        .project-links { display: flex; gap: 16px; }
-        .project-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 14px; display: flex; align-items: center; gap: 5px; transition: color 0.3s; }
-        .project-link:hover { color: var(--primary-gold); }
+        .tech-tag {
+            background: var(--bg-card); color: var(--blue-mid);
+            padding: 3px 11px; border-radius: 20px;
+            font-size: 11px; font-weight: 600; border: 1px solid var(--border);
+        }
         .pricing-mini { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .price-pill { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); border-radius: 20px; padding: 5px 12px; font-size: 12px; color: var(--primary-gold); font-weight: 600; }
-        .price-pill.featured { background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange)); color: var(--dark-bg); border: none; }
+        .price-pill {
+            background: var(--bg-off); border: 1px solid var(--border);
+            border-radius: 20px; padding: 5px 12px;
+            font-size: 12px; color: var(--text-body); font-weight: 600;
+        }
+        .price-pill.featured { background: var(--blue-mid); color: #fff; border: none; }
 
-        /* ABOUT */
-        .about { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; }
-        .about-text p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1rem; }
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        .stat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; text-align: center; }
-        .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary-gold); margin-bottom: 4px; }
-        .stat-label { color: var(--text-secondary); font-size: 13px; font-weight: 500; }
+        .project-links { display: flex; gap: 18px; }
+        .project-link {
+            color: var(--blue-mid); text-decoration: none;
+            font-weight: 600; font-size: 13px;
+            display: flex; align-items: center; gap: 5px;
+            transition: color 0.2s;
+        }
+        .project-link:hover { color: var(--navy); }
 
-        /* CONTACT */
-        .contact { padding: 80px 0; text-align: center; }
-        .contact-form { max-width: 580px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px; }
-        .form-group { margin-bottom: 22px; text-align: left; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 7px; color: var(--primary-gold); font-size: 13px; letter-spacing: 0.5px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 13px 16px; border: 1px solid var(--border-color); border-radius: 10px; background: rgba(255,255,255,0.04); color: var(--text-primary); font-size: 15px; transition: all 0.3s; font-family: 'Inter', sans-serif; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-gold); box-shadow: 0 0 16px rgba(255,215,0,0.15); }
+        /* ─── ABOUT ─── */
+        .about { padding: 96px 0; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+        .about-text h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.3rem);
+            font-weight: 700; color: var(--navy);
+            letter-spacing: -0.5px; margin-bottom: 18px;
+        }
+        .about-text p { color: var(--text-body); margin-bottom: 18px; }
+        .about-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .stat-card {
+            background: var(--bg-off); border: 1px solid var(--border);
+            border-radius: 14px; padding: 22px 18px; text-align: center;
+            transition: all 0.25s;
+        }
+        .stat-card:hover { border-color: var(--blue-mid); background: var(--bg-card); }
+        .stat-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.7rem; font-weight: 800; color: var(--blue-mid); margin-bottom: 4px;
+        }
+        .stat-label { color: var(--text-muted); font-size: 12px; font-weight: 500; }
+
+        /* ─── DIVIDER ─── */
+        .divider-section {
+            background: var(--navy);
+            padding: 64px 0;
+            position: relative; overflow: hidden;
+        }
+        .divider-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(46,127,232,0.20) 0%, transparent 60%);
+        }
+        .divider-inner { position: relative; z-index: 1; text-align: center; }
+        .divider-inner h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -0.5px;
+        }
+        .divider-inner p { color: rgba(255,255,255,0.65); margin-bottom: 32px; font-size: 1rem; }
+        .btn-white {
+            background: #fff; color: var(--navy);
+            font-weight: 700; padding: 13px 28px; border-radius: 10px;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            font-size: 15px; transition: all 0.25s;
+        }
+        .btn-white:hover { background: var(--blue-pale); transform: translateY(-2px); }
+
+        /* ─── CONTACT ─── */
+        .contact { padding: 96px 0; background: var(--bg-off); }
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .contact-info h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 700; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 16px;
+        }
+        .contact-info p { color: var(--text-body); margin-bottom: 32px; }
+        .contact-chips { display: flex; flex-direction: column; gap: 14px; }
+        .contact-chip {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 12px; padding: 16px 20px;
+        }
+        .chip-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--bg-card); display: flex; align-items: center;
+            justify-content: center; font-size: 18px; flex-shrink: 0;
+        }
+        .chip-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .chip-value { font-size: 14px; font-weight: 600; color: var(--navy); }
+
+        .contact-form {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 18px; padding: 36px;
+            box-shadow: var(--shadow);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 7px; color: var(--navy); font-size: 13px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px 15px;
+            border: 1.5px solid var(--border); border-radius: 9px;
+            background: var(--bg-off); color: var(--text-main); font-size: 14px;
+            transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--blue-mid);
+            background: var(--bg); box-shadow: 0 0 0 3px rgba(30,91,189,0.10);
+        }
         .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
 
-        /* FOOTER */
-        .footer { padding: 36px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
+        /* ─── FOOTER ─── */
+        .footer { padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg); }
         .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-links { display: flex; gap: 24px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--primary-gold); }
+        .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .footer-logo-text { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); }
+        .footer-copy { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
+        .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--blue-mid); }
 
-        /* RESPONSIVE */
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
-            .nav-links { position: fixed; left: -100%; top: 80px; flex-direction: column; background: rgba(10,10,10,0.98); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border-color); z-index: 999; }
+            .nav-links { position: fixed; left: -100%; top: 72px; flex-direction: column; background: var(--bg); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border); z-index: 999; box-shadow: var(--shadow-lg); }
             .nav-links.active { left: 0; }
-            .nav-links li { margin: 1.2rem 0; }
+            .nav-links li { margin: 0.8rem 0; }
             .nav-toggle { display: flex; }
             .nav-toggle.active .bar:nth-child(2) { opacity: 0; }
-            .nav-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .nav-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .hero-stats { gap: 24px; }
-            .about-content { grid-template-columns: 1fr; gap: 36px; }
-            .stats { grid-template-columns: 1fr 1fr; }
+            .nav-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .nav-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+            .hero { padding: 120px 0 72px; text-align: center; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; max-width: none; }
+            .about-content { grid-template-columns: 1fr; gap: 40px; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
             .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
             <nav class="nav">
                 <a href="#" class="logo">
                     <img src="img/avtech-logo.png" alt="AV AppStudio" class="logo-icon">
-                    <div class="logo-text">AV AppStudio</div>
+                    <div class="logo-text">AV <span>AppStudio</span></div>
                 </a>
                 <div class="nav-toggle" id="mobile-menu">
                     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
@@ -140,7 +386,7 @@
                     <li><a href="alcosense/">AlcoSense</a></li>
                     <li><a href="blog/">Blog</a></li>
                     <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="#contact" class="nav-cta">Contactar</a></li>
                 </ul>
             </nav>
         </div>
@@ -148,32 +394,32 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-badge">
-                 Innovación en Apps Móviles con IA
-            </div>
-            <h1>Creamos Apps que<br>Mejoran tu Vida</h1>
+        <div class="hero-blob"></div>
+        <div class="hero-blob2"></div>
+        <div class="container hero-inner">
+            <div class="hero-badge">Apps con IA que resuelven problemas reales</div>
+            <h1>Creamos Apps que<br><em>Mejoran tu Vida</em></h1>
             <p>Aplicaciones móviles con inteligencia artificial real. Desde tu entrenador personal hasta decisiones responsables — tecnología que resuelve problemas reales.</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                <a href="#projects" class="btn btn-primary">Ver Proyectos →</a>
                 <a href="#contact" class="btn btn-secondary">Contactar</a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <span class="num">2</span>
-                    <span class="label">APPS ACTIVAS</span>
+                    <span class="label">Apps Activas</span>
                 </div>
                 <div class="hero-stat">
                     <span class="num">IA</span>
-                    <span class="label">POWERED BY CLAUDE</span>
+                    <span class="label">Powered by Claude</span>
                 </div>
                 <div class="hero-stat">
                     <span class="num">0€</span>
-                    <span class="label">PARA EMPEZAR</span>
+                    <span class="label">Para empezar</span>
                 </div>
                 <div class="hero-stat">
                     <span class="num">24/7</span>
-                    <span class="label">DISPONIBLE</span>
+                    <span class="label">Disponible</span>
                 </div>
             </div>
         </div>
@@ -182,8 +428,11 @@
     <!-- PROJECTS -->
     <section class="projects" id="projects">
         <div class="container">
-            <h2 class="section-title">Nuestros Proyectos</h2>
-            <p class="section-subtitle">Apps que están cambiando la manera en que las personas entrenan y viven más saludablemente.</p>
+            <div class="section-head">
+                <div class="section-eyebrow">Nuestros Proyectos</div>
+                <h2 class="section-title">Apps que marcan la diferencia</h2>
+                <p class="section-subtitle">Soluciones que están cambiando la manera en que las personas entrenan y viven de forma más saludable.</p>
+            </div>
             <div class="projects-grid">
 
                 <!-- AI ROUTINE -->
@@ -209,7 +458,7 @@
                             <span class="price-pill">Famosos 2,99€</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://airoutine.fit/register" target="_blank" class="project-link"> Empezar gratis</a>
+                            <a href="https://airoutine.fit/register" target="_blank" class="project-link">🚀 Empezar gratis</a>
                             <a href="ai-routine/" class="project-link">📄 Ver más</a>
                             <a href="https://airoutine.fit" target="_blank" class="project-link">🌐 App</a>
                         </div>
@@ -220,7 +469,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <img src="img/AlcoSenseLogo.png" alt="AlcoSense">
-                        <div class="project-badge" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);">Google Play</div>
+                        <div class="project-badge play">Google Play</div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AlcoSense</h3>
@@ -231,7 +480,7 @@
                             <span class="tech-tag">ML Kit</span>
                             <span class="tech-tag">Health APIs</span>
                         </div>
-                        <div style="margin-bottom:20px;border-radius:10px;overflow:hidden;border:1px solid var(--border-color);">
+                        <div style="margin-bottom:20px;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
                             <iframe width="100%" height="180" src="https://www.youtube.com/embed/H0MC0X8YrF8" title="AlcoSense" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="project-links">
@@ -245,44 +494,36 @@
         </div>
     </section>
 
+    <!-- CTA DIVIDER -->
+    <div class="divider-section">
+        <div class="container divider-inner">
+            <h2>¿Listo para entrenar con IA?</h2>
+            <p>AI Routine genera tu rutina personalizada en 30 segundos. Gratis. Sin tarjeta.</p>
+            <a href="https://airoutine.fit/register" target="_blank" class="btn-white">Empezar gratis →</a>
+        </div>
+    </div>
+
     <!-- ABOUT -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>Tecnología que Marca la Diferencia</h2>
+                    <div class="section-eyebrow">Nosotros</div>
+                    <h2>Tecnología que marca la diferencia</h2>
                     <p>En AV AppStudio creemos que la tecnología debe hacer la vida más fácil, más saludable y más responsable. Nos especializamos en apps móviles con IA real que resuelven problemas reales.</p>
                     <p>Combinamos React, Firebase, Claude AI y Stripe para crear experiencias únicas — desde rutinas de entrenamiento personalizadas hasta decisiones responsables en tu día a día.</p>
-                    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
-                        <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary"> Probar AI Routine</a>
+                    <div class="about-btns">
+                        <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary">Probar AI Routine</a>
                         <a href="#contact" class="btn btn-secondary">Contactar</a>
                     </div>
                 </div>
                 <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-number">2</div>
-                        <div class="stat-label">Apps en producción</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">IA</div>
-                        <div class="stat-label">Claude Sonnet</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">PWA</div>
-                        <div class="stat-label">iOS + Android</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">0€</div>
-                        <div class="stat-label">Para empezar</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Tiers de precio</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">DumblAI activo</div>
-                    </div>
+                    <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">Apps en producción</div></div>
+                    <div class="stat-card"><div class="stat-number">IA</div><div class="stat-label">Claude Sonnet</div></div>
+                    <div class="stat-card"><div class="stat-number">PWA</div><div class="stat-label">iOS + Android</div></div>
+                    <div class="stat-card"><div class="stat-number">0€</div><div class="stat-label">Para empezar</div></div>
+                    <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Tiers de precio</div></div>
+                    <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">DumblAI activo</div></div>
                 </div>
             </div>
         </div>
@@ -291,26 +532,54 @@
     <!-- CONTACT -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">¿Tienes una Idea?</h2>
-            <p class="section-subtitle">Hablemos sobre cómo podemos hacer realidad tu próxima aplicación.</p>
-            <div class="contact-form">
-                <div class="form-group">
-                    <label>NOMBRE</label>
-                    <input type="text" id="name" placeholder="Tu nombre completo" />
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <div class="section-eyebrow">Contacto</div>
+                    <h2>¿Tienes una idea?</h2>
+                    <p>Hablemos sobre cómo podemos hacer realidad tu próxima aplicación. Respondemos en menos de 24h.</p>
+                    <div class="contact-chips">
+                        <div class="contact-chip">
+                            <div class="chip-icon">✉️</div>
+                            <div>
+                                <div class="chip-label">Email</div>
+                                <div class="chip-value">avappstudio.global@gmail.com</div>
+                            </div>
+                        </div>
+                        <div class="contact-chip">
+                            <div class="chip-icon">🌐</div>
+                            <div>
+                                <div class="chip-label">Web</div>
+                                <div class="chip-value">avtechapp.com</div>
+                            </div>
+                        </div>
+                        <div class="contact-chip">
+                            <div class="chip-icon">📱</div>
+                            <div>
+                                <div class="chip-label">App principal</div>
+                                <div class="chip-value">airoutine.fit</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>EMAIL</label>
-                    <input type="email" id="email" placeholder="tu@email.com" />
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label>NOMBRE</label>
+                        <input type="text" id="name" placeholder="Tu nombre completo" />
+                    </div>
+                    <div class="form-group">
+                        <label>EMAIL</label>
+                        <input type="email" id="email" placeholder="tu@email.com" />
+                    </div>
+                    <div class="form-group">
+                        <label>TIPO DE PROYECTO</label>
+                        <input type="text" id="project" placeholder="App móvil, consultoría, colaboración..." />
+                    </div>
+                    <div class="form-group">
+                        <label>MENSAJE</label>
+                        <textarea id="message" rows="5" placeholder="Cuéntanos sobre tu idea..."></textarea>
+                    </div>
+                    <button onclick="sendContact()" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar Mensaje →</button>
                 </div>
-                <div class="form-group">
-                    <label>TIPO DE PROYECTO</label>
-                    <input type="text" id="project" placeholder="App móvil, consultoría, colaboración..." />
-                </div>
-                <div class="form-group">
-                    <label>MENSAJE</label>
-                    <textarea id="message" rows="5" placeholder="Cuéntanos sobre tu idea..."></textarea>
-                </div>
-                <button onclick="sendContact()" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar Mensaje</button>
             </div>
         </div>
     </section>
@@ -319,7 +588,13 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div style="color:var(--text-muted);font-size:13px;">© 2026 AV AppStudio · Innovando el futuro, una app a la vez</div>
+                <div>
+                    <a href="#" class="footer-logo">
+                        <img src="img/avtech-logo.png" alt="AV AppStudio" style="width:32px;height:32px;border-radius:8px;object-fit:contain;">
+                        <div class="footer-logo-text">AV AppStudio</div>
+                    </a>
+                    <div class="footer-copy">© 2026 · Apps that elevate life</div>
+                </div>
                 <div class="footer-links">
                     <a href="ai-routine/">AI Routine</a>
                     <a href="alcosense/">AlcoSense</a>
@@ -332,6 +607,7 @@
     </footer>
 
     <script>
+        // Mobile menu
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             const navMenu = document.getElementById('nav-menu');
@@ -349,11 +625,12 @@
             }
         });
 
+        // Header scroll shadow
         window.addEventListener('scroll', () => {
-            document.querySelector('.header').style.background =
-                window.scrollY > 100 ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.95)';
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
         });
 
+        // Contact form
         function sendContact() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -365,6 +642,7 @@
             window.location.href = `mailto:avappstudio.global@gmail.com?subject=${subject}&body=${body}`;
         }
 
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
