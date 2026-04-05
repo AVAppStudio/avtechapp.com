@@ -365,6 +365,8 @@
             .stats { grid-template-columns: repeat(2, 1fr); }
             .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
             .projects-grid { grid-template-columns: 1fr; }
+            .hero-inner { grid-template-columns: 1fr !important; }
+            .hero-inner > div:last-child { display: none; }
         }
     </style>
 </head>
@@ -396,7 +398,9 @@
     <section class="hero">
         <div class="hero-blob"></div>
         <div class="hero-blob2"></div>
-        <div class="container hero-inner">
+        <div class="container">
+        <div class="hero-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+        <div>
             <div class="hero-badge">Apps con IA que resuelven problemas reales</div>
             <h1>Creamos Apps que<br><em>Mejoran tu Vida</em></h1>
             <p>Aplicaciones móviles con inteligencia artificial real. Desde tu entrenador personal hasta decisiones responsables — tecnología que resuelve problemas reales.</p>
@@ -422,6 +426,12 @@
                     <span class="label">Disponible</span>
                 </div>
             </div>
+        </div>
+        </div>
+        <div style="position:relative;z-index:1;">
+            <img src="img/meeting.png" alt="AV AppStudio presentation" style="width:100%;border-radius:20px;box-shadow:0 24px 64px rgba(13,27,62,0.18);">
+        </div>
+        </div>
         </div>
     </section>
 
