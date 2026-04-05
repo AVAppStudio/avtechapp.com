@@ -21,324 +21,115 @@
     </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --navy:       #0D1B3E;
-            --blue-deep:  #1A3A7A;
-            --blue-mid:   #1E5BBD;
-            --blue-light: #2E7FE8;
-            --blue-pale:  #D6E6FF;
-            --accent:     #0A8FE8;
-            --bg:         #FFFFFF;
-            --bg-off:     #F4F7FD;
-            --bg-card:    #EEF4FF;
-            --text-main:  #0D1B3E;
-            --text-body:  #3A4A6B;
-            --text-muted: #7A8BAA;
-            --border:     rgba(30, 91, 189, 0.15);
-            --shadow:     0 4px 24px rgba(13, 27, 62, 0.10);
-            --shadow-lg:  0 12px 48px rgba(13, 27, 62, 0.16);
+            --navy: #0D1B3E; --blue-deep: #1A3A7A; --blue-mid: #1E5BBD;
+            --blue-light: #2E7FE8; --blue-pale: #D6E6FF; --accent: #0A8FE8;
+            --bg: #FFFFFF; --bg-off: #F4F7FD; --bg-card: #EEF4FF;
+            --text-main: #0D1B3E; --text-body: #3A4A6B; --text-muted: #7A8BAA;
+            --border: rgba(30, 91, 189, 0.15);
+            --shadow: 0 4px 24px rgba(13, 27, 62, 0.10);
+            --shadow-lg: 0 12px 48px rgba(13, 27, 62, 0.16);
         }
-
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
-            line-height: 1.65;
-            overflow-x: hidden;
-        }
-
-        /* ─── SUBTLE GRID BG ─── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(30,91,189,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30,91,189,0.04) 1px, transparent 1px);
-            background-size: 48px 48px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.65; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(30,91,189,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,91,189,0.04) 1px, transparent 1px); background-size: 48px 48px; z-index: -1; pointer-events: none; }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-
-        /* ─── HEADER ─── */
-        .header {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            transition: box-shadow 0.3s;
-        }
+        .header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; transition: box-shadow 0.3s; }
         .header.scrolled { box-shadow: var(--shadow); }
         .nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-icon { width: 44px; height: 44px; border-radius: 10px; object-fit: contain; }
         .logo-text { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
         .logo-text span { color: var(--blue-mid); }
-
         .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-body); text-decoration: none; font-weight: 500; font-size: 14px; transition: color 0.2s; }
         .nav-links a:hover { color: var(--blue-mid); }
-        .nav-cta {
-            background: var(--blue-mid);
-            color: #fff !important;
-            padding: 9px 20px;
-            border-radius: 8px;
-            font-weight: 600 !important;
-            font-size: 14px;
-            transition: background 0.2s, transform 0.2s !important;
-        }
+        .nav-cta { background: var(--blue-mid); color: #fff !important; padding: 9px 20px; border-radius: 8px; font-weight: 600 !important; font-size: 14px; transition: background 0.2s, transform 0.2s !important; }
         .nav-cta:hover { background: var(--blue-deep) !important; transform: translateY(-1px); }
-
         .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 8px; z-index: 1001; }
         .bar { width: 24px; height: 2.5px; background: var(--navy); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
 
-        /* ─── BUTTONS ─── */
-        .btn {
-            padding: 13px 28px; border-radius: 10px; text-decoration: none;
-            font-weight: 600; font-size: 15px; transition: all 0.25s;
-            display: inline-flex; align-items: center; gap: 8px;
-            cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
-        }
-        .btn-primary {
-            background: var(--blue-mid);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(30,91,189,0.30);
-        }
-        .btn-primary:hover { background: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(13,27,62,0.25); }
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--blue-mid);
-            border: 1.5px solid var(--border);
-        }
-        .btn-secondary:hover { background: var(--blue-pale); transform: translateY(-2px); }
+        /* LANG TOGGLE */
+        .lang-toggle { display: flex; align-items: center; gap: 4px; background: var(--bg-off); border: 1.5px solid var(--border); border-radius: 8px; padding: 4px; }
+        .lang-btn { padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; font-family: 'Sora', sans-serif; }
+        .lang-btn.active { background: var(--blue-mid); color: #fff; }
+        .lang-btn:hover:not(.active) { color: var(--blue-mid); }
 
-        /* ─── HERO ─── */
-        .hero {
-            padding: 148px 0 96px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-blob {
-            position: absolute; top: -120px; right: -180px;
-            width: 680px; height: 680px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(46,127,232,0.10) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-blob2 {
-            position: absolute; bottom: -80px; left: -120px;
-            width: 480px; height: 480px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(30,91,189,0.07) 0%, transparent 70%);
-            pointer-events: none;
-        }
+        .btn { padding: 13px 28px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
+        .btn-primary { background: var(--blue-mid); color: #fff; box-shadow: 0 4px 20px rgba(30,91,189,0.30); }
+        .btn-primary:hover { background: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(13,27,62,0.25); }
+        .btn-secondary { background: var(--bg-card); color: var(--blue-mid); border: 1.5px solid var(--border); }
+        .btn-secondary:hover { background: var(--blue-pale); transform: translateY(-2px); }
+        .hero { padding: 148px 0 96px; position: relative; overflow: hidden; }
+        .hero-blob { position: absolute; top: -120px; right: -180px; width: 680px; height: 680px; border-radius: 50%; background: radial-gradient(circle, rgba(46,127,232,0.10) 0%, transparent 70%); pointer-events: none; }
+        .hero-blob2 { position: absolute; bottom: -80px; left: -120px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(30,91,189,0.07) 0%, transparent 70%); pointer-events: none; }
         .hero-inner { position: relative; z-index: 1; align-items: flex-start; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 50px; padding: 7px 18px;
-            font-size: 12px; font-weight: 600; color: var(--blue-mid);
-            margin-bottom: 28px; letter-spacing: 0.5px;
-        }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; padding: 7px 18px; font-size: 12px; font-weight: 600; color: var(--blue-mid); margin-bottom: 28px; letter-spacing: 0.5px; }
         .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
-        .hero h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
-            font-weight: 800; line-height: 1.08;
-            color: var(--navy); margin-bottom: 22px;
-            letter-spacing: -1.5px;
-        }
+        .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 800; line-height: 1.08; color: var(--navy); margin-bottom: 22px; letter-spacing: -1.5px; }
         .hero h1 em { color: var(--blue-mid); font-style: normal; }
-        .hero p {
-            font-size: 1.1rem; color: var(--text-body);
-            margin-bottom: 38px; max-width: 540px; font-weight: 400;
-        }
+        .hero p { font-size: 1.1rem; color: var(--text-body); margin-bottom: 38px; max-width: 540px; font-weight: 400; }
         .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
-        .hero-stats {
-            display: flex; gap: 48px; flex-wrap: wrap;
-            padding-top: 40px; border-top: 1px solid var(--border);
-            max-width: 520px;
-        }
-        .hero-stat .num {
-            font-family: 'Sora', sans-serif;
-            font-size: 2rem; font-weight: 800; color: var(--blue-mid); display: block;
-        }
+        .hero-stats { display: flex; gap: 48px; flex-wrap: wrap; padding-top: 40px; border-top: 1px solid var(--border); max-width: 520px; }
+        .hero-stat .num { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 800; color: var(--blue-mid); display: block; }
         .hero-stat .label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
-
-        /* ─── SECTION HEADERS ─── */
-        .section-eyebrow {
-            display: inline-block; font-size: 11px; font-weight: 700;
-            letter-spacing: 2px; text-transform: uppercase;
-            color: var(--blue-mid); margin-bottom: 12px;
-        }
-        .section-title {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-            font-weight: 700; color: var(--navy);
-            letter-spacing: -0.5px; margin-bottom: 14px;
-        }
+        .section-eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 12px; }
+        .section-title { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 14px; }
         .section-subtitle { font-size: 1rem; color: var(--text-body); max-width: 540px; }
         .section-head { margin-bottom: 52px; }
-
-        /* ─── PROJECTS ─── */
         .projects { padding: 96px 0; background: var(--bg-off); }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
-
-        .project-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 18px; overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: var(--shadow);
-        }
+        .project-card { background: var(--bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: all 0.3s; box-shadow: var(--shadow); }
         .project-card:hover { transform: translateY(-6px); border-color: var(--blue-mid); box-shadow: var(--shadow-lg); }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--bg-card), var(--blue-pale));
-            display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
-            border-bottom: 1px solid var(--border);
-        }
+        .project-image { height: 200px; background: linear-gradient(135deg, var(--bg-card), var(--blue-pale)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
         .project-image img { max-width: 110px; max-height: 110px; object-fit: contain; transition: transform 0.3s; }
         .project-card:hover .project-image img { transform: scale(1.08); }
-
-        .project-badge {
-            position: absolute; top: 12px; right: 12px;
-            background: var(--blue-mid); color: #fff;
-            font-size: 11px; font-weight: 700; padding: 4px 12px;
-            border-radius: 20px; letter-spacing: 0.5px;
-        }
+        .project-badge { position: absolute; top: 12px; right: 12px; background: var(--blue-mid); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; }
         .project-badge.play { background: var(--bg-card); color: var(--blue-mid); border: 1px solid var(--border); }
-
         .project-content { padding: 28px; }
-        .project-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 10px;
-        }
+        .project-title { font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
         .project-description { color: var(--text-body); margin-bottom: 18px; font-size: 0.93rem; line-height: 1.65; }
-
         .project-tech { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
-        .tech-tag {
-            background: var(--bg-card); color: var(--blue-mid);
-            padding: 3px 11px; border-radius: 20px;
-            font-size: 11px; font-weight: 600; border: 1px solid var(--border);
-        }
+        .tech-tag { background: var(--bg-card); color: var(--blue-mid); padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid var(--border); }
         .pricing-mini { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .price-pill {
-            background: var(--bg-off); border: 1px solid var(--border);
-            border-radius: 20px; padding: 5px 12px;
-            font-size: 12px; color: var(--text-body); font-weight: 600;
-        }
+        .price-pill { background: var(--bg-off); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px; color: var(--text-body); font-weight: 600; }
         .price-pill.featured { background: var(--blue-mid); color: #fff; border: none; }
-
         .project-links { display: flex; gap: 18px; }
-        .project-link {
-            color: var(--blue-mid); text-decoration: none;
-            font-weight: 600; font-size: 13px;
-            display: flex; align-items: center; gap: 5px;
-            transition: color 0.2s;
-        }
+        .project-link { color: var(--blue-mid); text-decoration: none; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
         .project-link:hover { color: var(--navy); }
-
-        /* ─── ABOUT ─── */
         .about { padding: 96px 0; }
         .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-        .about-text h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(1.8rem, 3vw, 2.3rem);
-            font-weight: 700; color: var(--navy);
-            letter-spacing: -0.5px; margin-bottom: 18px;
-        }
+        .about-text h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3vw, 2.3rem); font-weight: 700; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 18px; }
         .about-text p { color: var(--text-body); margin-bottom: 18px; }
         .about-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
-
         .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-        .stat-card {
-            background: var(--bg-off); border: 1px solid var(--border);
-            border-radius: 14px; padding: 22px 18px; text-align: center;
-            transition: all 0.25s;
-        }
+        .stat-card { background: var(--bg-off); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; text-align: center; transition: all 0.25s; }
         .stat-card:hover { border-color: var(--blue-mid); background: var(--bg-card); }
-        .stat-number {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.7rem; font-weight: 800; color: var(--blue-mid); margin-bottom: 4px;
-        }
+        .stat-number { font-family: 'Sora', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--blue-mid); margin-bottom: 4px; }
         .stat-label { color: var(--text-muted); font-size: 12px; font-weight: 500; }
-
-        /* ─── DIVIDER ─── */
-        .divider-section {
-            background: var(--navy);
-            padding: 64px 0;
-            position: relative; overflow: hidden;
-        }
-        .divider-section::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(circle at 70% 50%, rgba(46,127,232,0.20) 0%, transparent 60%);
-        }
+        .divider-section { background: var(--navy); padding: 64px 0; position: relative; overflow: hidden; }
+        .divider-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 50%, rgba(46,127,232,0.20) 0%, transparent 60%); }
         .divider-inner { position: relative; z-index: 1; text-align: center; }
-        .divider-inner h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -0.5px;
-        }
+        .divider-inner h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -0.5px; }
         .divider-inner p { color: rgba(255,255,255,0.65); margin-bottom: 32px; font-size: 1rem; }
-        .btn-white {
-            background: #fff; color: var(--navy);
-            font-weight: 700; padding: 13px 28px; border-radius: 10px;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-            font-size: 15px; transition: all 0.25s;
-        }
+        .btn-white { background: #fff; color: var(--navy); font-weight: 700; padding: 13px 28px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; transition: all 0.25s; }
         .btn-white:hover { background: var(--blue-pale); transform: translateY(-2px); }
-
-        /* ─── CONTACT ─── */
         .contact { padding: 96px 0; background: var(--bg-off); }
         .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-        .contact-info h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(1.8rem, 3vw, 2.2rem);
-            font-weight: 700; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 16px;
-        }
+        .contact-info h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3vw, 2.2rem); font-weight: 700; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 16px; }
         .contact-info p { color: var(--text-body); margin-bottom: 32px; }
         .contact-chips { display: flex; flex-direction: column; gap: 14px; }
-        .contact-chip {
-            display: flex; align-items: center; gap: 14px;
-            background: var(--bg); border: 1px solid var(--border);
-            border-radius: 12px; padding: 16px 20px;
-        }
-        .chip-icon {
-            width: 40px; height: 40px; border-radius: 10px;
-            background: var(--bg-card); display: flex; align-items: center;
-            justify-content: center; font-size: 18px; flex-shrink: 0;
-        }
+        .contact-chip { display: flex; align-items: center; gap: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+        .chip-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--bg-card); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
         .chip-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .chip-value { font-size: 14px; font-weight: 600; color: var(--navy); }
-
-        .contact-form {
-            background: var(--bg); border: 1px solid var(--border);
-            border-radius: 18px; padding: 36px;
-            box-shadow: var(--shadow);
-        }
+        .contact-form { background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 36px; box-shadow: var(--shadow); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 7px; color: var(--navy); font-size: 13px; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px 15px;
-            border: 1.5px solid var(--border); border-radius: 9px;
-            background: var(--bg-off); color: var(--text-main); font-size: 14px;
-            transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--blue-mid);
-            background: var(--bg); box-shadow: 0 0 0 3px rgba(30,91,189,0.10);
-        }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: 9px; background: var(--bg-off); color: var(--text-main); font-size: 14px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--blue-mid); background: var(--bg); box-shadow: 0 0 0 3px rgba(30,91,189,0.10); }
         .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
-
-        /* ─── FOOTER ─── */
         .footer { padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg); }
         .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -348,7 +139,6 @@
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
         .footer-links a:hover { color: var(--blue-mid); }
 
-        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
             .nav-links { position: fixed; left: -100%; top: 72px; flex-direction: column; background: var(--bg); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border); z-index: 999; box-shadow: var(--shadow-lg); }
             .nav-links.active { left: 0; }
@@ -379,61 +169,64 @@
                     <img src="img/avtech-logo.png" alt="AV AppStudio" class="logo-icon">
                     <div class="logo-text">AV <span>AppStudio</span></div>
                 </a>
-                <div class="nav-toggle" id="mobile-menu">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <div class="lang-toggle">
+                        <div class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</div>
+                        <div class="lang-btn" id="btn-en" onclick="setLang('en')">EN</div>
+                    </div>
+                    <div class="nav-toggle" id="mobile-menu">
+                        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    </div>
                 </div>
                 <ul class="nav-links" id="nav-menu">
-                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
                     <li><a href="ai-routine/">AI Routine</a></li>
                     <li><a href="alcosense/">AlcoSense</a></li>
                     <li><a href="blog/">Blog</a></li>
-                    <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#contact" class="nav-cta">Contactar</a></li>
+                    <li><a href="#about" data-es="Nosotros" data-en="About">Nosotros</a></li>
+                    <li><a href="#contact" class="nav-cta" data-es="Contactar" data-en="Contact">Contactar</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-blob"></div>
         <div class="hero-blob2"></div>
         <div class="container">
         <div class="hero-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;">
         <div>
-            <div class="hero-badge">Apps con IA que resuelven problemas reales</div>
-            <h1>Creamos Apps que<br><em>Mejoran tu Vida</em></h1>
-            <p>Aplicaciones móviles con inteligencia artificial real. Desde tu entrenador personal hasta decisiones responsables — tecnología que resuelve problemas reales.</p>
+            <div class="hero-badge" data-es="Apps con IA que resuelven problemas reales" data-en="AI-powered apps that solve real problems">Apps con IA que resuelven problemas reales</div>
+            <h1 data-es="Creamos Apps que<br><em>Mejoran tu Vida</em>" data-en="We Build Apps that<br><em>Elevate Your Life</em>">Creamos Apps que<br><em>Mejoran tu Vida</em></h1>
+            <p data-es="Aplicaciones móviles con inteligencia artificial real. Desde tu entrenador personal hasta decisiones responsables — tecnología que resuelve problemas reales." data-en="Mobile apps with real artificial intelligence. From your personal trainer to responsible decisions — technology that solves real problems.">Aplicaciones móviles con inteligencia artificial real. Desde tu entrenador personal hasta decisiones responsables — tecnología que resuelve problemas reales.</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">Ver Proyectos →</a>
-                <a href="#contact" class="btn btn-secondary">Contactar</a>
+                <a href="#projects" class="btn btn-primary" data-es="Ver Proyectos →" data-en="See Projects →">Ver Proyectos →</a>
+                <a href="#contact" class="btn btn-secondary" data-es="Contactar" data-en="Contact">Contactar</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><span class="num">2</span><span class="label">Apps Activas</span></div>
+                <div class="hero-stat"><span class="num">2</span><span class="label" data-es="Apps Activas" data-en="Active Apps">Apps Activas</span></div>
                 <div class="hero-stat"><span class="num">IA</span><span class="label">Powered by Claude</span></div>
-                <div class="hero-stat"><span class="num">0€</span><span class="label">Para empezar</span></div>
-                <div class="hero-stat"><span class="num">24/7</span><span class="label">Disponible</span></div>
+                <div class="hero-stat"><span class="num">0€</span><span class="label" data-es="Para empezar" data-en="To start">Para empezar</span></div>
+                <div class="hero-stat"><span class="num">24/7</span><span class="label" data-es="Disponible" data-en="Available">Disponible</span></div>
             </div>
         </div>
         <div>
-            <div style="padding-top: 8px;">
-            <img src="img/meeting.png" alt="AV AppStudio presentation" style="width:100%;border-radius:20px;box-shadow:0 24px 64px rgba(13,27,62,0.18);">
+            <div style="padding-top:8px;">
+                <img src="img/meeting.png" alt="AV AppStudio" style="width:100%;border-radius:20px;box-shadow:0 24px 64px rgba(13,27,62,0.18);">
+            </div>
         </div>
         </div>
         </div>
     </section>
 
-    <!-- PROJECTS -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-head">
-                <div class="section-eyebrow">Nuestros Proyectos</div>
-                <h2 class="section-title">Apps que marcan la diferencia</h2>
-                <p class="section-subtitle">Soluciones que están cambiando la manera en que las personas entrenan y viven de forma más saludable.</p>
+                <div class="section-eyebrow" data-es="Nuestros Proyectos" data-en="Our Projects">Nuestros Proyectos</div>
+                <h2 class="section-title" data-es="Apps que marcan la diferencia" data-en="Apps that make a difference">Apps que marcan la diferencia</h2>
+                <p class="section-subtitle" data-es="Soluciones que están cambiando la manera en que las personas entrenan y viven de forma más saludable." data-en="Solutions changing the way people train and live healthier lives.">Soluciones que están cambiando la manera en que las personas entrenan y viven de forma más saludable.</p>
             </div>
             <div class="projects-grid">
-
-                <!-- AI ROUTINE -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="img/AiRoutineLogo.png" alt="AI Routine">
@@ -441,29 +234,23 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AI Routine</h3>
-                        <p class="project-description">Tu entrenador personal con IA disponible 24/7. DumblAI genera rutinas personalizadas en 30 segundos, conoce tu progreso y te guía en cada entrenamiento.</p>
+                        <p class="project-description" data-es="Tu entrenador personal con IA disponible 24/7. DumblAI genera rutinas personalizadas en 30 segundos, conoce tu progreso y te guía en cada entrenamiento." data-en="Your AI personal trainer available 24/7. DumblAI generates personalized routines in 30 seconds, knows your progress and guides you through every workout.">Tu entrenador personal con IA disponible 24/7. DumblAI genera rutinas personalizadas en 30 segundos, conoce tu progreso y te guía en cada entrenamiento.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React + Vite</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Claude AI</span>
-                            <span class="tech-tag">Stripe</span>
-                            <span class="tech-tag">PWA</span>
+                            <span class="tech-tag">React + Vite</span><span class="tech-tag">Firebase</span><span class="tech-tag">Claude AI</span><span class="tech-tag">Stripe</span><span class="tech-tag">PWA</span>
                         </div>
                         <div class="pricing-mini">
                             <span class="price-pill">FREE 0€</span>
                             <span class="price-pill featured">PRO 3,99€/mes</span>
                             <span class="price-pill">ELITE 9,99€/mes</span>
-                            <span class="price-pill">Especiales 2,99€</span>
+                            <span class="price-pill" data-es="Especiales 2,99€" data-en="Special 2,99€">Especiales 2,99€</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://airoutine.fit/register" target="_blank" class="project-link">🚀 Empezar gratis</a>
-                            <a href="ai-routine/" class="project-link">📄 Ver más</a>
+                            <a href="https://airoutine.fit/register" target="_blank" class="project-link" data-es="🚀 Empezar gratis" data-en="🚀 Start free">🚀 Empezar gratis</a>
+                            <a href="ai-routine/" class="project-link" data-es="📄 Ver más" data-en="📄 Learn more">📄 Ver más</a>
                             <a href="https://airoutine.fit" target="_blank" class="project-link">🌐 App</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- ALCOSENSE -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="img/AlcoSenseLogo.png" alt="AlcoSense">
@@ -471,118 +258,92 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AlcoSense</h3>
-                        <p class="project-description">Calculadora inteligente de alcoholemia. Ayuda a tomar decisiones responsables sobre consumo de alcohol y conducción segura.</p>
+                        <p class="project-description" data-es="Calculadora inteligente de alcoholemia. Ayuda a tomar decisiones responsables sobre consumo de alcohol y conducción segura." data-en="Smart blood alcohol calculator. Helps make responsible decisions about alcohol consumption and safe driving.">Calculadora inteligente de alcoholemia. Ayuda a tomar decisiones responsables sobre consumo de alcohol y conducción segura.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Android</span>
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">ML Kit</span>
-                            <span class="tech-tag">Health APIs</span>
+                            <span class="tech-tag">Android</span><span class="tech-tag">Kotlin</span><span class="tech-tag">ML Kit</span><span class="tech-tag">Health APIs</span>
                         </div>
                         <div style="margin-bottom:20px;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
                             <iframe width="100%" height="180" src="https://www.youtube.com/embed/H0MC0X8YrF8" title="AlcoSense" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="project-links">
                             <a href="https://play.google.com/store/apps/details?id=com.happyhoursapp.android&pli=1" target="_blank" class="project-link">📱 Google Play</a>
-                            <a href="alcosense/" class="project-link">🍺 Demo Web</a>
+                            <a href="alcosense/" class="project-link" data-es="🍺 Demo Web" data-en="🍺 Web Demo">🍺 Demo Web</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- CTA DIVIDER -->
     <div class="divider-section">
         <div class="container divider-inner">
-            <h2>¿Listo para entrenar con IA?</h2>
-            <p>AI Routine genera tu rutina personalizada en 30 segundos. Gratis. Sin tarjeta.</p>
-            <a href="https://airoutine.fit/register" target="_blank" class="btn-white">Empezar gratis →</a>
+            <h2 data-es="¿Listo para entrenar con IA?" data-en="Ready to train with AI?">¿Listo para entrenar con IA?</h2>
+            <p data-es="AI Routine genera tu rutina personalizada en 30 segundos. Gratis. Sin tarjeta." data-en="AI Routine generates your personalized routine in 30 seconds. Free. No card required.">AI Routine genera tu rutina personalizada en 30 segundos. Gratis. Sin tarjeta.</p>
+            <a href="https://airoutine.fit/register" target="_blank" class="btn-white" data-es="Empezar gratis →" data-en="Start free →">Empezar gratis →</a>
         </div>
     </div>
 
-    <!-- ABOUT -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <div class="section-eyebrow">Nosotros</div>
-                    <h2>Tecnología que marca la diferencia</h2>
-                    <p>En AV AppStudio creemos que la tecnología debe hacer la vida más fácil, más saludable y más responsable. Nos especializamos en apps móviles con IA real que resuelven problemas reales.</p>
-                    <p>Combinamos React, Firebase, Claude AI y Stripe para crear experiencias únicas — desde rutinas de entrenamiento personalizadas hasta decisiones responsables en tu día a día.</p>
+                    <div class="section-eyebrow" data-es="Nosotros" data-en="About us">Nosotros</div>
+                    <h2 data-es="Tecnología que marca la diferencia" data-en="Technology that makes a difference">Tecnología que marca la diferencia</h2>
+                    <p data-es="En AV AppStudio creemos que la tecnología debe hacer la vida más fácil, más saludable y más responsable. Nos especializamos en apps móviles con IA real que resuelven problemas reales." data-en="At AV AppStudio we believe technology should make life easier, healthier and more responsible. We specialize in mobile apps with real AI that solve real problems.">En AV AppStudio creemos que la tecnología debe hacer la vida más fácil, más saludable y más responsable. Nos especializamos en apps móviles con IA real que resuelven problemas reales.</p>
+                    <p data-es="Combinamos React, Firebase, Claude AI y Stripe para crear experiencias únicas — desde rutinas de entrenamiento personalizadas hasta decisiones responsables en tu día a día." data-en="We combine React, Firebase, Claude AI and Stripe to create unique experiences — from personalized training routines to responsible daily decisions.">Combinamos React, Firebase, Claude AI y Stripe para crear experiencias únicas — desde rutinas de entrenamiento personalizadas hasta decisiones responsables en tu día a día.</p>
                     <div class="about-btns">
-                        <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary">Probar AI Routine</a>
-                        <a href="#contact" class="btn btn-secondary">Contactar</a>
+                        <a href="https://airoutine.fit/register" target="_blank" class="btn btn-primary" data-es="Probar AI Routine" data-en="Try AI Routine">Probar AI Routine</a>
+                        <a href="#contact" class="btn btn-secondary" data-es="Contactar" data-en="Contact">Contactar</a>
                     </div>
                 </div>
                 <div class="stats">
-                    <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">Apps en producción</div></div>
+                    <div class="stat-card"><div class="stat-number">2</div><div class="stat-label" data-es="Apps en producción" data-en="Apps in production">Apps en producción</div></div>
                     <div class="stat-card"><div class="stat-number">IA</div><div class="stat-label">Claude Sonnet</div></div>
                     <div class="stat-card"><div class="stat-number">PWA</div><div class="stat-label">iOS + Android</div></div>
-                    <div class="stat-card"><div class="stat-number">0€</div><div class="stat-label">Para empezar</div></div>
-                    <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Tiers de precio</div></div>
+                    <div class="stat-card"><div class="stat-number">0€</div><div class="stat-label" data-es="Para empezar" data-en="To start">Para empezar</div></div>
+                    <div class="stat-card"><div class="stat-number">3</div><div class="stat-label" data-es="Tiers de precio" data-en="Pricing tiers">Tiers de precio</div></div>
                     <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">DumblAI activo</div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="contact-wrap">
                 <div class="contact-info">
-                    <div class="section-eyebrow">Contacto</div>
-                    <h2>¿Tienes una idea?</h2>
-                    <p>Hablemos sobre cómo podemos hacer realidad tu próxima aplicación. Respondemos en menos de 24h.</p>
+                    <div class="section-eyebrow" data-es="Contacto" data-en="Contact">Contacto</div>
+                    <h2 data-es="¿Tienes una idea?" data-en="Got an idea?">¿Tienes una idea?</h2>
+                    <p data-es="Hablemos sobre cómo podemos hacer realidad tu próxima aplicación. Respondemos en menos de 24h." data-en="Let's talk about how we can bring your next app to life. We reply within 24h.">Hablemos sobre cómo podemos hacer realidad tu próxima aplicación. Respondemos en menos de 24h.</p>
                     <div class="contact-chips">
-                        <div class="contact-chip">
-                            <div class="chip-icon">✉️</div>
-                            <div>
-                                <div class="chip-label">Email</div>
-                                <div class="chip-value">avappstudio.global@gmail.com</div>
-                            </div>
-                        </div>
-                        <div class="contact-chip">
-                            <div class="chip-icon">🌐</div>
-                            <div>
-                                <div class="chip-label">Web</div>
-                                <div class="chip-value">avtechapp.com</div>
-                            </div>
-                        </div>
-                        <div class="contact-chip">
-                            <div class="chip-icon">📱</div>
-                            <div>
-                                <div class="chip-label">App principal</div>
-                                <div class="chip-value">airoutine.fit</div>
-                            </div>
-                        </div>
+                        <div class="contact-chip"><div class="chip-icon">✉️</div><div><div class="chip-label">Email</div><div class="chip-value">avappstudio.global@gmail.com</div></div></div>
+                        <div class="contact-chip"><div class="chip-icon">🌐</div><div><div class="chip-label">Web</div><div class="chip-value">avtechapp.com</div></div></div>
+                        <div class="contact-chip"><div class="chip-icon">📱</div><div><div class="chip-label" data-es="App principal" data-en="Main app">App principal</div><div class="chip-value">airoutine.fit</div></div></div>
                     </div>
                 </div>
                 <div class="contact-form">
                     <div class="form-group">
-                        <label>NOMBRE</label>
-                        <input type="text" id="name" placeholder="Tu nombre completo" />
+                        <label data-es="NOMBRE" data-en="NAME">NOMBRE</label>
+                        <input type="text" id="name" data-es-ph="Tu nombre completo" data-en-ph="Your full name" placeholder="Tu nombre completo" />
                     </div>
                     <div class="form-group">
                         <label>EMAIL</label>
                         <input type="email" id="email" placeholder="tu@email.com" />
                     </div>
                     <div class="form-group">
-                        <label>TIPO DE PROYECTO</label>
-                        <input type="text" id="project" placeholder="App móvil, consultoría, colaboración..." />
+                        <label data-es="TIPO DE PROYECTO" data-en="PROJECT TYPE">TIPO DE PROYECTO</label>
+                        <input type="text" id="project" data-es-ph="App móvil, consultoría, colaboración..." data-en-ph="Mobile app, consulting, collaboration..." placeholder="App móvil, consultoría, colaboración..." />
                     </div>
                     <div class="form-group">
-                        <label>MENSAJE</label>
-                        <textarea id="message" rows="5" placeholder="Cuéntanos sobre tu idea..."></textarea>
+                        <label data-es="MENSAJE" data-en="MESSAGE">MENSAJE</label>
+                        <textarea id="message" rows="5" data-es-ph="Cuéntanos sobre tu idea..." data-en-ph="Tell us about your idea..." placeholder="Cuéntanos sobre tu idea..."></textarea>
                     </div>
-                    <button onclick="sendContact()" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar Mensaje →</button>
+                    <button onclick="sendContact()" class="btn btn-primary" style="width:100%;justify-content:center;" data-es="Enviar Mensaje →" data-en="Send Message →">Enviar Mensaje →</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -598,15 +359,39 @@
                     <a href="alcosense/">AlcoSense</a>
                     <a href="blog/">Blog</a>
                     <a href="https://airoutine.fit" target="_blank">airoutine.fit</a>
-                    <a href="#contact">Contacto</a>
+                    <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu
-        document.addEventListener('DOMContentLoaded', function() {
+        let currentLang = localStorage.getItem('avLang') || 'es';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('avLang', lang);
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            document.querySelectorAll('[data-es]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (!text) return;
+                if (el.tagName === 'H1' || el.tagName === 'H2') {
+                    el.innerHTML = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+
+            document.querySelectorAll('[data-es-ph]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + lang + '-ph') || el.placeholder;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLang(currentLang);
+
             const mobileMenu = document.getElementById('mobile-menu');
             const navMenu = document.getElementById('nav-menu');
             if (mobileMenu && navMenu) {
@@ -623,24 +408,24 @@
             }
         });
 
-        // Header scroll shadow
         window.addEventListener('scroll', () => {
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
         });
 
-        // Contact form
         function sendContact() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const project = document.getElementById('project').value;
             const message = document.getElementById('message').value;
-            if (!name || !email || !message) { alert('Por favor rellena nombre, email y mensaje'); return; }
+            if (!name || !email || !message) {
+                alert(currentLang === 'es' ? 'Por favor rellena nombre, email y mensaje' : 'Please fill in name, email and message');
+                return;
+            }
             const subject = `Contacto AVAppStudio - ${project || 'Consulta'}`;
             const body = `Nombre: ${name}%0D%0AEmail: ${email}%0D%0AProyecto: ${project}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
             window.location.href = `mailto:avappstudio.global@gmail.com?subject=${subject}&body=${body}`;
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
