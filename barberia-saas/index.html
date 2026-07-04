@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Barbería - Reservas Online sin Comisiones | AV AppStudio</title>
+    <meta name="description" content="El sistema de reservas para tu barbería o peluquería. Web propia, dominio incluido, cero comisión por reserva. Panel de agenda, recordatorios y notificaciones push.">
+    <meta name="keywords" content="reservas online barbería, software peluquería, cita previa barbería, alternativa Booksy, alternativa Fresha, dominio propio barbería">
+    <meta property="og:title" content="SaaS Barbería - Reservas Online sin Comisiones">
+    <meta property="og:description" content="Web propia con dominio incluido, cero comisión por reserva, panel completo de gestión. La alternativa a Booksy/Fresha para barberías de barrio.">
+    <meta property="og:image" content="../img/avtech-logo.png">
+    <meta property="og:url" content="https://avtechapp.com/barberia-saas">
+    <link rel="icon" type="image/png" href="../img/avtech-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSF7B9D3Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PSF7B9D3Z4');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-blue: #2E7FE8; --primary-deep: #1A3A7A; --accent-red: #E8432E;
+            --dark-bg: #0a0e1a; --card-bg: rgba(255,255,255,0.05);
+            --text-primary: #ffffff; --text-secondary: #c7d0e0;
+            --text-muted: #7d8aa8; --border-color: rgba(46,127,232,0.22);
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 80%, rgba(46,127,232,0.10) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(232,67,46,0.06) 0%, transparent 50%); z-index: -1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .barberpole { height: 4px; background: repeating-linear-gradient(135deg, var(--accent-red), var(--accent-red) 12px, #fff 12px, #fff 24px, var(--primary-blue) 24px, var(--primary-blue) 36px); }
+        .header { position: fixed; top: 4px; width: 100%; background: rgba(10,14,26,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 45px; height: 45px; border-radius: 12px; object-fit: contain; }
+        .logo-text { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary-blue); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
+        .nav-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001; }
+        .bar { width: 25px; height: 3px; background: var(--primary-blue); margin: 3px 0; transition: 0.3s; border-radius: 2px; }
+        .btn { padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary-blue), var(--primary-deep)); color: #fff; box-shadow: 0 4px 20px rgba(46,127,232,0.35); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(46,127,232,0.45); }
+        .btn-secondary { background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .section-title { text-align: center; font-family: 'Sora', sans-serif; font-size: 2.4rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .section-subtitle { text-align: center; font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 60px; max-width: 620px; margin-left: auto; margin-right: auto; }
+        .hero { padding: 152px 0 80px; }
+        .hero-content { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(46,127,232,0.08); border: 1px solid var(--border-color); border-radius: 50px; padding: 7px 18px; font-size: 12px; font-weight: 600; color: var(--primary-blue); margin-bottom: 24px; letter-spacing: 0.5px; }
+        .hero-text h1 { font-family: 'Sora', sans-serif; font-size: 3.1rem; font-weight: 800; margin-bottom: 20px; line-height: 1.15; letter-spacing: -1px; }
+        .hero-text h1 em { font-style: normal; color: var(--primary-blue); }
+        .hero-text p { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.65; max-width: 520px; }
+        .hero-buttons { display: flex; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }
+        .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border-color); }
+        .stat-number { font-family: 'Sora', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); display: block; }
+        .stat-label { font-size: 0.85rem; color: var(--text-secondary); }
+        .hero-mock { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 22px; padding: 22px; }
+        .mock-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .mock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-red); display: inline-block; margin-right: 5px; }
+        .mock-title { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+        .mock-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .mock-card .name { font-weight: 600; font-size: 14px; }
+        .mock-card .time { font-size: 12px; color: var(--text-muted); }
+        .mock-tag { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; letter-spacing: 0.5px; }
+        .mock-tag.ok { background: rgba(46,127,232,0.15); color: var(--primary-blue); }
+        .mock-tag.wait { background: rgba(232,67,46,0.15); color: var(--accent-red); }
+        .features { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; }
+        .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 20px; padding: 32px 28px; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-6px); border-color: var(--primary-blue); }
+        .feature-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+        .feature-title { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--primary-blue); }
+        .feature-description { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.6; }
+        .comparativa { padding: 80px 0; }
+        .compare-table { width: 100%; border-collapse: collapse; min-width: 520px; }
+        .compare-table th { padding: 16px; font-size: 13px; border-bottom: 1px solid var(--border-color); font-weight: 600; }
+        .compare-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .compare-table .us-col { background: rgba(46,127,232,0.06); border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); text-align: center; font-size: 18px; }
+        .compare-table .other-col { text-align: center; font-size: 18px; }
+        .pricing { padding: 80px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 48px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .pricing-card { background: rgba(255,255,255,0.03); border: 2px solid var(--border-color); border-radius: 20px; padding: 36px 28px; text-align: center; position: relative; transition: all 0.3s; }
+        .pricing-card.featured { border-color: var(--primary-blue); box-shadow: 0 20px 40px rgba(46,127,232,0.15); }
+        .pricing-card:hover { transform: translateY(-8px); border-color: var(--primary-blue); }
+        .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary-blue), var(--primary-deep)); color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+        .pricing-tier { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 8px; }
+        .pricing-price { font-family: 'Sora', sans-serif; font-size: 2.8rem; font-weight: 800; margin-bottom: 4px; }
+        .pricing-period { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.9rem; }
+        .pricing-features { list-style: none; margin-bottom: 28px; text-align: left; }
+        .pricing-features li { padding: 7px 0; color: var(--text-secondary); padding-left: 22px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .pricing-features li::before { content: '✓'; position: absolute; left: 0; color: var(--primary-blue); font-weight: bold; }
+        .pricing-note { text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 28px; }
+        .cta-section { padding: 80px 0; text-align: center; }
+        .cta-section h2 { font-family: 'Sora', sans-serif; font-size: 2.6rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+        footer { padding: 40px 0; border-top: 1px solid var(--border-color); background: var(--card-bg); }
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .nav-links { position: fixed; left: -100%; top: 84px; flex-direction: column; background: rgba(10,14,26,0.98); width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0; border-top: 1px solid var(--border-color); z-index: 999; }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 1.2rem 0; }
+            .nav-toggle { display: flex; }
+            .nav-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .nav-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .nav-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="barberpole"></div>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="../" class="logo">
+                    <img src="../img/avtech-logo.png" alt="AV AppStudio" class="logo-icon">
+                    <div class="logo-text">SaaS Barbería</div>
+                </a>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </div>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="../#projects">Proyectos</a></li>
+                    <li><a href="../ai-routine/">AI Routine</a></li>
+                    <li><a href="../alcosense/">AlcoSense</a></li>
+                    <li><a href="/barberia-saas" class="active">SaaS Barbería</a></li>
+                    <li><a href="../#about">Nosotros</a></li>
+                    <li><a href="../#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">🪒 Reservas online para barberías y peluquerías</div>
+                    <h1>Tu barbería, <em>tu web</em>, tus clientes</h1>
+                    <p>Sistema de reservas online a medida para barberías de barrio. Sin comisión por reserva, con tu propio dominio y sin compartir escaparate con la competencia de al lado.</p>
+                    <div class="hero-buttons">
+                        <a href="../#contact" class="btn btn-primary">Solicitar una demo</a>
+                        <a href="#pricing" class="btn btn-secondary">Ver precios</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat"><span class="stat-number">0%</span><span class="stat-label">Comisión por reserva</span></div>
+                        <div class="stat"><span class="stat-number">24/7</span><span class="stat-label">Reservas online</span></div>
+                        <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Web personalizable</span></div>
+                    </div>
+                </div>
+                <div class="hero-mock">
+                    <div class="mock-header">
+                        <div class="mock-title"><span class="mock-dot"></span>AGENDA DE HOY</div>
+                        <div class="mock-title">Tu Barbería</div>
+                    </div>
+                    <div class="mock-card">
+                        <div><div class="name">Corte + Barba</div><div class="time">10:00 · Marcos G.</div></div>
+                        <span class="mock-tag ok">Confirmada</span>
+                    </div>
+                    <div class="mock-card">
+                        <div><div class="name">Corte clásico</div><div class="time">11:30 · Iván R.</div></div>
+                        <span class="mock-tag ok">Confirmada</span>
+                    </div>
+                    <div class="mock-card">
+                        <div><div class="name">Arreglo de barba</div><div class="time">13:00 · Pablo M.</div></div>
+                        <span class="mock-tag wait">Pendiente</span>
+                    </div>
+                    <div class="mock-card" style="margin-bottom:0;">
+                        <div><div class="name">Corte + Diseño</div><div class="time">17:30 · Dani S.</div></div>
+                        <span class="mock-tag ok">Confirmada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Todo lo que necesita una barbería</h2>
+            <p class="section-subtitle">Nada de funciones que no vas a usar. Solo lo que hace falta para gestionar tu día a día sin líos.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📅</span>
+                    <h3 class="feature-title">Reserva en 4 pasos</h3>
+                    <p class="feature-description">El cliente elige servicio, día y hora en su móvil, sin llamadas ni WhatsApp. Huecos de 30 min sin dobles reservas.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🗓️</span>
+                    <h3 class="feature-title">Agenda tipo calendario</h3>
+                    <p class="feature-description">Vista mensual clara, modificar citas, auto-completar las pasadas y resumen de ingresos y citas del mes.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔔</span>
+                    <h3 class="feature-title">Notificaciones push</h3>
+                    <p class="feature-description">Te avisa al instante en el móvil cuando llega una cita nueva o un cliente cancela — instalable como app, sin App Store.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3 class="feature-title">Dominio propio incluido</h3>
+                    <p class="feature-description">Tu web con tu propio dominio (tubarberia.com), no un subdominio genérico compartido con miles de negocios.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🚫</span>
+                    <h3 class="feature-title">Cero comisión</h3>
+                    <p class="feature-description">Pagas una cuota fija mensual. Da igual si tienes 10 o 200 citas al mes — no te quitamos ni un euro por reserva.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">Web 100% a tu marca</h3>
+                    <p class="feature-description">Logo, colores, servicios y precios configurables desde el panel. Y si quieres algo distinto, te lo hacemos a medida.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🕒</span>
+                    <h3 class="feature-title">Horarios y bloqueos</h3>
+                    <p class="feature-description">Define tu horario por día y bloquea festivos, vacaciones o imprevistos en segundos desde el móvil.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📖</span>
+                    <h3 class="feature-title">Historial sin registro</h3>
+                    <p class="feature-description">Tus clientes consultan y cancelan sus citas solo con su teléfono, sin crear cuenta ni recordar contraseñas.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Métricas del negocio</h3>
+                    <p class="feature-description">Hora pico, servicios más pedidos, ingresos reales vs. potenciales — para tomar decisiones con datos, no a ojo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparativa">
+        <div class="container">
+            <h2 class="section-title">SaaS Barbería vs. plataformas genéricas</h2>
+            <p class="section-subtitle">Booksy y Fresha están pensadas para grandes volúmenes, no para la barbería de tu barrio.</p>
+            <div style="overflow-x:auto;margin-top:48px;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;color:var(--text-muted);">CARACTERÍSTICA</th>
+                            <th style="color:var(--primary-blue);font-size:1.05rem;letter-spacing:1px;background:rgba(46,127,232,0.06);border:1px solid var(--border-color);border-radius:12px 12px 0 0;">SAAS BARBERÍA</th>
+                            <th style="color:var(--text-muted);">BOOKSY / FRESHA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Cero comisión por reserva</td><td class="us-col">✅</td><td class="other-col">⚠️</td></tr>
+                        <tr><td>Dominio propio incluido</td><td class="us-col">✅</td><td class="other-col">❌</td></tr>
+                        <tr><td>No apareces junto a tu competencia en un mapa</td><td class="us-col">✅</td><td class="other-col">❌</td></tr>
+                        <tr><td>Web y funciones a medida bajo petición</td><td class="us-col">✅</td><td class="other-col">❌</td></tr>
+                        <tr><td>Panel de agenda, bloqueos y métricas propio</td><td class="us-col">✅</td><td class="other-col">✅</td></tr>
+                        <tr><td>Notificaciones push al instalar como app</td><td class="us-col">✅</td><td class="other-col">⚠️</td></tr>
+                        <tr><td>Soporte directo y cercano</td><td class="us-col" style="border-bottom:1px solid var(--border-color);border-radius:0 0 12px 12px;">✅</td><td class="other-col">⚠️</td></tr>
+                    </tbody>
+                </table>
+                <div style="margin-top:10px;font-size:11px;color:var(--text-muted);text-align:center;">✅ Sí &nbsp;|&nbsp; ⚠️ Parcial o de pago extra &nbsp;|&nbsp; ❌ No</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Precio simple, sin sorpresas</h2>
+            <p class="section-subtitle">Una cuota fija al mes. Sin permanencia, sin comisiones ocultas.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tier">BASE</div>
+                    <div class="pricing-price">19€</div>
+                    <div class="pricing-period">/mes</div>
+                    <ul class="pricing-features">
+                        <li>Reservas online 24/7</li>
+                        <li>Agenda, solicitudes y resumen</li>
+                        <li>Horarios y bloqueos</li>
+                        <li>Historial y cancelación de clientes</li>
+                        <li>Notificaciones push al barbero</li>
+                        <li>PWA instalable en el móvil</li>
+                    </ul>
+                    <a href="../#contact" class="btn btn-secondary" style="width:100%;justify-content:center;">Solicitar demo</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">CON DOMINIO PROPIO</div>
+                    <div class="pricing-tier">PRO</div>
+                    <div class="pricing-price">29€</div>
+                    <div class="pricing-period">/mes · dominio incluido</div>
+                    <ul class="pricing-features">
+                        <li>Todo lo del plan BASE</li>
+                        <li>Dominio propio incluido (tubarberia.com)</li>
+                        <li>Email de confirmación instantánea</li>
+                        <li>Recordatorio SMS 24h antes</li>
+                        <li>Prioridad en soporte y cambios</li>
+                    </ul>
+                    <a href="../#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Solicitar demo</a>
+                </div>
+            </div>
+            <p class="pricing-note">¿Necesitas algo distinto? La web se adapta a tu negocio — pregúntanos.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Tienes una barbería o peluquería?</h2>
+            <p style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;">Te montamos tu web de reservas con tu marca, sin comisiones y sin depender de una plataforma genérica.</p>
+            <a href="../#contact" class="btn btn-primary" style="font-size:1.1rem;padding:18px 40px;">Hablemos de tu barbería</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+                <div style="color:var(--text-secondary);">© 2026 AV AppStudio · SaaS Barbería</div>
+                <div style="display:flex;gap:20px;flex-wrap:wrap;">
+                    <a href="../" style="color:var(--text-secondary);text-decoration:none;">Inicio</a>
+                    <a href="../ai-routine/" style="color:var(--text-secondary);text-decoration:none;">AI Routine</a>
+                    <a href="../alcosense/" style="color:var(--text-secondary);text-decoration:none;">AlcoSense</a>
+                    <a href="../#contact" style="color:var(--primary-blue);text-decoration:none;">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+            if (mobileMenu && navMenu) {
+                mobileMenu.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
