@@ -283,7 +283,7 @@
                         <li>Recordatorio por email al cliente</li>
                         <li>PWA instalable en el móvil</li>
                     </ul>
-                    <a href="../#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Solicitar demo</a>
+                    <button id="btn-suscribirse-basico" class="btn btn-primary" style="width:100%;justify-content:center;">Comprar</button>
                 </div>
                 <div class="pricing-card" style="opacity:0.85;">
                     <div class="popular-badge" style="background:var(--text-muted);">PRÓXIMAMENTE</div>
@@ -346,6 +346,35 @@
                 });
             }
         });
+    </script>
+    <script>
+        const btnSuscribirse = document.getElementById('btn-suscribirse-basico');
+        if (btnSuscribirse) {
+            btnSuscribirse.addEventListener('click', async function() {
+                const textoOriginal = btnSuscribirse.textContent;
+                btnSuscribirse.textContent = 'Un momento...';
+                btnSuscribirse.disabled = true;
+                try {
+                    const r = await fetch('https://barberia-saas-tau.vercel.app/api/stripe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ accion: 'crear-checkout', plan: 'basico' }),
+                    });
+                    const data = await r.json();
+                    if (r.ok && data.url) {
+                        window.location.href = data.url;
+                    } else {
+                        alert(data.error || 'No se ha podido iniciar el pago. Inténtalo de nuevo.');
+                        btnSuscribirse.textContent = textoOriginal;
+                        btnSuscribirse.disabled = false;
+                    }
+                } catch (e) {
+                    alert('Error de conexión. Inténtalo de nuevo.');
+                    btnSuscribirse.textContent = textoOriginal;
+                    btnSuscribirse.disabled = false;
+                }
+            });
+        }
     </script>
 </body>
 </html>
