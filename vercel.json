@@ -2,7 +2,7 @@
   "rewrites": [
     { "source": "/api/:path*", "destination": "https://barberia-saas-tau.vercel.app/api/:path*" },
     { "source": "/assets/:path*", "destination": "https://barberia-saas-tau.vercel.app/assets/:path*" },
-    { "source": "/citabarber/:path*", "destination": "https://barberia-saas-tau.vercel.app/:path*" },
+    { "source": "/citabarber/:path*", "destination": "https://barberia-saas-tau.vercel.app/citabarber/:path*" },
     { "source": "/admin", "destination": "https://barberia-saas-tau.vercel.app/admin" },
     { "source": "/admin/:path*", "destination": "https://barberia-saas-tau.vercel.app/admin/:path*" },
     { "source": "/superadmin", "destination": "https://barberia-saas-tau.vercel.app/superadmin" },
