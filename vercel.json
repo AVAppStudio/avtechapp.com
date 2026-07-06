@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://barberia-saas-tau.vercel.app/api/:path*" },
+    { "source": "/assets/:path*", "destination": "https://barberia-saas-tau.vercel.app/assets/:path*" },
+    { "source": "/citabarber/:path*", "destination": "https://barberia-saas-tau.vercel.app/:path*" },
+    { "source": "/admin", "destination": "https://barberia-saas-tau.vercel.app/admin" },
+    { "source": "/admin/:path*", "destination": "https://barberia-saas-tau.vercel.app/admin/:path*" },
+    { "source": "/superadmin", "destination": "https://barberia-saas-tau.vercel.app/superadmin" },
+    { "source": "/superadmin/:path*", "destination": "https://barberia-saas-tau.vercel.app/superadmin/:path*" },
+    { "source": "/alta", "destination": "https://barberia-saas-tau.vercel.app/alta" },
+    { "source": "/manifest.json", "destination": "https://barberia-saas-tau.vercel.app/manifest.json" },
+    { "source": "/sw.js", "destination": "https://barberia-saas-tau.vercel.app/sw.js" },
+    { "source": "/citabarberlogo.png", "destination": "https://barberia-saas-tau.vercel.app/citabarberlogo.png" },
+    { "source": "/banner-desktop.png", "destination": "https://barberia-saas-tau.vercel.app/banner-desktop.png" },
+    { "source": "/banner-mobile.png", "destination": "https://barberia-saas-tau.vercel.app/banner-mobile.png" },
+    { "source": "/icon-192.png", "destination": "https://barberia-saas-tau.vercel.app/icon-192.png" },
+    { "source": "/icon-512.png", "destination": "https://barberia-saas-tau.vercel.app/icon-512.png" },
+    { "source": "/icon-512-maskable.png", "destination": "https://barberia-saas-tau.vercel.app/icon-512-maskable.png" }
+  ]
+}
