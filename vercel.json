@@ -16,5 +16,9 @@
     { "source": "/icon-192.png", "destination": "https://barberia-saas-tau.vercel.app/icon-192.png" },
     { "source": "/icon-512.png", "destination": "https://barberia-saas-tau.vercel.app/icon-512.png" },
     { "source": "/icon-512-maskable.png", "destination": "https://barberia-saas-tau.vercel.app/icon-512-maskable.png" }
+  ],
+  "redirects": [
+    { "source": "/citabarber-info", "destination": "https://citabarber.app/", "permanent": true },
+    { "source": "/citabarber-info/:path*", "destination": "https://citabarber.app/", "permanent": true }
   ]
 }
