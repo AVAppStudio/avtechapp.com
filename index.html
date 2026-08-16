@@ -106,6 +106,9 @@
         .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
         .stat-card { background: var(--bg-off); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; text-align: center; transition: all 0.25s; }
         .stat-card:hover { border-color: var(--blue-mid); background: var(--bg-card); }
+        .credibility-strip { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .credibility-lede { color: var(--text-body); font-size: 0.95rem; line-height: 1.75; max-width: 760px; margin-bottom: 18px; }
+        .credibility-tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .stat-number { font-family: 'Sora', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--blue-mid); margin-bottom: 4px; }
         .stat-label { color: var(--text-muted); font-size: 12px; font-weight: 500; }
         .divider-section { background: var(--navy); padding: 64px 0; position: relative; overflow: hidden; }
@@ -328,6 +331,16 @@
                     <div class="stat-card"><div class="stat-number">0€</div><div class="stat-label" data-es="Para empezar" data-en="To start">Para empezar</div></div>
                     <div class="stat-card"><div class="stat-number">3</div><div class="stat-label" data-es="Tiers de precio" data-en="Pricing tiers">Tiers de precio</div></div>
                     <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label" data-es="Nuevas apps en camino" data-en="New apps on the way">Nuevas apps en camino</div></div>
+                </div>
+            </div>
+            <div class="credibility-strip">
+                <p class="credibility-lede" data-es="Antes de fundar AV AppStudio, nuestro equipo pasó más de 7 años liderando implementaciones de software SaaS a nivel internacional — plataformas cloud de gestión y automatización de procesos para grandes organizaciones en sectores como industria, aeroportuario, servicios públicos y farmacéutico. Ese mismo estándar de fiabilidad, el de un software que no puede fallarle a quien depende de él, es el que aplicamos ahora en AI Routine, AlcoSense y CitaBarber." data-en="Before founding AV AppStudio, our team spent 7+ years leading SaaS software implementations at an international level — cloud platforms for process management and automation for large organizations in industries like manufacturing, airports, public services and pharma. That same reliability standard, software that can't fail the people who depend on it, is what we now bring to AI Routine, AlcoSense and CitaBarber.">Antes de fundar AV AppStudio, nuestro equipo pasó más de 7 años liderando implementaciones de software SaaS a nivel internacional — plataformas cloud de gestión y automatización de procesos para grandes organizaciones en sectores como industria, aeroportuario, servicios públicos y farmacéutico. Ese mismo estándar de fiabilidad, el de un software que no puede fallarle a quien depende de él, es el que aplicamos ahora en AI Routine, AlcoSense y CitaBarber.</p>
+                <div class="credibility-tags">
+                    <span class="tech-tag" data-es="Industria" data-en="Manufacturing">Industria</span>
+                    <span class="tech-tag" data-es="Aeroportuario" data-en="Airports">Aeroportuario</span>
+                    <span class="tech-tag" data-es="Servicios Públicos" data-en="Public Services">Servicios Públicos</span>
+                    <span class="tech-tag" data-es="Farmacéutico" data-en="Pharma">Farmacéutico</span>
+                    <span class="tech-tag" data-es="Facilities" data-en="Facilities">Facilities</span>
                 </div>
             </div>
         </div>
